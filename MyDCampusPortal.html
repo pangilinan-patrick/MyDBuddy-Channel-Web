@@ -1895,6 +1895,8 @@ function getMobileOperatingSystem() {
 
       window.botpressWebChat.init(lastConfig)
 
+      localStorage.clear(); /* resets the random key of the user stored in the localstorage */
+
       document.getElementById('origin').innerText = window.location.origin
     </script>
     
