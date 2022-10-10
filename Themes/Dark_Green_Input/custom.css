@@ -30,6 +30,7 @@ body {
   text-decoration: none;
   color: inherit;
   padding-left: 1em;
+  padding: 0.65em 0.65em 0.65em 0.65em;
   background-color: #007136;
   border-radius: 0 0 10px 10px;
   color: white;
@@ -87,14 +88,15 @@ body {
   background-color: #00A45E;
   border-radius: 15px 15px 0px 15px;
   border-color: none;
-  box-shadow: 3px 1px 5px #b8b8b8;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
 }
 
 .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content {
   background-color: #ffffff;
   color: #000000;
   border-radius: 15px 15px 15px 0px;
-  box-shadow: 3px 1px 5px #b8b8b8;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+  margin-bottom: 0.35em;
 }
 
 /* date css */
@@ -112,7 +114,8 @@ body {
   background-color: #007136; 
   border-bottom: none;
   border-radius: 10px 10px 0 0;
-  box-shadow: 0px 0px 6px #b8b8b8;
+  /*box-shadow: 0px 0px 6px #b8b8b8;*/
+  box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
   padding: 2.35em 0.75em 2.30em 0.75em;
 }
 
@@ -203,7 +206,8 @@ body {
   height: 80%;
   border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px #b8b8b8;
+  /*box-shadow: 0px 0px 5px #b8b8b8;*/
+  box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
   -webkit-box-orient: vertical;
   -ms-flex-direction: column;
   flex-direction: column;
