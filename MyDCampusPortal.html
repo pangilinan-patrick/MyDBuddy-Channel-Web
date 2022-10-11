@@ -1895,6 +1895,15 @@ function getMobileOperatingSystem() {
 
       window.botpressWebChat.init(lastConfig)
 
+      window.addEventListener("message", function (event) {
+      if (event.data.name === "webchatReady") {
+        window.botpressWebChat.sendEvent({
+          type: "proactive-trigger",
+          channel: "web",
+        })
+      }
+    })
+
       localStorage.clear(); /* resets the random key of the user stored in the localstorage */
 
       document.getElementById('origin').innerText = window.location.origin
