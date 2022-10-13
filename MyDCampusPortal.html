@@ -185,7 +185,8 @@ top: 0;
                         <li><button id="change-config1-bp">DLSL Colors 1</button></li>
                         <li><button id="change-config2-bp">DLSL Colors 2</button></li>
                         <li><button id="change-config3-bp">Neutral Color</button></li>
-                        <li><button id="change-config4-bp">Tall Chatbox</button></li>
+                        <li><button id="change-config4-bp">Centered Botpress Branding</button></li>
+                        <li><button id="change-config5-bp">Tall Chatbox</button></li>
 
                       
                         <!--
@@ -1834,6 +1835,14 @@ function getMobileOperatingSystem() {
       })
 
       document.getElementById('change-config4-bp').addEventListener('click', function() {
+        Object.assign(lastConfig, {
+        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input_Center_Footer/custom.css'
+        })
+
+        window.botpressWebChat.configure(lastConfig)
+      })
+
+      document.getElementById('change-config5-bp').addEventListener('click', function() {
         Object.assign(lastConfig, {
         extraStylesheet:'assets/modules/channel-web/examples/Themes/Tall/custom.css'
         })
