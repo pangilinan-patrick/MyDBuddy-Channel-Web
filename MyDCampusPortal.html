@@ -107,6 +107,7 @@ top: 0;
     </script>
 
     <style>[data-columns]::before{display:block;visibility:hidden;position:absolute;font-size:1px;}</style><style>.abcRioButton{border-radius:1px;box-shadow:0 2px 4px 0 rgba(0,0,0,.25);-moz-box-sizing:border-box;box-sizing:border-box;-webkit-transition:background-color .218s,border-color .218s,box-shadow .218s;transition:background-color .218s,border-color .218s,box-shadow .218s;-webkit-user-select:none;-webkit-appearance:none;background-color:#fff;background-image:none;color:#262626;cursor:pointer;outline:none;overflow:hidden;position:relative;text-align:center;vertical-align:middle;white-space:nowrap;width:auto}.abcRioButton:hover{box-shadow:0 0 3px 3px rgba(66,133,244,.3)}.abcRioButtonBlue{background-color:#4285f4;border:none;color:#fff}.abcRioButtonBlue:hover{background-color:#4285f4}.abcRioButtonBlue:active{background-color:#3367d6}.abcRioButtonLightBlue{background-color:#fff;color:#757575}.abcRioButtonLightBlue:active{background-color:#eee;color:#6d6d6d}.abcRioButtonIcon{float:left}.abcRioButtonBlue .abcRioButtonIcon{background-color:#fff;border-radius:1px}.abcRioButtonSvg{display:block}.abcRioButtonContents{font-family:Roboto,arial,sans-serif;font-size:14px;font-weight:500;letter-spacing:.21px;margin-left:6px;margin-right:6px;vertical-align:top}.abcRioButtonContentWrapper{height:100%;width:100%}.abcRioButtonBlue .abcRioButtonContentWrapper{border:1px solid transparent}.abcRioButtonErrorWrapper,.abcRioButtonWorkingWrapper{display:none;height:100%;width:100%}.abcRioButtonErrorIcon,.abcRioButtonWorkingIcon{margin-left:auto;margin-right:auto}.abcRioButtonErrorState,.abcRioButtonWorkingState{border:1px solid #d5d5d5;border:1px solid rgba(0,0,0,.17);box-shadow:0 1px 0 rgba(0,0,0,.05);color:#262626}.abcRioButtonErrorState:hover,.abcRioButtonWorkingState:hover{border:1px solid #aaa;border:1px solid rgba(0,0,0,.25);box-shadow:0 1px 0 rgba(0,0,0,.1)}.abcRioButtonErrorState:active,.abcRioButtonWorkingState:active{border:1px solid #aaa;border:1px solid rgba(0,0,0,.25);box-shadow:inset 0 1px 0 #ddd;color:#262626}.abcRioButtonWorkingState,.abcRioButtonWorkingState:hover{background-color:#f5f5f5}.abcRioButtonWorkingState:active{background-color:#e5e5e5}.abcRioButtonErrorState,.abcRioButtonErrorState:hover{background-color:#fff}.abcRioButtonErrorState:active{background-color:#e5e5e5}.abcRioButtonErrorState .abcRioButtonErrorWrapper,.abcRioButtonWorkingState .abcRioButtonWorkingWrapper{display:block}.abcRioButtonErrorState .abcRioButtonContentWrapper,.abcRioButtonErrorState .abcRioButtonWorkingWrapper,.abcRioButtonWorkingState .abcRioButtonContentWrapper{display:none} .-webkit-keyframes abcRioButtonWorkingIconPathSpinKeyframes {0% {-webkit-transform: rotate(0deg)}}</style></head>
+    
 
 
     <body data-ma-theme="green">
@@ -137,7 +138,7 @@ top: 0;
                   
                     <li class="dropdown hidden-xs-down">
 
-                        <a href="https://mydcampus.dlsl.edu.ph/#" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a>
+                        <a data-toggle="dropdown" aria-expanded="false"><i class="zmdi zmdi-more-vert"></i></a>
 
                         <div class="dropdown-menu dropdown-menu-right">
                           <a data-action="fullscreen" class="dropdown-item"><i class="zmdi zmdi-fullscreen zmdi-hc-fw"></i> Toggle Fullscreen</a>
@@ -185,7 +186,8 @@ top: 0;
                         <li><button id="change-config1-bp">DLSL Colors 1</button></li>
                         <li><button id="change-config2-bp">DLSL Colors 2</button></li>
                         <li><button id="change-config3-bp">Neutral Color</button></li>
-                        <li><button id="change-config4-bp">Tall Chatbox</button></li>
+                        <li><button id="change-config4-bp">Centered Botpress Branding</button></li>
+                        <li><button id="change-config5-bp">Tall Chatbox</button></li>
 
                       
                         <!--
@@ -1808,22 +1810,9 @@ function getMobileOperatingSystem() {
         extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css'
       }
 
-
+      /* Theme Change Button Backend */
       document.getElementById('change-config1-bp').addEventListener('click', function() {
         Object.assign(lastConfig, {
-        host: window.location.origin || 'http://localhost:3000',
-        botId: botId,
-        lazySocket: false,
-        botName: "MyDBuddy",
-        botConvoDescription: 'Online',
-        enableReset: false,
-        enablePersistHistory: false,
-        enableResetSessionShortcut: false,
-        showConversationsButton: false,
-        /*
-        To change the styling of the webchat, you can either edit directly default.css, or use the extraStylesheet property.
-        This allows you to customize the chat on a per-bot basis.
-      */
         extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css'
         })
 
@@ -1832,19 +1821,6 @@ function getMobileOperatingSystem() {
 
       document.getElementById('change-config2-bp').addEventListener('click', function() {
         Object.assign(lastConfig, {
-        host: window.location.origin || 'http://localhost:3000',
-        botId: botId,
-        lazySocket: false,
-        botName: "MyDBuddy",
-        botConvoDescription: 'Online',
-        enableReset: false,
-        enablePersistHistory: false,
-        enableResetSessionShortcut: false,
-        showConversationsButton: false,
-        /*
-        To change the styling of the webchat, you can either edit directly default.css, or use the extraStylesheet property.
-        This allows you to customize the chat on a per-bot basis.
-      */
         extraStylesheet:'assets/modules/channel-web/examples/Themes/Light_Green_Input/custom.css'
         })
 
@@ -1853,19 +1829,6 @@ function getMobileOperatingSystem() {
 
       document.getElementById('change-config3-bp').addEventListener('click', function() {
         Object.assign(lastConfig, {
-        host: window.location.origin || 'http://localhost:3000',
-        botId: botId,
-        lazySocket: false,
-        botName: "MyDBuddy",
-        botConvoDescription: 'Online',
-        enableReset: false,
-        enablePersistHistory: false,
-        enableResetSessionShortcut: false,
-        showConversationsButton: false,
-        /*
-        To change the styling of the webchat, you can either edit directly default.css, or use the extraStylesheet property.
-        This allows you to customize the chat on a per-bot basis.
-      */
         extraStylesheet:'assets/modules/channel-web/examples/Themes/Neutral_Send_Box/custom.css'
         })
 
@@ -1874,19 +1837,14 @@ function getMobileOperatingSystem() {
 
       document.getElementById('change-config4-bp').addEventListener('click', function() {
         Object.assign(lastConfig, {
-        host: window.location.origin || 'http://localhost:3000',
-        botId: botId,
-        lazySocket: false,
-        botName: "MyDBuddy",
-        botConvoDescription: 'Online',
-        enableReset: false,
-        enablePersistHistory: false,
-        enableResetSessionShortcut: false,
-        showConversationsButton: false,
-        /*
-        To change the styling of the webchat, you can either edit directly default.css, or use the extraStylesheet property.
-        This allows you to customize the chat on a per-bot basis.
-      */
+        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input_Center_Footer/custom.css'
+        })
+
+        window.botpressWebChat.configure(lastConfig)
+      })
+
+      document.getElementById('change-config5-bp').addEventListener('click', function() {
+        Object.assign(lastConfig, {
         extraStylesheet:'assets/modules/channel-web/examples/Themes/Tall/custom.css'
         })
 
@@ -1908,5 +1866,30 @@ function getMobileOperatingSystem() {
 
       document.getElementById('origin').innerText = window.location.origin
     </script>
-    
+
+    <script>
+      function getScrollHeight(elm){
+      var savedValue = elm.value
+      elm.value = ''
+      elm._baseScrollHeight = elm.scrollHeight
+      elm.value = savedValue
+      }
+
+    function onExpandableTextareaInput({ target:elm }){
+      // make sure the input event originated from a textarea and it's desired to be auto-expandable
+      if( !elm.nodeName == 'TEXTAREA' ) return
+      
+      var minRows = elm.getAttribute('data-min-rows')|0, rows;
+      !elm._baseScrollHeight && getScrollHeight(elm)
+
+      elm.rows = minRows
+      rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+      elm.rows = minRows + rows
+    }
+
+
+    // global delegated event listener
+    document.addEventListener('input', onExpandableTextareaInput)
+    </script>
+
 <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"><div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div></div><iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" style="position: absolute; width: 1px; height: 1px; inset: -9999px; display: none;" src="./My DCampus Portal_files/iframe.html"></iframe></body></html>
