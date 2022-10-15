@@ -29428,25 +29428,26 @@ ul.submenu{
   padding:0;
   overflow:hidden;
   list-style-type:none;
-  background:#444;
-  box-shadow:0 0 1px rgba(0,0,0,.3);
   transition:max-height 0.5s ease-out;
   position:absolute;
   min-width:100%;
+  font-size: 0.85em;
 }
 
-ul.submenu li a{
-  display:block;
-  padding:12px;
-  color:#ddd;
-  text-decoration:none;
-  box-shadow:0 -1px rgba(0,0,0,.5) inset;
-  transition:background .3s;
-  white-space:nowrap;
+ul.submenu li label {
+    color: #707070;
+    transition: background-color .3s, color .3s;
+    display: block
 }
 
-ul.submenu li a:hover{
-  background:rgba(0,0,0,.3);
+ul.submenu>li>label {
+    margin-left: 2.5em;
+    padding: .85rem .5rem;
+    border-radius: 2px
+}
+
+ul.submenu li label:hover {
+    background-color: rgba(0, 0, 0, .03);
 }
 
 /* DLSL Nav CSS Modification */
@@ -29469,4 +29470,8 @@ ul.submenu li a:hover{
     width: 1.5rem;
     text-align: center;
     margin-right: .6rem
+}
+
+.navigation li label:hover {
+    background-color: rgba(0, 0, 0, .03);
 }
