@@ -1858,29 +1858,4 @@ function getMobileOperatingSystem() {
       document.getElementById('origin').innerText = window.location.origin
     </script>
 
-    <script>
-      function getScrollHeight(elm){
-      var savedValue = elm.value
-      elm.value = ''
-      elm._baseScrollHeight = elm.scrollHeight
-      elm.value = savedValue
-      }
-
-    function onExpandableTextareaInput({ target:elm }){
-      // make sure the input event originated from a textarea and it's desired to be auto-expandable
-      if( !elm.nodeName == 'TEXTAREA' ) return
-      
-      var minRows = elm.getAttribute('data-min-rows')|0, rows;
-      !elm._baseScrollHeight && getScrollHeight(elm)
-
-      elm.rows = minRows
-      rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
-      elm.rows = minRows + rows
-    }
-
-
-    // global delegated event listener
-    document.addEventListener('input', onExpandableTextareaInput)
-    </script>
-
 <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"><div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div></div><iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" style="position: absolute; width: 1px; height: 1px; inset: -9999px; display: none;" src="./My DCampus Portal_files/iframe.html"></iframe></body></html>
