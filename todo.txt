@@ -1,8 +1,0 @@
-add options along with suboptions in chatbot settings
-
--Accessibility
-    -different accessibility features
-
-Themes
-    -different themes
-

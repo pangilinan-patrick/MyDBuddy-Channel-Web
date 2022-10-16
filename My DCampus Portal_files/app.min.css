@@ -29437,29 +29437,43 @@ ul.submenu{
 ul.submenu li label {
     color: #707070;
     transition: background-color .3s, color .3s;
-    display: block
+    display: block;
 }
 
 ul.submenu>li>label {
     margin-left: 2.5em;
     padding: .85rem .5rem;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 ul.submenu li label:hover {
     background-color: rgba(0, 0, 0, .03);
 }
 
+ul.suboption li {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+ul.suboption li label.change-theme-button {
+    display: none;
+}
+
+ul.submenu:hover ul.suboption li label.change-theme-button {
+    display: block;
+    position: relative;
+}
+
 /* DLSL Nav CSS Modification */
 .navigation li label {
     color: #707070;
     transition: background-color .3s, color .3s;
-    display: block
+    display: block;
 }
 
 .navigation>li>label {
     padding: .85rem .5rem;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 .navigation>li>label>i {
@@ -29469,7 +29483,7 @@ ul.submenu li label:hover {
     top: .1rem;
     width: 1.5rem;
     text-align: center;
-    margin-right: .6rem
+    margin-right: .6rem;
 }
 
 .navigation li label:hover {
