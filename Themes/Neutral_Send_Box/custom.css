@@ -163,6 +163,20 @@ body {
   border-radius: 50%;
 }
 
+/* text input CSS */
+.bpw-composer {
+  background: none;
+  height: auto;
+}
+
+.bpw-composer textarea {
+  height: auto;
+  font-size: 1em;
+  overflow: auto;
+  max-height: 7em;
+  line-height: 1.2em;
+}
+
 /* send button css */
 .send-btn:hover {
   background: #d8d8d8;
