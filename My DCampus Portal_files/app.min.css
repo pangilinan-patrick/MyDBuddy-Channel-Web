@@ -11419,7 +11419,7 @@ input:checked ~ label:after{
 input{
    display:none
 }
-/*show the second levele menu of the selected voice*/
+/*show the second level menu of the selected voice*/
 input:checked ~ ul.submenu{
     max-height:300px;
     transition:max-height 0.5s ease-in;
@@ -11461,9 +11461,20 @@ ul.submenu>.sub2>li>label {
 ul.submenu .sub2 li label:hover {
     background-color: rgba(0, 0, 0, .03);
 }
-ul.suboption li {
-    text-decoration: none;
-    list-style-type: none;
+/* style for the third level menu */
+ul.suboption{
+    list-style-type:none;
+}
+ul.suboption li label {
+    color: #707070;
+    display: block;
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+}
+ul.suboption>li>label {
+    margin-left: 1em;
+    padding: .70rem .5rem;
+    border-radius: 2px;
 }
 ul.suboption li label.change-theme-button {
     display: none;
@@ -11478,6 +11489,17 @@ ul.suboption li label.accessibility-option{
 ul.submenu .sub2:hover ul.suboption li label.accessibility-option {
     display: block;
     position: relative;
+}
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    80% {
+        transform: scaleY(1.1)
+    }
+    100% {
+        transform: scaleY(1)
+    }
 }
 /* DLSL Nav CSS Modification */
 .navigation li label {
