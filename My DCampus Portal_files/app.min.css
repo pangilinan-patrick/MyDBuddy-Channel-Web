@@ -11464,29 +11464,29 @@ ul.submenu .sub2 li label:hover {
 /* style for the third level menu */
 ul.suboption{
     list-style-type:none;
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
 }
 ul.suboption li label {
     color: #707070;
     display: block;
-    animation: growDown 300ms ease-in-out forwards;
-    transform-origin: top center;
 }
 ul.suboption>li>label {
     margin-left: 1em;
     padding: .70rem .5rem;
     border-radius: 2px;
 }
-ul.suboption li label.change-theme-button {
-    display: none;
+ul.suboption {
+   display: none;
 }
-ul.submenu .sub1:hover ul.suboption li label.change-theme-button {
+ul.submenu .sub1:hover ul.suboption {
     display: block;
     position: relative;
 }
-ul.suboption li label.accessibility-option{
+ul.suboption {
     display: none;
 }
-ul.submenu .sub2:hover ul.suboption li label.accessibility-option {
+ul.submenu .sub2:hover ul.suboption{
     display: block;
     position: relative;
 }
