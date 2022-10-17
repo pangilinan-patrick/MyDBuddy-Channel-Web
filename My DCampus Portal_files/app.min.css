@@ -22274,7 +22274,7 @@ textarea {
 
     overflow: hidden;
 
-    z-index: 98;
+    z-index: 65;
 
 }
 
@@ -29434,19 +29434,35 @@ ul.submenu{
   font-size: 0.85em;
 }
 
-ul.submenu li label {
+ul.submenu .sub1 li label {
     color: #707070;
     transition: background-color .3s, color .3s;
     display: block;
 }
 
-ul.submenu>li>label {
+ul.submenu>.sub1>li>label {
     margin-left: 2.5em;
     padding: .85rem .5rem;
     border-radius: 2px;
 }
 
-ul.submenu li label:hover {
+ul.submenu .sub1 li label:hover {
+    background-color: rgba(0, 0, 0, .03);
+}
+
+ul.submenu .sub2 li label {
+    color: #707070;
+    transition: background-color .3s, color .3s;
+    display: block;
+}
+
+ul.submenu>.sub2>li>label {
+    margin-left: 2.5em;
+    padding: .85rem .5rem;
+    border-radius: 2px;
+}
+
+ul.submenu .sub2 li label:hover {
     background-color: rgba(0, 0, 0, .03);
 }
 
@@ -29459,7 +29475,16 @@ ul.suboption li label.change-theme-button {
     display: none;
 }
 
-ul.submenu:hover ul.suboption li label.change-theme-button {
+ul.submenu .sub1:hover ul.suboption li label.change-theme-button {
+    display: block;
+    position: relative;
+}
+
+ul.suboption li label.accessibility-option{
+    display: none;
+}
+
+ul.submenu .sub2:hover ul.suboption li label.accessibility-option {
     display: block;
     position: relative;
 }
