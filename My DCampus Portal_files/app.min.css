@@ -11520,3 +11520,8 @@ ul.submenu .sub2:hover ul.suboption{
 .navigation li label:hover {
     background-color: rgba(0, 0, 0, .03);
 }
+/*
+html, img, video, iframe{
+    filter:invert(0.98) hue-rotate(180deg);
+}
+*/

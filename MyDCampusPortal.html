@@ -37,7 +37,7 @@
         <link rel="stylesheet" href="./My DCampus Portal_files/trumbowyg.min.css">
         <link rel="stylesheet" href="./My DCampus Portal_files/starrr.css">
         <link rel="stylesheet" type="text/css" href="./My DCampus Portal_files/bootstrap-grid.css">
-        
+      
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/548c2f30a4.js" crossorigin="anonymous"></script> 
 
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                     
-                    <!-- Sidebar navigation -->
+                    <!-- 3Sidebar navigation -->
                     <ul class="navigation">
                         <!-- <li id="nav_dashboard" class="navigation__active"><a href="< ?=$GLOBALS['INF_CONFIG']['_sitehost']?>/#/dashboard"><i class="zmdi zmdi-home"></i> Dashboard</a></li> -->
                         <li id="nav_digitalservices" class="navigation__active"><a href="https://mydcampus.dlsl.edu.ph/#/digitalservices"><i class="fa-solid fa-shapes"></i> Digital Services</a></li>
@@ -200,6 +200,7 @@
                                   <li><label class="change-theme-button" id="change-config3-bp">Neutral Color</label></li>
                                   <li><label class="change-theme-button" id="change-config4-bp">Centered Botpress Branding</label></li>
                                   <li><label class="change-theme-button" id="change-config5-bp">Tall Chatbox</label></li>
+                                  <li><label class="change-theme-button" id="enable-dark-theme" onclick="enableDarkTheme();">Enable dark theme</label></li>
                                 </ul>
                               </li>
                             </div>
@@ -1878,6 +1879,14 @@ function getMobileOperatingSystem() {
         window.botpressWebChat.configure(lastConfig)
       })
 
+      document.getElementById('enable-dark-theme').addEventListener('click', function() {
+        Object.assign(lastConfig, {
+        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Theme/custom.css'
+        })
+
+        window.botpressWebChat.configure(lastConfig)
+      })
+
       window.botpressWebChat.init(lastConfig)
 
       window.addEventListener("message", function (event) {
@@ -1892,6 +1901,19 @@ function getMobileOperatingSystem() {
       localStorage.clear(); /* resets the random key of the user stored in the localstorage */
 
       document.getElementById('origin').innerText = window.location.origin
+    </script>
+
+    <!-- Script for enabling dark theme -->
+    <script>
+      function enableDarkTheme() {
+        var style = document.createElement('style');
+        style.innerHTML = `
+        html, img, video, iframe{
+          filter:invert(0.98) hue-rotate(180deg);
+        } 
+        `;
+        document.head.appendChild(style);
+      }
     </script>
 
 <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"><div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div></div><iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" style="position: absolute; width: 1px; height: 1px; inset: -9999px; display: none;" src="./My DCampus Portal_files/iframe.html"></iframe></body></html>
