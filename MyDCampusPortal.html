@@ -1820,6 +1820,7 @@ function getMobileOperatingSystem() {
 
       let userId
       let webchatOpen = false
+      let darkThemeFlag = false
 
       let lastConfig = {
         host: window.location.origin || 'http://localhost:3000',
@@ -1880,9 +1881,20 @@ function getMobileOperatingSystem() {
       })
 
       document.getElementById('enable-dark-theme').addEventListener('click', function() {
-        Object.assign(lastConfig, {
-        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Theme/custom.css'
-        })
+        //if else statement to check if dark theme is enabled
+        if (darkThemeFlag == true) {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css'
+          })
+          darkThemeFlag=false;
+        }
+
+        else {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Theme/custom.css'
+          })
+          darkThemeFlag=true;
+        }
 
         window.botpressWebChat.configure(lastConfig)
       })
@@ -1890,13 +1902,13 @@ function getMobileOperatingSystem() {
       window.botpressWebChat.init(lastConfig)
 
       window.addEventListener("message", function (event) {
-      if (event.data.name === "webchatReady") {
-        window.botpressWebChat.sendEvent({
-          type: "proactive-trigger",
-          channel: "web",
-        })
-      }
-    })
+        if (event.data.name === "webchatReady") {
+          window.botpressWebChat.sendEvent({
+            type: "proactive-trigger",
+            channel: "web",
+          })
+        }
+      })
 
       localStorage.clear(); /* resets the random key of the user stored in the localstorage */
 
