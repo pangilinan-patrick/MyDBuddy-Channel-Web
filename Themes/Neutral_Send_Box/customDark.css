@@ -34,6 +34,7 @@ body {
   background-color: #007136;
   border-radius: 0 0 10px 10px;
   color: white;
+  border: none;
 }
 
 .bpw-powered a {
@@ -117,7 +118,7 @@ body {
 /* header css */
 .bpw-header-container {
   background-color: #007136;
-  border-bottom: none;
+  border: none;
   border-radius: 10px 10px 0 0;
   /*box-shadow: 0px 0px 6px #b8b8b8;*/
   box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
@@ -217,7 +218,6 @@ body {
   font-weight: bold;
 }
 
-html, img, video, iframe, .bpw-header-container, .bpw-header-container .bpw-bot-avatar, .bpw-widget-btn, .bpw-floating-button, .bpw-anim-undefined, .bpw-composer textarea, .bpw-powered, .bpw-from-user .bpw-chat-bubble {
-    filter:invert(0.98) hue-rotate(180deg);
-    border-color: none;
+img, video, iframe, .bpw-header-container, .bpw-header-container .bpw-bot-avatar, .bpw-widget-btn, .bpw-floating-button, .bpw-anim-undefined, .bpw-composer textarea, .bpw-powered, .bpw-from-user .bpw-chat-bubble {
+  filter:invert(0.98) hue-rotate(180deg);
 }
