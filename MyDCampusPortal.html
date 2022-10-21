@@ -1821,6 +1821,7 @@ function getMobileOperatingSystem() {
       let userId
       let webchatOpen = false
       let darkThemeFlag = false
+      let currentTheme = 1
 
       let lastConfig = {
         host: window.location.origin || 'http://localhost:3000',
@@ -1836,63 +1837,167 @@ function getMobileOperatingSystem() {
         To change the styling of the webchat, you can either edit directly default.css, or use the extraStylesheet property.
         This allows you to customize the chat on a per-bot basis.
       */
-        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css'
+        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css',
       }
 
       /* Theme Change Button Backend */
       document.getElementById('change-config1-bp').addEventListener('click', function() {
-        Object.assign(lastConfig, {
-        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css'
-        })
+        if (darkThemeFlag == false) {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css'
+          })
+        }
 
+        else {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/customDark.css'
+          })
+        }
+
+        currentTheme = 1;
+        
         window.botpressWebChat.configure(lastConfig)
       })
 
       document.getElementById('change-config2-bp').addEventListener('click', function() {
-        Object.assign(lastConfig, {
-        extraStylesheet:'assets/modules/channel-web/examples/Themes/Light_Green_Input/custom.css'
-        })
+        if (darkThemeFlag == false) {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Light_Green_Input/custom.css'
+          })
+        }
 
+        else {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Light_Green_Input/customDark.css'
+          })
+        }
+
+        currentTheme = 2;
+        
         window.botpressWebChat.configure(lastConfig)
       })
 
       document.getElementById('change-config3-bp').addEventListener('click', function() {
-        Object.assign(lastConfig, {
-        extraStylesheet:'assets/modules/channel-web/examples/Themes/Neutral_Send_Box/custom.css'
-        })
+        if (darkThemeFlag == false) {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Neutral_Send_Box/custom.css'
+          })
+        }
 
+        else {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Neutral_Send_Box/customDark.css'
+          })
+        }
+
+        currentTheme = 3;
+        
         window.botpressWebChat.configure(lastConfig)
       })
 
       document.getElementById('change-config4-bp').addEventListener('click', function() {
-        Object.assign(lastConfig, {
-        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input_Center_Footer/custom.css'
-        })
+        if (darkThemeFlag == false) {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input_Center_Footer/custom.css'
+          })
+        }
 
+        else {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input_Center_Footer/customDark.css'
+          })
+        }
+
+        currentTheme = 4;
+        
         window.botpressWebChat.configure(lastConfig)
       })
 
       document.getElementById('change-config5-bp').addEventListener('click', function() {
-        Object.assign(lastConfig, {
-        extraStylesheet:'assets/modules/channel-web/examples/Themes/Tall/custom.css'
-        })
+        if (darkThemeFlag == false) {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Tall/custom.css'
+          })
+        }
 
+        else {
+          Object.assign(lastConfig, {
+          extraStylesheet:'assets/modules/channel-web/examples/Themes/Tall/customDark.css'
+          })
+        }
+
+        currentTheme = 5;
+        
         window.botpressWebChat.configure(lastConfig)
       })
 
       document.getElementById('enable-dark-theme').addEventListener('click', function() {
         //if else statement to check if dark theme is enabled
         if (darkThemeFlag == true) {
-          Object.assign(lastConfig, {
-          extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css'
-          })
+          if (currentTheme == 1) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css'
+            })
+          }
+
+          else if (currentTheme == 2) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Light_Green_Input/custom.css'
+            })
+          }
+
+          else if (currentTheme == 3) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Neutral_Send_Box/custom.css'
+            })
+          }
+
+          else if (currentTheme == 4) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input_Center_Footer/custom.css'
+            })
+          }
+
+          else if (currentTheme == 5) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Tall/custom.css'
+            })
+          }
+
           darkThemeFlag=false;
         }
 
         else {
-          Object.assign(lastConfig, {
-          extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Theme/custom.css'
-          })
+          if (currentTheme == 1) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/customDark.css'
+            })
+          }
+
+          else if (currentTheme == 2) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Light_Green_Input/customDark.css'
+            })
+          }
+
+          else if (currentTheme == 3) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Neutral_Send_Box/customDark.css'
+            })
+          }
+
+          else if (currentTheme == 4) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input_Center_Footer/customDark.css'
+            })
+          }
+
+          else if (currentTheme == 5) {
+            Object.assign(lastConfig, {
+            extraStylesheet:'assets/modules/channel-web/examples/Themes/Tall/customDark.css'
+            })
+          }
+
           darkThemeFlag=true;
         }
 
@@ -1915,7 +2020,7 @@ function getMobileOperatingSystem() {
       document.getElementById('origin').innerText = window.location.origin
     </script>
 
-    <!-- Script for enabling dark theme; referenced at sidebar navigation; reference around line 200-->
+    <!-- Script for enabling dark theme; referenced at sidebar navigation; reference around line 200 -->
     <script>
       function toggleDarkTheme() {
         //checks if darkTheme is already enabled
