@@ -2033,9 +2033,20 @@ function getMobileOperatingSystem() {
           var style = document.createElement('style');
           style.setAttribute("id", "darkTheme");
           style.innerHTML = `
-          html, img, video{
-            filter:invert(0.92) hue-rotate(180deg);
+          html, img, video, iframe {
+            //filter:invert(0.92) hue-rotate(180deg);
           } 
+			:root {
+				--darkest: #1B1E1F;
+				--darker: #5B6367;
+				--dark: #CCC7C0;
+			}
+			header.header, .groups-item, .row, .groups, .row img, .user__name, hr, .navigation{
+				filter:invert(0.91) hue-rotate(180deg);
+			}
+			html, section.content{
+				background-color: var(--darkest);
+			}
           `;
           document.head.appendChild(style);
         }

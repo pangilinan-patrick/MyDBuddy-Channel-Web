@@ -34,7 +34,7 @@ body {
   background-color: #007136;
   border-radius: 0 0 10px 10px;
   color: white;
-  border: none;
+  border:none;
 }
 
 .bpw-powered a {
@@ -237,6 +237,55 @@ body {
   font-weight: bold;
 }
 
-img, video, iframe, .bpw-header-container, .bpw-header-container .bpw-bot-avatar, .bpw-widget-btn, .bpw-floating-button, .bpw-anim-undefined, .bpw-composer textarea, .bpw-powered, .bpw-from-user .bpw-chat-bubble {
-  filter:invert(0.98) hue-rotate(180deg);
+/* Dark Theme CSS overrides */
+:root {
+	--darkest: #1B1E1F;
+	--darker: #5B6367;
+	--dark: #CCC7C0;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--darkest); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--darker); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark); 
+}
+
+.bpw-layout {
+	background-color: var(--darkest);
+}
+
+.bpw-keyboard-quick_reply {
+	background-color: var(--darkest);
+	border-color: var(--darker);
+}
+
+.bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+	background-color: #282828;
+	color: white;
+    -webkit-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+    -moz-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+}
+
+.bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+    -webkit-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+    -moz-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+}
+
+.bpw-button {
+  filter:invert(0.95) hue-rotate(180deg);
+}
+
+.bpw-send-buttons {
+  filter:invert(0.90) hue-rotate(180deg);
+}
+
