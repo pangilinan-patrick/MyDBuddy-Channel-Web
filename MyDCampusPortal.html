@@ -2059,7 +2059,7 @@ function getMobileOperatingSystem() {
 		let zoomMultiplier = "("+zoomMultiNum+"x)";
 
 		function zoom() {
-			var zoomLevels = frames[0].document.createElement('style');
+			const zoomLevels = frames[0].document.createElement('style');
 			zoomLevels.setAttribute("id", "zoomLevels");
 
 			if (zoomPercentage > 130) {	/* maximum zoom percentage should be less than 130 so the iframe doesnt break */
@@ -2084,6 +2084,76 @@ function getMobileOperatingSystem() {
 			const element = frames[0].document.getElementById('zoomLevels');
 			element.remove();
 			*/
+		}
+	</script>
+
+	<!-- Dynamic Chatbox JS Injection into iframe -->
+	<script defer>
+		document.addEventListener("DOMContentLoaded", function(event) {
+      /* 
+        - Code to execute when only the HTML document is loaded.
+        - This doesn't wait for stylesheets, 
+          images, and subframes to finish loading. 
+      */
+		const dynamicChatbox = frames[0].document.createElement('script');
+
+		//Dynamic Chatbox
+		function getScrollHeight(elm){
+		  var savedValue = elm.value
+		  elm.value = ''
+		  elm._baseScrollHeight = elm.scrollHeight
+		  elm.value = savedValue
+		}
+
+		function onExpandableTextareaInput({ target:elm }){
+		  // make sure the input event originated from a textarea and it's desired to be auto-expandable
+		  if( !elm.nodeName == 'TEXTAREA' ) return
+
+		  var minRows = elm.getAttribute('data-min-rows')|2, rows;
+		  !elm._baseScrollHeight && getScrollHeight(elm)
+
+		  elm.rows = minRows
+		  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+		  elm.rows = minRows + rows
+		}
+
+		// global delegated event listener
+		document.addEventListener('input', onExpandableTextareaInput)
+
+		frames[0].document.body.appendChild(dynamicChatbox);
+		});
+	</script>
+
+	<!-- Dynamic Chatbox JS Injection into iframe -->
+	<script>
+		window.onload = function(){
+			const dynamicChatbox = frames[0].document.createElement('script');
+
+			dynamicChatbox.innerHTML = `
+			//Dynamic Chatbox
+			function getScrollHeight(elm){
+			  var savedValue = elm.value
+			  elm.value = ''
+			  elm._baseScrollHeight = elm.scrollHeight
+			  elm.value = savedValue
+			}
+
+			function onExpandableTextareaInput({ target:elm }){
+			  // make sure the input event originated from a textarea and it's desired to be auto-expandable
+			  if( !elm.nodeName == 'TEXTAREA' ) return
+
+			  var minRows = elm.getAttribute('data-min-rows')|2, rows;
+			  !elm._baseScrollHeight && getScrollHeight(elm)
+
+			  elm.rows = minRows
+			  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+			  elm.rows = minRows + rows
+			}
+
+			// global delegated event listener
+			document.addEventListener('input', onExpandableTextareaInput)
+			`
+			frames[0].document.body.appendChild(dynamicChatbox);
 		}
 	</script>
 
