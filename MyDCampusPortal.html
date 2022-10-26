@@ -2030,12 +2030,9 @@ function getMobileOperatingSystem() {
         }
 
         else {
-          var style = document.createElement('style');
-          style.setAttribute("id", "darkTheme");
-          style.innerHTML = `
-          html, img, video, iframe {
-            //filter:invert(0.92) hue-rotate(180deg);
-          } 
+          const darkStyle = document.createElement('style');
+          darkStyle.setAttribute("id", "darkTheme");
+          darkStyle.innerHTML = `
 			:root {
 				--darkest: #1B1E1F;
 				--darker: #5B6367;
@@ -2048,8 +2045,9 @@ function getMobileOperatingSystem() {
 				background-color: var(--darkest);
 			}
           `;
-          document.head.appendChild(style);
+          document.head.appendChild(darkStyle);
         }
+	  }
     </script>
 
 	<!-- Accessibility function for users with poor eyesight -->
@@ -2059,11 +2057,11 @@ function getMobileOperatingSystem() {
 		let zoomMultiplier = "("+zoomMultiNum+"x)";
 
 		function zoom() {
-			const zoomLevels = frames[0].document.createElement('style');
+			const zoomLevels = frames[0].document.createElement('style');	//creates a style tag inside the botpress iframe
 			zoomLevels.setAttribute("id", "zoomLevels");
 
 			if (zoomPercentage > 130) {	/* maximum zoom percentage should be less than 130 so the iframe doesnt break */
-				zoomPercentage = 100;
+				zoomPercentage = 100;  // resets relevant values after the threshold has been reached
 				zoomMultiNum = 0;
 			}
 
@@ -2080,7 +2078,7 @@ function getMobileOperatingSystem() {
 			const elem = document.getElementById('zoomInChatbot');
 			elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
 
-			/* TO ADD SOON: Remove the previous element to avoid the styles from building up
+			/* TO ADD SOON: Remove the previous style element to avoid the styles from building up
 			const element = frames[0].document.getElementById('zoomLevels');
 			element.remove();
 			*/
@@ -2088,46 +2086,9 @@ function getMobileOperatingSystem() {
 	</script>
 
 	<!-- Dynamic Chatbox JS Injection into iframe -->
-	<script defer>
-		document.addEventListener("DOMContentLoaded", function(event) {
-      /* 
-        - Code to execute when only the HTML document is loaded.
-        - This doesn't wait for stylesheets, 
-          images, and subframes to finish loading. 
-      */
-		const dynamicChatbox = frames[0].document.createElement('script');
-
-		//Dynamic Chatbox
-		function getScrollHeight(elm){
-		  var savedValue = elm.value
-		  elm.value = ''
-		  elm._baseScrollHeight = elm.scrollHeight
-		  elm.value = savedValue
-		}
-
-		function onExpandableTextareaInput({ target:elm }){
-		  // make sure the input event originated from a textarea and it's desired to be auto-expandable
-		  if( !elm.nodeName == 'TEXTAREA' ) return
-
-		  var minRows = elm.getAttribute('data-min-rows')|2, rows;
-		  !elm._baseScrollHeight && getScrollHeight(elm)
-
-		  elm.rows = minRows
-		  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
-		  elm.rows = minRows + rows
-		}
-
-		// global delegated event listener
-		document.addEventListener('input', onExpandableTextareaInput)
-
-		frames[0].document.body.appendChild(dynamicChatbox);
-		});
-	</script>
-
-	<!-- Dynamic Chatbox JS Injection into iframe -->
 	<script>
 		window.onload = function(){
-			const dynamicChatbox = frames[0].document.createElement('script');
+			const dynamicChatbox = frames[0].document.createElement('script'); //injects a script tag to put inside the iframe
 
 			dynamicChatbox.innerHTML = `
 			//Dynamic Chatbox
