@@ -208,7 +208,7 @@
                               <li><label>Accessibility</label></li>
                               <li> 
                                 <ul class="suboption">
-                                  <li><label class="accessibility-option" onclick="zoom();">Zoom-in Chatbot</label></li>
+                                  <li><label class="accessibility-option" id="zoomInChatbot" onclick="zoom();">Zoom-in Chatbot (1x)</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
@@ -2052,20 +2052,38 @@ function getMobileOperatingSystem() {
         }
     </script>
 
+	<!-- Accessibility function for users with poor eyesight -->
 	<script>
+		let zoomPercentage = 110;
+		let zoomMultiNum = 1;
+		let zoomMultiplier = "("+zoomMultiNum+"x)";
+
 		function zoom() {
-			if (!frames[0].document.getElementById("zoom10")) {  //checks if the chatbot is zoomed by 10%
-				let link = document.createElement("link");
-				link.setAttribute("id", "zoom10");
-				link.href = "/assets/modules/channel-web/examples/Themes/Accessibility/zoom_10.css"; 
-				link.rel = "stylesheet"; 
-				link.type = "text/css"; 
-				frames[0].document.head.appendChild(link); 
+			var zoomLevels = frames[0].document.createElement('style');
+			zoomLevels.setAttribute("id", "zoomLevels");
+
+			if (zoomPercentage > 130) {	/* maximum zoom percentage should be less than 130 so the iframe doesnt break */
+				zoomPercentage = 100;
+				zoomMultiNum = 0;
 			}
-			else if (frames[0].document.getElementById("zoom10")) {
-				const element = frames[0].document.getElementById('zoom10');
-				element.remove();
-			}
+
+			zoomLevels.innerHTML = `
+				html {
+					zoom: ` +zoomPercentage+ `%;
+				}
+			`;
+			frames[0].document.head.appendChild(zoomLevels);
+			zoomPercentage = zoomPercentage + 9;
+			zoomMultiNum++;
+			zoomMultiplier = "("+zoomMultiNum+"x)";
+
+			const elem = document.getElementById('zoomInChatbot');
+			elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
+
+			/* TO ADD SOON: Remove the previous element to avoid the styles from building up
+			const element = frames[0].document.getElementById('zoomLevels');
+			element.remove();
+			*/
 		}
 	</script>
 
