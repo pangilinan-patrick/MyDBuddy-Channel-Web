@@ -182,7 +182,7 @@
                         </div>
                     </div>
                     
-                    <!-- 3Sidebar navigation -->
+                    <!-- 3sidebar navigation -->
                     <ul class="navigation">
                         <!-- <li id="nav_dashboard" class="navigation__active"><a href="< ?=$GLOBALS['INF_CONFIG']['_sitehost']?>/#/dashboard"><i class="zmdi zmdi-home"></i> Dashboard</a></li> -->
                         <li id="nav_digitalservices" class="navigation__active"><a href="https://mydcampus.dlsl.edu.ph/#/digitalservices"><i class="fa-solid fa-shapes"></i> Digital Services</a></li>
@@ -208,7 +208,7 @@
                               <li><label>Accessibility</label></li>
                               <li> 
                                 <ul class="suboption">
-                                  <li><label class="accessibility-option">Placeholder</label></li>
+                                  <li><label class="accessibility-option" onclick="zoom();">Zoom-in Chatbot</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
@@ -2050,7 +2050,23 @@ function getMobileOperatingSystem() {
           `;
           document.head.appendChild(style);
         }
-      }
     </script>
+
+	<script>
+		function zoom() {
+			if (!frames[0].document.getElementById("zoom10")) {  //checks if the chatbot is zoomed by 10%
+				let link = document.createElement("link");
+				link.setAttribute("id", "zoom10");
+				link.href = "/assets/modules/channel-web/examples/Themes/Accessibility/zoom_10.css"; 
+				link.rel = "stylesheet"; 
+				link.type = "text/css"; 
+				frames[0].document.head.appendChild(link); 
+			}
+			else if (frames[0].document.getElementById("zoom10")) {
+				const element = frames[0].document.getElementById('zoom10');
+				element.remove();
+			}
+		}
+	</script>
 
 <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"><div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div></div><iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" style="position: absolute; width: 1px; height: 1px; inset: -9999px; display: none;" src="./My DCampus Portal_files/iframe.html"></iframe></body></html>
