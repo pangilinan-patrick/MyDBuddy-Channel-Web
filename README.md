@@ -14,15 +14,16 @@ The `Themes` folder contains the CSS files for each theme that's used by the cha
 
 The `.tgz` file is to be imported in the Botpress admin panel to work with an up to date chat bot at all times.
 
-The `COPY INTO UI-LITE FOLDER` contains the JS function for dynamic chat box sizing. Instructions on how to implement are inside the folder.
+~~The `COPY INTO UI-LITE FOLDER` contains the JS function for dynamic chat box sizing. Instructions on how to implement are inside the folder.~~
 
 
 ## ✅ To-do List
-- Create a folder for the different versions of the `.tgz` chat bot files.
-- Create a dark theme
+- Create a folder for the different versions of the `.tgz` chat bot files. ✅
+- Create a dark theme ✅
 - Add options along with suboptions in chatbot settings:
 	- Accessibility
 		- Different accessibility features
-	- Themes
+	- Themes ✅
 		- Different themes
-- Automate copying and pasting the UI-Lite JS function.
+- ~~Automate copying and pasting the UI-Lite JS function.~~
+	- No longer relevant seeing as it now works without any additional steps.
