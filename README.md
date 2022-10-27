@@ -27,3 +27,6 @@ The `.tgz` file is to be imported in the Botpress admin panel to work with an up
 		- Different themes
 - ~~Automate copying and pasting the UI-Lite JS function.~~
 	- No longer relevant seeing as it now works without any additional steps.
+
+### NEW TODO
+- Make themes more dynamic (make minor styles stick after changing theme)

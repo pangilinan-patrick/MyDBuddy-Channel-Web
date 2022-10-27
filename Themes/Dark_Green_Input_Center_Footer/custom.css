@@ -1,3 +1,9 @@
+:root {
+	--dlsl_dark: #007136;
+	--dlsl_mid: #005A35;
+	--dlsl_light: #00A45E;
+}
+
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  /* nice-looking web safe fonts */
 }
@@ -10,18 +16,18 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f1f1f1; 
 }
-
+ 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #888; 
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #555; 
 }
 
 /* the bottom part of the chatbot with the powered by text */
@@ -31,11 +37,11 @@ body {
   color: inherit;
   padding-left: 1em;
   padding: 0.65em 0.65em 0.65em 0.65em;
-  background-color: #007136;
+  background-color: var(--dlsl_dark);
   border-radius: 0 0 10px 10px;
   color: white;
+  border:none;
   text-align: center;
-  border: none;
 }
 
 .bpw-powered a {
@@ -53,7 +59,7 @@ body {
 
 /* the button to show the chatbot */
 .bpw-widget-btn {
-  background-color: #005A35;
+  background-color: var(--dlsl_mid);
   border-radius: 15px 15px 0px 15px;
 }
 
@@ -81,13 +87,13 @@ body {
 }
 
 .bpw-from-user .bpw-chat-bubble {
-  background-color: #00A45E;
+  background-color: var(--dlsl_light);
   border-radius: 50%;
   color: #FFFFFF;
 }
 
 .bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content {
-  background-color: #00A45E;
+  background-color: var(--dlsl_light);
   border-radius: 15px 15px 0px 15px;
   border: none;
   -webkit-box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
@@ -118,7 +124,7 @@ body {
 
 /* header css */
 .bpw-header-container {
-  background-color: #007136;
+  background-color: var(--dlsl_dark); 
   border: none;
   border-radius: 10px 10px 0 0;
   /*box-shadow: 0px 0px 6px #b8b8b8;*/
@@ -162,7 +168,7 @@ body {
 .bpw-bot-avatar img,
 .bpw-bot-avatar svg {
   border: none;
-  border-radius: 50%;
+  border-radius: 50%; 
 }
 
 /* text input CSS */
@@ -174,7 +180,7 @@ body {
 }
 
 .bpw-composer textarea {
-  background: #007136;
+  background: var(--dlsl_dark);
   color: white;
   border-radius: 25px;
   height: auto;
@@ -204,13 +210,13 @@ body {
 }
 
 .bpw-send-button {
-  color:#00A45E;
+  color:var(--dlsl_light);
   font-weight: bold;
   margin-left: 0.50em;
 }
 
 /* custom css for the chatbot container */
-.bpw-layout {
+.bpw-layout { 
   position: fixed;
   bottom: 15px;
   right: 15px;
@@ -232,8 +238,17 @@ body {
 
 /* CSS for chatbot prompt boxes */
 .bpw-button {
-  border-color: #005A35;
-  color: #005A35;
+  border-color: var(--dlsl_mid);
+  color: var(--dlsl_mid);
   font-size: 1em;
   font-weight: bold;
 }
+
+/* html { */
+/* 	zoom: 110%; */
+/* } */
+
+/* @-moz-document url-prefix() { */
+/* 	html { */
+/* 		transform: scale(1.5, 1.5); */
+/* } */
