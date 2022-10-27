@@ -774,8 +774,7 @@
         
         window.botpressWebChat.configure(lastConfig)
       })
-*/
-		  /*
+	  
       document.getElementById('change-config3-bp').addEventListener('click', function() {
         if (darkThemeFlag == false) {
           Object.assign(lastConfig, {
@@ -793,8 +792,7 @@
         
         window.botpressWebChat.configure(lastConfig)
       })
-	  */
-/*
+
       document.getElementById('change-config4-bp').addEventListener('click', function() {
         if (darkThemeFlag == false) {
           Object.assign(lastConfig, {
@@ -831,6 +829,7 @@
         window.botpressWebChat.configure(lastConfig)
       })
 */
+/*
       document.getElementById('enable-dark-theme').addEventListener('click', function() {
         //if else statement to check if dark theme is enabled
         if (darkThemeFlag == true) {
@@ -903,7 +902,7 @@
 
         window.botpressWebChat.configure(lastConfig)
       })
-
+*/
       window.botpressWebChat.init(lastConfig)
 
       window.addEventListener("message", function (event) {
@@ -925,13 +924,19 @@
       function toggleDarkTheme() {
         //checks if darkTheme is already enabled
         if (document.getElementById('darkTheme')) {
-          const element = document.getElementById('darkTheme');
+          let element = document.getElementById('darkTheme');
+          element.remove();
+
+          element = frames[0].document.getElementById('darkTheme');
           element.remove();
         }
 
         else {
           const darkStyle = document.createElement('style');
           darkStyle.setAttribute("id", "darkTheme");
+          const darkStyleBpw = frames[0].document.createElement('style');
+          darkStyleBpw.setAttribute("id", "darkTheme");
+
           darkStyle.innerHTML = `
 			:root {
 				--darkest: #1B1E1F;
@@ -945,7 +950,67 @@
 				background-color: var(--darkest);
 			}
           `;
+		  
+		  darkStyleBpw.innerHTML = `
+			/* Dark Theme CSS overrides */
+			:root {
+				--darkest: #1B1E1F;
+				--darker: #5B6367;
+				--dark: #CCC7C0;
+			}
+
+			/* Track */
+			::-webkit-scrollbar-track {
+			  background: var(--darkest); 
+			}
+			 
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+			  background: var(--darker); 
+			  border-radius: 10px;
+			}
+
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+			  background: var(--dark); 
+			}
+
+			.bpw-layout {
+				background-color: var(--darkest);
+			}
+
+			.bpw-keyboard-quick_reply {
+				background-color: var(--darkest);
+				border-color: var(--darker);
+			}
+
+			.bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+				background-color: #282828;
+				color: white;
+				-webkit-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+				-moz-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+			}
+
+			.bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+				-webkit-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+				-moz-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+			}
+
+			.bpw-button {
+			  filter:invert(0.95) hue-rotate(180deg);
+			}
+
+			.bpw-send-buttons {
+			  filter:invert(0.90) hue-rotate(180deg);
+			}
+
+			.bpw-composer {
+			  border-top-color: var(--darker);
+			}
+			`;
+
           document.head.appendChild(darkStyle);
+          frames[0].document.body.appendChild(darkStyleBpw);
         }
 	  }
     </script>
@@ -1068,7 +1133,7 @@
 				  background: none;
 				  border-top-width: 1px;
 				  border-top-style: solid;
-				  border-top-color: #aaaaaa;
+				  border-top-color: #dcdcdc;
 				}
 
 				.bpw-composer textarea {
