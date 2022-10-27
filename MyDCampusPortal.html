@@ -157,11 +157,11 @@
                               <li><label>Themes</label></li>
                               <li> 
                                 <ul class="suboption">
-                                  <li><label class="change-theme-button" id="change-config1-bp">DLSL Colors 1</label></li>
-                                  <li><label class="change-theme-button" id="change-config2-bp">DLSL Colors 2</label></li>
-                                  <li><label class="change-theme-button" id="change-config3-bp">Neutral Color</label></li>
-                                  <li><label class="change-theme-button" id="change-config4-bp">Centered Botpress Branding</label></li>
-                                  <li><label class="change-theme-button" id="change-config5-bp">Tall Chatbox</label></li>
+                                  <li><label class="change-theme-button" id="change-config1-bp" onclick="dlslColors1();">DLSL Colors 1</label></li>
+                                  <li><label class="change-theme-button" id="change-config2-bp" onclick="dlslColors2();">DLSL Colors 2</label></li>
+                                  <li><label class="change-theme-button" id="change-config3-bp" onclick="neutralTextBox();">Neutral Textbox</label></li>
+                                  <li><label class="change-theme-button" id="change-config4-bp" onclick="bpwCentered();">Centered Botpress Branding</label></li>
+                                  <li><label class="change-theme-button" id="change-config5-bp" onclick="bpwTall();">Tall Chatbox</label></li>
                                   <li><label class="change-theme-button" id="enable-dark-theme" onclick="toggleDarkTheme();">Toggle dark theme</label></li> <!-- toggleDarkTheme() function at the bottom; around line 1910--->
                                 </ul>
                               </li>
@@ -505,8 +505,8 @@
                         <small style="font-size:auto;">of E-Books</small>
                     </div>
                 </a>
-            </div>
-        </div><div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
+		</div>
+	</div><div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
             <div class="groups__item" style="max-height:200px;"><a id="module_87" href="https://dlsl.instructure.com/courses/15705/pages/is-digital-reference-and-information-services-digiris?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(87);">
                     <div class="groups__img">
                         <img class="avatar-img" src="./My DCampus Portal_files/logo(29).png" style="height:5em;width:5em;">
@@ -738,6 +738,7 @@
       }
 
       /* Theme Change Button Backend */
+/*
       document.getElementById('change-config1-bp').addEventListener('click', function() {
         if (darkThemeFlag == false) {
           Object.assign(lastConfig, {
@@ -773,7 +774,8 @@
         
         window.botpressWebChat.configure(lastConfig)
       })
-
+*/
+		  /*
       document.getElementById('change-config3-bp').addEventListener('click', function() {
         if (darkThemeFlag == false) {
           Object.assign(lastConfig, {
@@ -791,7 +793,8 @@
         
         window.botpressWebChat.configure(lastConfig)
       })
-
+	  */
+/*
       document.getElementById('change-config4-bp').addEventListener('click', function() {
         if (darkThemeFlag == false) {
           Object.assign(lastConfig, {
@@ -827,7 +830,7 @@
         
         window.botpressWebChat.configure(lastConfig)
       })
-
+*/
       document.getElementById('enable-dark-theme').addEventListener('click', function() {
         //if else statement to check if dark theme is enabled
         if (darkThemeFlag == true) {
@@ -1015,3 +1018,141 @@
 		}
 	</script>
 
+	<!-- Theme changes -->
+	<script>
+		let neutral = false;
+		let neutralStyle;
+
+		function dlslColors2() {
+			if (frames[0].document.getElementById('dlslColors2'))
+				dlslColors1(); //removes previous dlslColors2 style
+
+			const colors2 = frames[0].document.createElement('style');
+			colors2.setAttribute("id", "dlslColors2");
+
+			if (neutral == true)
+				neutralStyle = " ";
+
+			else 
+				neutralStyle =", .bpw-composer textarea";
+
+			colors2.innerHTML = `
+			:root {
+				--dlsl_dark: #007136;
+				--dlsl_mid: #005A35;
+				--dlsl_light: #00A45E;
+			}
+
+			.bpw-powered, .bpw-widget-btn,
+			.bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
+			.bpw-header-container`+neutralStyle+`{
+				background-color: var(--dlsl_light); !important
+			}
+			`;
+			frames[0].document.body.appendChild(colors2);
+        }
+
+		function dlslColors1() {
+			element = frames[0].document.getElementById('dlslColors2');
+			element.remove();
+		}
+
+		function neutralTextBox() {
+			const neutralText = frames[0].document.createElement('style');
+			neutralText.setAttribute("id", "neutralText");
+
+			if (neutral == false) {
+				neutralText.innerHTML = `
+				.bpw-composer {
+				  height: auto;
+				  background: none;
+				  border-top-width: 1px;
+				  border-top-style: solid;
+				  border-top-color: #aaaaaa;
+				}
+
+				.bpw-composer textarea {
+				  height: auto;
+				  max-height: 7em;
+				  padding: 1em;;
+				  line-height: 1.2em;
+				  color: black;
+				  background: none;
+				}
+
+				::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+				  color: #707070;
+				}
+				::-moz-placeholder { /* Firefox 19+ */
+				  color: #707070;
+				}
+				:-ms-input-placeholder { /* IE 10+ */
+				  color: #707070;
+				}
+				:-moz-placeholder { /* Firefox 18- */
+				  color: #707070;
+				}
+				`;
+				neutral = true;
+
+				frames[0].document.body.appendChild(neutralText);
+			}
+
+			else {
+				element = frames[0].document.getElementById('neutralText');
+				element.remove();
+				neutral = false;
+			}
+		}
+
+		function bpwCentered() {
+			const centered = frames[0].document.createElement('style');
+			centered.setAttribute("id", "bpwCentered");
+
+			if (!frames[0].document.getElementById('bpwCentered')) {
+				centered.innerHTML = `
+					.bpw-powered {
+						text-align: center;
+					}
+				`;
+				frames[0].document.body.appendChild(centered);
+			}
+
+			else {
+				element = frames[0].document.getElementById('bpwCentered');
+				element.remove();
+			}
+		}
+
+		function bpwTall() {
+			const tall = frames[0].document.createElement('style');
+			tall.setAttribute("id", "bpwTall");
+
+			if (!frames[0].document.getElementById('bpwTall')) {
+				tall.innerHTML = `
+					.bpw-layout {
+					  height: 100%;
+					  bottom: 0px;
+					  right: 0px;
+					  border-radius: 0px;
+					}
+				
+					.bpw-header-container {
+						border-radius: 0;
+					}
+					
+					.bpw-powered {
+						border-radius: 0;
+					}
+				`;
+				frames[0].document.body.appendChild(tall);
+			}
+
+			else {
+				element = frames[0].document.getElementById('bpwTall');
+				element.remove();
+			}
+		}
+	</script>
+	</body>
+</html>

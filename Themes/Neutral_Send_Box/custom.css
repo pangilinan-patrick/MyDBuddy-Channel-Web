@@ -173,6 +173,7 @@ body {
 /* text input CSS */
 .bpw-composer {
   height: auto;
+  background: none;
 }
 
 .bpw-composer textarea {
