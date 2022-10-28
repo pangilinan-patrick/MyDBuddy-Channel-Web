@@ -172,8 +172,6 @@
                                 <ul class="suboption">
                                   <li><label class="accessibility-option" id="zoomInChatbot" onclick="zoom();">Zoom-in Chatbot</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
-                                  <li><label class="accessibility-option">Placeholder</label></li>
-                                  <li><label class="accessibility-option">Placeholder</label></li>
                                 </ul>
                               </li>
                             </div>
@@ -934,7 +932,7 @@
         }
 
         else {
-          const darkStyle = document.createElement('style');
+          const darkStyle = document.createElement('style');		//darkStyle for website; darkStyleBpw for chatbox
           darkStyle.setAttribute("id", "darkTheme");
           const darkStyleBpw = frames[0].document.createElement('style');
           darkStyleBpw.setAttribute("id", "darkTheme");
@@ -1011,8 +1009,8 @@
 			}
 			`;
 
-          document.head.appendChild(darkStyle);
-          frames[0].document.body.appendChild(darkStyleBpw);
+          document.head.appendChild(darkStyle);					//append style to head (site)
+          frames[0].document.body.appendChild(darkStyleBpw);	//append style to body for the styles to take precedence (chatbot)
 		  darkThemeOn = true;
         }
 	  }
@@ -1020,12 +1018,12 @@
 
 	<!-- Accessibility function for users with poor eyesight -->
 	<script>
-		let zoomPercentage = 110;
-		let zoomMultiNum = 0;
-		let zoomMultiplier = "("+zoomMultiNum+"x)";
+		let zoomPercentage = 110;	//percentage to zoom into the chatbot using the zoom css property
+		let zoomMultiNum = 0;		//the multiplier number to append to the zoomMultiplier string
+		let zoomMultiplier;
 
 		function zoom() {
-			if (frames[0].document.getElementById('zoomLevels')) {
+			if (frames[0].document.getElementById('zoomLevels')) {			//removes previous zoomLevels to avoid style buildup
 				element = frames[0].document.getElementById('zoomLevels');
 				element.remove();
 			}
@@ -1048,7 +1046,7 @@
 				}
 			`;
 			frames[0].document.head.appendChild(zoomLevels);
-			zoomPercentage = zoomPercentage + 9;
+			zoomPercentage = zoomPercentage + 9;				//increment zoom percentage by 9
 
 			const elem = document.getElementById('zoomInChatbot');
 			elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
@@ -1088,18 +1086,19 @@
 		}
 	</script>
 
-	<!-- Theme changes -->
+	<!-- Theme change options -->
 	<script>
-		let neutral = false;
+		let neutral = false;	//neutral textbox state
 		let neutralStyle;
 
 		function dlslColors2() {
 			if (frames[0].document.getElementById('dlslColors2'))
-				dlslColors1(); //removes previous dlslColors2 style
+				dlslColors1(); //multipurposing function to remove previous dlslColors2 style to avoid buildup
 
 			const colors2 = frames[0].document.createElement('style');
 			colors2.setAttribute("id", "dlslColors2");
 
+			//if else statement to detect whether neutral textbox is on to include/exclude from background-color
 			if (neutral == true)
 				neutralStyle = " ";
 
@@ -1126,16 +1125,18 @@
 			targetDiv.insertAdjacentHTML('afterend', '<style id="colors2Input">.bpw-composer textarea { background-color: var(--dlsl_light); } </style>'); 
 			}
 
+		//function to remove dlslColors2 Style
 		function dlslColors1() {
 			element = frames[0].document.getElementById('dlslColors2');
 			element.remove();
 
-			element = frames[0].document.getElementById('colors2Input');
+			element = frames[0].document.getElementById('colors2Input');	//colors2Input ID referenced by targetDiv 8 lines above this line
 			element.remove();
 		}
 
+		//function for toggling neutralTextBox
 		function neutralTextBox() {
-			let darkThemeStyle;
+			let darkThemeStyle;		//variable used for the border-top-color fix (makes border color more consistent when neutral text box is toggled)
 			const neutralText = frames[0].document.createElement('style');
 			neutralText.setAttribute("id", "neutralText");
 
@@ -1145,7 +1146,7 @@
 			else 
 				darkThemeStyle = " ";
 
-			if (neutral == false) {
+			if (neutral == false) {			//if neutral textbox isn't on, apply these css rules
 				neutralText.innerHTML = `
 				.bpw-composer {
 				  height: auto;
@@ -1180,16 +1181,17 @@
 				`+ darkThemeStyle;
 				neutral = true;
 
-				frames[0].document.body.appendChild(neutralText);
+				frames[0].document.body.appendChild(neutralText);		//appends to body for the styles to take precedence
 			}
 
 			else {
-				element = frames[0].document.getElementById('neutralText');
+				element = frames[0].document.getElementById('neutralText');	//toggles neutral text box off
 				element.remove();
 				neutral = false;
 			}
 		}
 
+		//function to toggle centered footer
 		function bpwCentered() {
 			const centered = frames[0].document.createElement('style');
 			centered.setAttribute("id", "bpwCentered");
@@ -1200,7 +1202,7 @@
 						text-align: center;
 					}
 				`;
-				frames[0].document.body.appendChild(centered);
+				frames[0].document.body.appendChild(centered);			//append to body to take precedence
 			}
 
 			else {
@@ -1209,6 +1211,7 @@
 			}
 		}
 
+		//toggles tall theme option
 		function bpwTall() {
 			const tall = frames[0].document.createElement('style');
 			tall.setAttribute("id", "bpwTall");
@@ -1230,7 +1233,7 @@
 						border-radius: 0;
 					}
 				`;
-				frames[0].document.body.appendChild(tall);
+				frames[0].document.body.appendChild(tall);		//append to body to take precedence
 			}
 
 			else {
