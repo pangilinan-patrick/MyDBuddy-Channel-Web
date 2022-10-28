@@ -1115,10 +1115,17 @@
 			}
 			`;
 			frames[0].document.body.appendChild(colors2);
-        }
+
+			//sneaky fix to keep the input color consistent to the DLSL color theme by appending a style in between the linked stylesheets and the neutral input stylesheet
+			var targetDiv = frames[0].document.getElementById('input-message');
+			targetDiv.insertAdjacentHTML('afterend', '<style id="colors2Input">.bpw-composer textarea { background-color: var(--dlsl_light); } </style>'); 
+			}
 
 		function dlslColors1() {
 			element = frames[0].document.getElementById('dlslColors2');
+			element.remove();
+
+			element = frames[0].document.getElementById('colors2Input');
 			element.remove();
 		}
 
