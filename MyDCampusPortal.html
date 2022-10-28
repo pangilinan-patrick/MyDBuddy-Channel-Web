@@ -170,7 +170,7 @@
                               <li><label>Accessibility</label></li>
                               <li> 
                                 <ul class="suboption">
-                                  <li><label class="accessibility-option" id="zoomInChatbot" onclick="zoom();">Zoom-in Chatbot (1x)</label></li>
+                                  <li><label class="accessibility-option" id="zoomInChatbot" onclick="zoom();">Zoom-in Chatbot</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
                                   <li><label class="accessibility-option">Placeholder</label></li>
@@ -1021,7 +1021,7 @@
 	<!-- Accessibility function for users with poor eyesight -->
 	<script>
 		let zoomPercentage = 110;
-		let zoomMultiNum = 1;
+		let zoomMultiNum = 0;
 		let zoomMultiplier = "("+zoomMultiNum+"x)";
 
 		function zoom() {
@@ -1033,9 +1033,13 @@
 			const zoomLevels = frames[0].document.createElement('style');	//creates a style tag inside the botpress iframe
 			zoomLevels.setAttribute("id", "zoomLevels");
 
+			zoomMultiNum++;
+			zoomMultiplier = "("+zoomMultiNum+"x)";
+
 			if (zoomPercentage > 130) {	/* maximum zoom percentage should be less than 130 so the iframe doesnt break */
 				zoomPercentage = 100;  // resets relevant values after the threshold has been reached
 				zoomMultiNum = 0;
+				zoomMultiplier = "";
 			}
 
 			zoomLevels.innerHTML = `
@@ -1045,8 +1049,6 @@
 			`;
 			frames[0].document.head.appendChild(zoomLevels);
 			zoomPercentage = zoomPercentage + 9;
-			zoomMultiNum++;
-			zoomMultiplier = "("+zoomMultiNum+"x)";
 
 			const elem = document.getElementById('zoomInChatbot');
 			elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
