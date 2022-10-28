@@ -32,4 +32,4 @@ The `.tgz` file is to be imported in the Botpress admin panel to work with an up
 - Make themes more dynamic (make minor styles stick after changing theme)
 	- Almost done, just need to fix bugs:
 		- ~~Bug with the color of the input when changing DLSL colors while in Neutral Textbox theme~~
-		- Border color for input doesn't stay consistent when turning Neutral Textbox on and off
+		- ~~Border color for input doesn't stay consistent when turning Neutral Textbox on and off in dark theme~~

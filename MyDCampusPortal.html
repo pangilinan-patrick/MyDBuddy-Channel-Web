@@ -162,7 +162,7 @@
                                   <li><label class="change-theme-button" id="change-config3-bp" onclick="neutralTextBox();">Neutral Textbox</label></li>
                                   <li><label class="change-theme-button" id="change-config4-bp" onclick="bpwCentered();">Centered Botpress Branding</label></li>
                                   <li><label class="change-theme-button" id="change-config5-bp" onclick="bpwTall();">Tall Chatbox</label></li>
-                                  <li><label class="change-theme-button" id="enable-dark-theme" onclick="toggleDarkTheme();">Toggle dark theme</label></li> <!-- toggleDarkTheme() function at the bottom; around line 1910--->
+                                  <li><label class="change-theme-button" id="enable-dark-theme" onclick="toggleDarkTheme();">Toggle dark theme</label></li> <!-- toggleDarkTheme() function at the bottom; around line 930 --->
                                 </ul>
                               </li>
                             </div>
@@ -921,6 +921,8 @@
 
     <!-- Script for enabling dark theme; referenced at sidebar navigation; reference around line 200 -->
     <script>
+	  let darkThemeOn = false;
+
       function toggleDarkTheme() {
         //checks if darkTheme is already enabled
         if (document.getElementById('darkTheme')) {
@@ -1011,6 +1013,7 @@
 
           document.head.appendChild(darkStyle);
           frames[0].document.body.appendChild(darkStyleBpw);
+		  darkThemeOn = true;
         }
 	  }
     </script>
@@ -1130,8 +1133,15 @@
 		}
 
 		function neutralTextBox() {
+			let darkThemeStyle;
 			const neutralText = frames[0].document.createElement('style');
 			neutralText.setAttribute("id", "neutralText");
+
+			if (darkThemeOn == true)
+				darkThemeStyle = ".bpw-composer { border-top-color: #5b6367 };";
+
+			else 
+				darkThemeStyle = " ";
 
 			if (neutral == false) {
 				neutralText.innerHTML = `
@@ -1164,7 +1174,8 @@
 				:-moz-placeholder { /* Firefox 18- */
 				  color: #707070;
 				}
-				`;
+
+				`+ darkThemeStyle;
 				neutral = true;
 
 				frames[0].document.body.appendChild(neutralText);
