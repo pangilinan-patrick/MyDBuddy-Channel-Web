@@ -1022,6 +1022,11 @@
 		let zoomMultiplier = "("+zoomMultiNum+"x)";
 
 		function zoom() {
+			if (frames[0].document.getElementById('zoomLevels')) {
+				element = frames[0].document.getElementById('zoomLevels');
+				element.remove();
+			}
+
 			const zoomLevels = frames[0].document.createElement('style');	//creates a style tag inside the botpress iframe
 			zoomLevels.setAttribute("id", "zoomLevels");
 
@@ -1042,11 +1047,6 @@
 
 			const elem = document.getElementById('zoomInChatbot');
 			elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
-
-			/* TO ADD SOON: Remove the previous style element to avoid the styles from building up
-			const element = frames[0].document.getElementById('zoomLevels');
-			element.remove();
-			*/
 		}
 	</script>
 

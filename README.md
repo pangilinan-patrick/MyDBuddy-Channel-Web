@@ -8,7 +8,7 @@ You can test the site with this link (Botpress must be running and the `.tgz` fi
 ## 📁 Important Files
 The `My DCampus Portal_Files` folder contains the assets for the `MyDCampusPortal.html` website. The main CSS file for the website inside the folder is `app.min.css`
 
-The chat bot injection script is in `MyDCampusPortal.html` found around `line 1790`, or you can just `Ctrl + F + "chatbot script"` to find it. You can also make edits to the sidebar navigation around line `190` which contains the settings front-end for the chat bot settings.
+The chat bot injection script is in `MyDCampusPortal.html` found around `line 705`, or you can just `Ctrl + F + "chatbot script"` to find it. You can also make edits to the sidebar navigation around line `150` which contains the settings front-end for the chat bot settings.
 
 The `Themes` folder contains the CSS files for each theme that's used by the chat bot.
 
