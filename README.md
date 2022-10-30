@@ -18,11 +18,13 @@ The `COPY INTO UI-LITE FOLDER` contains the JS function for dynamic chat box siz
 
 
 ## ✅ To-do List
-- Create a folder for the different versions of the `.tgz` chat bot files.
-- Create a dark theme
+- Create a folder for the different versions of the `.tgz` chat bot files. ✔️
+- Create a dark theme ✔️
 - Add options along with suboptions in chatbot settings:
-	- Accessibility
-		- Different accessibility features
-	- Themes
-		- Different themes
+	- Accessibility 
+		- Features for users with poor eyesight
+		- Filipino Language
+	- Themes ✔️
+		- Different themes 
 - Automate copying and pasting the UI-Lite JS function.
+	- Use lite.bundle.js instead of UI-Lite

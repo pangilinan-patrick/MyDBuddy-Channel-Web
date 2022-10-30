@@ -32,6 +32,7 @@ body {
   padding-left: 1em;
   padding: 0.65em 0.65em 0.65em 0.65em;
   background-color: #007136;
+  border-radius: 0 0 10px 10px;
   color: white;
   border: none;
 }
@@ -118,6 +119,7 @@ body {
 .bpw-header-container {
   background-color: #007136;
   border: none;
+  border-radius: 10px 10px 0 0;
   /*box-shadow: 0px 0px 6px #b8b8b8;*/
   box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
   padding: 2.35em 0.75em 2.30em 0.75em;
@@ -171,7 +173,7 @@ body {
 }
 
 .bpw-composer textarea {
-  background: #007136;
+  background: #00A45E;
   color: white;
   border-radius: 25px;
   height: auto;
@@ -209,8 +211,11 @@ body {
 /* custom css for the chatbot container */
 .bpw-layout {
   position: fixed;
-  height: 100%;
+  bottom: 15px;
+  right: 15px;
+  height: 80%;
   border: 1px solid #ccc;
+  border-radius: 10px;
   /*box-shadow: 0px 0px 5px #b8b8b8;*/
   -webkit-box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
   -moz-box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
@@ -231,3 +236,56 @@ body {
   font-size: 1em;
   font-weight: bold;
 }
+
+/* Dark Theme CSS overrides */
+:root {
+	--darkest: #1B1E1F;
+	--darker: #5B6367;
+	--dark: #CCC7C0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--darkest); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--darker); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark); 
+}
+
+.bpw-layout {
+	background-color: var(--darkest);
+}
+
+.bpw-keyboard-quick_reply {
+	background-color: var(--darkest);
+	border-color: var(--darker);
+}
+
+.bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+	background-color: #282828;
+	color: white;
+    -webkit-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+    -moz-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+}
+
+.bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+    -webkit-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+    -moz-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+}
+
+.bpw-button {
+  filter:invert(0.95) hue-rotate(180deg);
+}
+
+.bpw-send-buttons {
+  filter:invert(0.90) hue-rotate(180deg);
+}
+
