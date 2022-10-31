@@ -16,7 +16,6 @@ The `.tgz` file is to be imported in the Botpress admin panel to work with an up
 
 ~~The `COPY INTO UI-LITE FOLDER` contains the JS function for dynamic chat box sizing. Instructions on how to implement are inside the folder.~~
 
-
 ## ✅ To-do List
 - Create a folder for the different versions of the `.tgz` chat bot files. ✅
 - Create a dark theme ✅
