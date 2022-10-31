@@ -5,11 +5,9 @@
         
         <title>My DCampus Portal</title>
         <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
         <meta name="theme-color" content="#0f9d58">
         <link rel="shortcut icon" href="https://mydcampus.dlsl.edu.ph/favicon.ico" type="image/x-icon">
         <link rel="icon" href="https://mydcampus.dlsl.edu.ph/favicon.ico" type="image/x-icon">
-
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-title" content="DCampus Portal">
         <link rel="apple-touch-icon" href="https://mydcampus.dlsl.edu.ph/assets/icons/icon-256x256.png">
@@ -17,7 +15,6 @@
         <link rel="apple-touch-icon" sizes="120x120" href="https://mydcampus.dlsl.edu.ph/assets/icons/icon-128x128.png">
         <link rel="apple-touch-icon" sizes="152x152" href="https://mydcampus.dlsl.edu.ph/assets/icons/icon-256x256.png">
         <meta name="msapplication-starturl" content="/#/dashboard/">
-
         <meta name="google-signin-client_id" content="887123549499-4nsnmfn5aip2nhgh3l6afpk56d04bia9.apps.googleusercontent.com">
 
         <!-- Vendor styles
@@ -1114,8 +1111,10 @@
 
 			.bpw-powered, .bpw-widget-btn,
 			.bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
+			.bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content,
+			.bpw-bubble-undefined bpw-chat-bubble bpw-bubble-text,
 			.bpw-header-container`+neutralStyle+`{
-				background-color: var(--dlsl_light); !important
+				background-color: var(--dlsl_light);
 			}
 			`;
 			frames[0].document.body.appendChild(colors2);
