@@ -1015,7 +1015,10 @@
 
 	<!-- Accessibility function for users with poor eyesight -->
 	<script>
-		let zoomPercentage = 110;	//percentage to zoom into the chatbot using the zoom css property
+		//inital zoom values
+		let scalePoint = 1.05;		//level of scale css property
+		let scaleBot = 37;			//bottom coords of chatbox
+		let scaleRight = 22;		//right offset of chatbox
 		let zoomMultiNum = 0;		//the multiplier number to append to the zoomMultiplier string
 		let zoomMultiplier;
 
@@ -1029,21 +1032,33 @@
 			zoomLevels.setAttribute("id", "zoomLevels");
 
 			zoomMultiNum++;
-			zoomMultiplier = "("+zoomMultiNum+"x)";
+			zoomMultiplier = "("+zoomMultiNum+"x)";	//increase zoom multiplier frontend label
 
-			if (zoomPercentage > 130) {	/* maximum zoom percentage should be less than 130 so the iframe doesnt break */
-				zoomPercentage = 100;  // resets relevant values after the threshold has been reached
+			if (scalePoint > 1.20) {	/* maximum scalePoint should be less than 1.20 so the iframe doesnt break */
+				//reset all values when maximum zoom is reached
 				zoomMultiNum = 0;
 				zoomMultiplier = "";
+				scaleBot = 15;
+				scaleRight = 15;
+				scalePoint = 1;
 			}
 
+			//scale css
 			zoomLevels.innerHTML = `
-				html {
-					zoom: ` +zoomPercentage+ `%;
+				.bpw-layout, .bpw-chat-container {
+					transform: scale(` +scalePoint+ `) !important;
+					-webkit-transform: scale(` +scalePoint+ `) !important;
+					-ie-transform: scale(` +scalePoint+ `) !important;
+					-moz-transform: scale(` +scalePoint+ `) !important;
+					bottom: `+scaleBot+`px !important;
+					right: `+scaleRight+`px !important;
 				}
+
 			`;
 			frames[0].document.head.appendChild(zoomLevels);
-			zoomPercentage = zoomPercentage + 9;				//increment zoom percentage by 9
+			scalePoint = scalePoint + 0.05;		//increment level of zoom
+			scaleBot = scaleBot + 19;			//adjust bottom coordinates with scale
+			scaleRight = scaleRight + 9;
 
 			const elem = document.getElementById('zoomInChatbot');
 			elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
