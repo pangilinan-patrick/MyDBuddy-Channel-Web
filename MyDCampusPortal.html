@@ -147,7 +147,7 @@
                         <li id="nav_digitalservices" class="navigation__active"><a href="https://mydcampus.dlsl.edu.ph/#/digitalservices"><i class="fa-solid fa-shapes"></i> Digital Services</a></li>
                         <li id="nav_newsandevents"><a href="https://mydcampus.dlsl.edu.ph/#/newsandevents"><i class="fa-solid fa-newspaper"></i> News &amp; Information</a></li>
                         <li>
-                          <input id="check01" type="checkbox" name="menu" style="display:none;"/>
+                          <input id="check01" type="checkbox" name="menu" style="display: none;"/>
                           <label for="check01"><i class="fa-solid fa-wrench"></i> Chatbot Settings</label>
                           <ul class="submenu">
                             <div class="sub1">
@@ -1024,46 +1024,51 @@
 		let importantProperty = "!important";
 
 		function zoom() {
-			if (frames[0].document.getElementById('zoomLevels')) {			//removes previous zoomLevels to avoid style buildup
-				element = frames[0].document.getElementById('zoomLevels');
-				element.remove();
-			}
+		  if (tallFlag == false) {
+			  if (frames[0].document.getElementById('zoomLevels')) {			//removes previous zoomLevels to avoid style buildup
+				  element = frames[0].document.getElementById('zoomLevels');
+				  element.remove();
+			  }
 
-			const zoomLevels = frames[0].document.createElement('style');	//creates a style tag inside the botpress iframe
-			zoomLevels.setAttribute("id", "zoomLevels");
+			  const zoomLevels = frames[0].document.createElement('style');	//creates a style tag inside the botpress iframe
+			  zoomLevels.setAttribute("id", "zoomLevels");
 
-			zoomMultiNum++;
-			zoomMultiplier = "("+zoomMultiNum+"x)";	//increase zoom multiplier frontend label
+			  zoomMultiNum++;
+			  zoomMultiplier = "("+zoomMultiNum+"x)";	//increase zoom multiplier frontend label
 
-			if (scalePoint > 1.20) {	/* maximum scalePoint should be less than 1.20 so the iframe doesnt break */
-				//reset all values when maximum zoom is reached
-				zoomMultiNum = 0;
-				zoomMultiplier = "";
-				scaleBot = 15;
-				scaleRight = 15;
-				scalePoint = 1;
-				importantProperty = "";
-			}
+			  if (scalePoint > 1.20) {	/* maximum scalePoint should be less than 1.20 so the iframe doesnt break */
+				    //reset all values when maximum zoom is reached
+				  zoomMultiNum = 0;
+				  zoomMultiplier = "";
+				  scaleBot = 15;
+				  scaleRight = 15;
+				  scalePoint = 1;
+				  importantProperty = "";
+			  }
 
-			//scale css
-			zoomLevels.innerHTML = `
-				.bpw-layout, .bpw-chat-container {
-					transform: scale(` +scalePoint+ `) !important;
-					-webkit-transform: scale(` +scalePoint+ `) !important;
-					-ie-transform: scale(` +scalePoint+ `) !important;
-					-moz-transform: scale(` +scalePoint+ `) !important;
-					bottom: `+scaleBot+`px `+importantProperty+`;
-					right: `+scaleRight+`px `+importantProperty+`;
-				}
-			`;
-			frames[0].document.head.appendChild(zoomLevels);
-			scalePoint = scalePoint + 0.05;		//increment level of zoom
-			scaleBot = scaleBot + 19;			//adjust bottom coordinates with scale
-			scaleRight = scaleRight + 9;
+			  //scale css
+			  zoomLevels.innerHTML = `
+				  .bpw-layout, .bpw-chat-container {
+					  transform: scale(` +scalePoint+ `) !important;
+					  -webkit-transform: scale(` +scalePoint+ `) !important;
+					  -ie-transform: scale(` +scalePoint+ `) !important;
+					  -moz-transform: scale(` +scalePoint+ `) !important;
+					  bottom: `+scaleBot+`px `+importantProperty+`;
+					  right: `+scaleRight+`px `+importantProperty+`;
+				  }
+			  `;
+			  frames[0].document.head.appendChild(zoomLevels);
+			  scalePoint = scalePoint + 0.05;		//increment level of zoom
+			  scaleBot = scaleBot + 19;			//adjust bottom coordinates with scale
+			  scaleRight = scaleRight + 9;
 
-			const elem = document.getElementById('zoomInChatbot');
-			elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
-			importantProperty = "!important";
+			  const elem = document.getElementById('zoomInChatbot');
+			  elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
+			  importantProperty = "!important";
+		  }
+		
+		else 
+		  alert("Sorry! Zoom option is not available when Tall option is enabled!");
 		}
 	</script>
 
@@ -1228,47 +1233,56 @@
 		}
 
 		//toggles tall theme option
+    let tallFlag = false;
 		function bpwTall() {
-			const tall = frames[0].document.createElement('style');
-			tall.setAttribute("id", "bpwTall");
+		  if (zoomMultiNum == 0) {
+			  const tall = frames[0].document.createElement('style');
+			  tall.setAttribute("id", "bpwTall");
 
-      let tallPercent = 100;
-      
-      if (scalePoint > 1.04 && scalePoint <= 1.06) {
-        tallPercent = 95;
-      }
+        let tallPercent = 100;
+        
+        if (zoomMultiNum == 0) 
+          tallPercent = 100;
+          
+        else if (zoomMultiNum == 1) 
+          tallPercent = 95;
+        
+        else if (zoomMultiNum == 2) 
+          tallPercent = 90;
+          
+        else if (zoomMultiNum == 3) 
+          tallPercent = 85;
+          
+			  if (!frames[0].document.getElementById('bpwTall')) {
+				  tall.innerHTML = `
+					  .bpw-layout {
+					    height: `+tallPercent+`%;
+					    bottom: 0px !important;
+					    right: 0px !important;
+					    border-radius: 0px;
+					  }
+				  
+					  .bpw-header-container {
+						  border-radius: 0;
+					  }
+					  
+					  .bpw-powered {
+						  border-radius: 0;
+					  }
+				  `;
+				  frames[0].document.body.appendChild(tall);		//append to body to take precedence
+				  tallFlag = true;
+			  }
 
-      else if (scalePoint > 1.06) {
-        tallPercent = 90;
-      }
-
-      else
-        tallPercent = 100;
-      
-			if (!frames[0].document.getElementById('bpwTall')) {
-				tall.innerHTML = `
-					.bpw-layout {
-					  height: `+tallPercent+`%;
-					  bottom: 0px;
-					  right: 0px;
-					  border-radius: 0px;
-					}
-				
-					.bpw-header-container {
-						border-radius: 0;
-					}
-					
-					.bpw-powered {
-						border-radius: 0;
-					}
-				`;
-				frames[0].document.body.appendChild(tall);		//append to body to take precedence
+			  else {
+				  element = frames[0].document.getElementById('bpwTall');
+				  element.remove();
+				  tallFlag = false;
+			  }
 			}
 
-			else {
-				element = frames[0].document.getElementById('bpwTall');
-				element.remove();
-			}
+			else
+			  alert("Sorry! Tall option is not available when Zoom is enabled!")
 		}
 	</script>
 	</body>
