@@ -642,230 +642,196 @@
     </div>
 
     <input type="hidden" id="last_notif_id">
-        <!-- Older IE warning message -->
-            <!--[if IE]>
-                <div class="ie-warning">
-                    <h1>Warning!!</h1>
-                    <p>You are using an outdated version of Internet Explorer, please upgrade to any of the following web browsers to access this website.</p>
+    <dashboardcache style="display:none;">Please Wait...</dashboardcache>
+    <newsandeventscache style="display:none;">Please Wait...</newsandeventscache>
 
-                    <div class="ie-warning__downloads">
-                        <a href="http://www.google.com/chrome">
-                            <img src="img/browsers/chrome.png" alt="">
-                        </a>
-
-                        <a href="https://www.mozilla.org/en-US/firefox/new">
-                            <img src="img/browsers/firefox.png" alt="">
-                        </a>
-
-                        <a href="http://www.opera.com">
-                            <img src="img/browsers/opera.png" alt="">
-                        </a>
-
-                        <a href="https://support.apple.com/downloads/safari">
-                            <img src="img/browsers/safari.png" alt="">
-                        </a>
-
-                        <a href="https://www.microsoft.com/en-us/windows/microsoft-edge">
-                            <img src="img/browsers/edge.png" alt="">
-                        </a>
-
-                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                            <img src="img/browsers/ie.png" alt="">
-                        </a>
-                    </div>
-                    <p>Sorry for the inconvenience!</p>
-                </div>
-            <![endif]-->
-  <dashboardcache style="display:none;">Please Wait...</dashboardcache>
-  <newsandeventscache style="display:none;">Please Wait...</newsandeventscache>
-
-  <!-- chatbot script -->
-  <script>
-    function parseQuery(queryString) {
-      const query = {}
-      const pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&')
-      for (let i = 0; i < pairs.length; i++) {
-        const pair = pairs[i].split('=')
-        query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
-      }
-      return query
-    }
-
-    const params = parseQuery(window.location && window.location.search)
-    const botId = (params && params.botId) || 'welcome-bot'
-
-    let userId
-    let webchatOpen = false
-    let darkThemeFlag = false
-    let currentTheme = 1
-
-    let lastConfig = {
-      host: window.location.origin || 'http://localhost:3000',
-      botId: botId,
-      lazySocket: false,
-      botName: "MyDBuddy",
-      botConvoDescription: 'Online',
-      enableReset: false,
-      enablePersistHistory: false,
-      enableResetSessionShortcut: false,
-      showConversationsButton: false,
-      /*
-      To change the styling of the webchat, you can either edit directly default.css, or use the extraStylesheet property.
-      This allows you to customize the chat on a per-bot basis.
-    */
-      extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css',
-    }
-
-    window.botpressWebChat.init(lastConfig)
-
-    window.addEventListener("message", function (event) {
-      if (event.data.name === "webchatReady") {
-        window.botpressWebChat.sendEvent({
-          type: "proactive-trigger",
-          channel: "web",
-        })
-      }
-    })
-
-    localStorage.clear(); /* resets the random key of the user stored in the localstorage */
-
-    document.getElementById('origin').innerText = window.location.origin
-  </script>
-
-  <!-- Script for enabling dark theme; referenced at sidebar navigation; reference around line 200 -->
-  <script>
-	let darkThemeOn = false;
-
-    function toggleDarkTheme() {
-      //checks if darkTheme is already enabled
-      if (document.getElementById('darkTheme')) {
-        let element = document.getElementById('darkTheme');
-        element.remove();
-
-        element = frames[0].document.getElementById('darkTheme');
-        element.remove();
+    <!-- chatbot script -->
+    <script>
+      function parseQuery(queryString) {
+        const query = {}
+        const pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&')
+        for (let i = 0; i < pairs.length; i++) {
+          const pair = pairs[i].split('=')
+          query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
+        }
+        return query
       }
 
-      else {
-        const darkStyle = document.createElement('style');		//darkStyle for website; darkStyleBpw for chatbox
-        darkStyle.setAttribute("id", "darkTheme");
-        const darkStyleBpw = frames[0].document.createElement('style');
-        darkStyleBpw.setAttribute("id", "darkTheme");
+      const params = parseQuery(window.location && window.location.search)
+      const botId = (params && params.botId) || 'welcome-bot'
 
-      darkStyle.innerHTML = `
-		  :root {
-			  --darkest: #1B1E1F;
-			  --darker: #5B6367;
-			  --dark: #CCC7C0;
-		  }
-		  header.header, .groups-item, .row, .groups, .row img, .user__name, hr, .navigation{
-			  filter:invert(0.91) hue-rotate(180deg);
-		  }
-		  html, section.content{
-			  background-color: var(--darkest);
-		  }
-          `;
-		  
-		  darkStyleBpw.innerHTML = `
-		  /* Dark Theme CSS overrides */
-		  :root {
-			  --darkest: #1B1E1F;
-			  --darker: #5B6367;
-			  --dark: #CCC7C0;
-		  }
+      let userId
+      let webchatOpen = false
+      let darkThemeFlag = false
+      let currentTheme = 1
 
-		  /* Track */
-		  ::-webkit-scrollbar-track {
-			  background: var(--darkest); 
-		  }
-		   
-		  /* Handle */
-		  ::-webkit-scrollbar-thumb {
-			  background: var(--darker); 
-			  border-radius: 10px;
-		  }
+      let lastConfig = {
+        host: window.location.origin || 'http://localhost:3000',
+        botId: botId,
+        lazySocket: false,
+        botName: "MyDBuddy",
+        botConvoDescription: 'Online',
+        enableReset: false,
+        enablePersistHistory: false,
+        enableResetSessionShortcut: false,
+        showConversationsButton: false,
+        /*
+        To change the styling of the webchat, you can either edit directly default.css, or use the extraStylesheet property.
+        This allows you to customize the chat on a per-bot basis.
+      */
+        extraStylesheet:'assets/modules/channel-web/examples/Themes/Dark_Green_Input/custom.css',
+      }
 
-		  /* Handle on hover */
-		  ::-webkit-scrollbar-thumb:hover {
-			  background: var(--dark); 
-		  }
+      window.botpressWebChat.init(lastConfig)
 
-		  .bpw-layout {
-			  background-color: var(--darkest);
-		  }
+      window.addEventListener("message", function (event) {
+        if (event.data.name === "webchatReady") {
+          window.botpressWebChat.sendEvent({
+            type: "proactive-trigger",
+            channel: "web",
+          })
+        }
+      })
 
-		  .bpw-keyboard-quick_reply {
-			  background-color: var(--darkest);
-			  border-color: var(--darker);
-		  }
+      localStorage.clear(); /* resets the random key of the user stored in the localstorage */
 
-		  .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
-			  background-color: #282828;
-			  color: white;
-			  -webkit-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
-			  -moz-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
-		  }
+      document.getElementById('origin').innerText = window.location.origin
+    </script>
 
-		  .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
-			  -webkit-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
-			  -moz-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
-		  }
+    <!-- Script for enabling dark theme; referenced at sidebar navigation; reference around line 200 -->
+    <script>
+	  let darkThemeOn = false;
 
-		  .bpw-button {
-			  filter:invert(0.95) hue-rotate(180deg);
-		  }
+      function toggleDarkTheme() {
+        //checks if darkTheme is already enabled
+        if (document.getElementById('darkTheme')) {
+          let element = document.getElementById('darkTheme');
+          element.remove();
 
-		  .bpw-send-buttons {
-			  filter:invert(0.90) hue-rotate(180deg);
-		  }
+          element = frames[0].document.getElementById('darkTheme');
+          element.remove();
+        }
 
-		  .bpw-composer {
-			  border-top-color: var(--darker);
-		  }
-		  `;
+        else {
+          const darkStyle = document.createElement('style');		//darkStyle for website; darkStyleBpw for chatbox
+          darkStyle.setAttribute("id", "darkTheme");
+          const darkStyleBpw = frames[0].document.createElement('style');
+          darkStyleBpw.setAttribute("id", "darkTheme");
 
-      document.head.appendChild(darkStyle);					//append style to head (site)
-      frames[0].document.body.appendChild(darkStyleBpw);	//append style to body for the styles to take precedence (chatbot)
-		  darkThemeOn = true;
-    }
-	}
-  </script>
+        darkStyle.innerHTML = `
+		    :root {
+			    --darkest: #1B1E1F;
+			    --darker: #5B6367;
+			    --dark: #CCC7C0;
+		    }
+		    header.header, .groups-item, .row, .groups, .row img, .user__name, hr, .navigation{
+			    filter:invert(0.91) hue-rotate(180deg);
+		    }
+		    html, section.content{
+			    background-color: var(--darkest);
+		    }
+            `;
+		    
+		    darkStyleBpw.innerHTML = `
+		    /* Dark Theme CSS overrides */
+		    :root {
+			    --darkest: #1B1E1F;
+			    --darker: #5B6367;
+			    --dark: #CCC7C0;
+		    }
 
-	<!-- Accessibility function for users with poor eyesight -->
-	<script>
-		//inital zoom values
-		let scalePoint = 1.05;		//level of scale css property
-		let scaleBot = 37;			//bottom coords of chatbox
-		let scaleRight = 22;		//right offset of chatbox
-		let zoomMultiNum = 0;		//the multiplier number to append to the zoomMultiplier string
-		let zoomMultiplier;
-		let importantProperty = "!important";
+		    /* Track */
+		    ::-webkit-scrollbar-track {
+			    background: var(--darkest); 
+		    }
+		     
+		    /* Handle */
+		    ::-webkit-scrollbar-thumb {
+			    background: var(--darker); 
+			    border-radius: 10px;
+		    }
 
-		function zoom() {
-		  if (tallFlag == false) {
-			  if (frames[0].document.getElementById('zoomLevels')) {			//removes previous zoomLevels to avoid style buildup
-				  element = frames[0].document.getElementById('zoomLevels');
-				  element.remove();
-			  }
+		    /* Handle on hover */
+		    ::-webkit-scrollbar-thumb:hover {
+			    background: var(--dark); 
+		    }
 
-			  const zoomLevels = frames[0].document.createElement('style');	//creates a style tag inside the botpress iframe
-			  zoomLevels.setAttribute("id", "zoomLevels");
+		    .bpw-layout {
+			    background-color: var(--darkest);
+		    }
 
-			  zoomMultiNum++;
-			  zoomMultiplier = "("+zoomMultiNum+"x)";	//increase zoom multiplier frontend label
+		    .bpw-keyboard-quick_reply {
+			    background-color: var(--darkest);
+			    border-color: var(--darker);
+		    }
 
-			  if (scalePoint > 1.20) {	/* maximum scalePoint should be less than 1.20 so the iframe doesnt break */
-				    //reset all values when maximum zoom is reached
-				  zoomMultiNum = 0;
-				  zoomMultiplier = "";
-				  scaleBot = 15;
-				  scaleRight = 15;
-				  scalePoint = 1;
-				  importantProperty = "";
-			  }
+		    .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+			    background-color: #282828;
+			    color: white;
+			    -webkit-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+			    -moz-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+		    }
 
-			  //scale css
-			  zoomLevels.innerHTML = `
+		    .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+			    -webkit-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+			    -moz-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+		    }
+
+		    .bpw-button {
+			    filter:invert(0.95) hue-rotate(180deg);
+		    }
+
+		    .bpw-send-buttons {
+			    filter:invert(0.90) hue-rotate(180deg);
+		    }
+
+		    .bpw-composer {
+			    border-top-color: var(--darker);
+		    }
+		    `;
+
+        document.head.appendChild(darkStyle);					//append style to head (site)
+        frames[0].document.body.appendChild(darkStyleBpw);	//append style to body for the styles to take precedence (chatbot)
+		    darkThemeOn = true;
+      }
+	  }
+    </script>
+
+	  <!-- Accessibility function for users with poor eyesight -->
+	  <script>
+		  //inital zoom values
+		  let scalePoint = 1.05;		//level of scale css property
+		  let scaleBot = 37;			//bottom coords of chatbox
+		  let scaleRight = 22;		//right offset of chatbox
+		  let zoomMultiNum = 0;		//the multiplier number to append to the zoomMultiplier string
+		  let zoomMultiplier;
+		  let importantProperty = "!important";
+
+		  function zoom() {
+		    if (tallFlag == false) {
+			    if (frames[0].document.getElementById('zoomLevels')) {			//removes previous zoomLevels to avoid style buildup
+				    element = frames[0].document.getElementById('zoomLevels');
+				    element.remove();
+			    }
+
+			    const zoomLevels = frames[0].document.createElement('style');	//creates a style tag inside the botpress iframe
+			    zoomLevels.setAttribute("id", "zoomLevels");
+
+			    zoomMultiNum++;
+			    zoomMultiplier = "("+zoomMultiNum+"x)";	//increase zoom multiplier frontend label
+
+			    if (scalePoint > 1.20) {	/* maximum scalePoint should be less than 1.20 so the iframe doesnt break */
+				      //reset all values when maximum zoom is reached
+				    zoomMultiNum = 0;
+				    zoomMultiplier = "";
+				    scaleBot = 15;
+				    scaleRight = 15;
+				    scalePoint = 1;
+				    importantProperty = "";
+			    }
+
+			    //scale css
+			    zoomLevels.innerHTML = `
 				  .bpw-layout, .bpw-chat-container {
 					  transform: scale(` +scalePoint+ `) !important;
 					  -webkit-transform: scale(` +scalePoint+ `) !important;
@@ -874,234 +840,234 @@
 					  bottom: `+scaleBot+`px `+importantProperty+`;
 					  right: `+scaleRight+`px `+importantProperty+`;
 				  }
-			  `;
-			  frames[0].document.head.appendChild(zoomLevels);
-			  scalePoint = scalePoint + 0.05;		//increment level of zoom
-			  scaleBot = scaleBot + 19;			//adjust bottom coordinates with scale
-			  scaleRight = scaleRight + 9;
+			    `;
+			    frames[0].document.head.appendChild(zoomLevels);
+			    scalePoint = scalePoint + 0.05;		//increment level of zoom
+			    scaleBot = scaleBot + 19;			//adjust bottom coordinates with scale
+			    scaleRight = scaleRight + 9;
 
-			  const elem = document.getElementById('zoomInChatbot');
-			  elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
-			  importantProperty = "!important";
+			    const elem = document.getElementById('zoomInChatbot');
+			    elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
+			    importantProperty = "!important";
+		    }
+		  
+		  else 
+		    alert("Sorry! Zoom option is not available when Tall option is enabled!");
 		  }
-		
-		else 
-		  alert("Sorry! Zoom option is not available when Tall option is enabled!");
-		}
-	</script>
+	  </script>
 
-	<!-- Dynamic Chatbox JS Injection into iframe -->
-	<script>
-		window.onload = function(){
-			const dynamicChatbox = frames[0].document.createElement('script'); //injects a script tag to put inside the iframe
+	  <!-- Dynamic Chatbox JS Injection into iframe -->
+	  <script>
+		  window.onload = function(){
+			  const dynamicChatbox = frames[0].document.createElement('script'); //injects a script tag to put inside the iframe
 
-			dynamicChatbox.innerHTML = `
-			//Dynamic Chatbox
-			function getScrollHeight(elm){
-			  var savedValue = elm.value
-			  elm.value = ''
-			  elm._baseScrollHeight = elm.scrollHeight
-			  elm.value = savedValue
-			}
+			  dynamicChatbox.innerHTML = `
+			  //Dynamic Chatbox
+			  function getScrollHeight(elm){
+			    var savedValue = elm.value
+			    elm.value = ''
+			    elm._baseScrollHeight = elm.scrollHeight
+			    elm.value = savedValue
+			  }
 
-			function onExpandableTextareaInput({ target:elm }){
-			  // make sure the input event originated from a textarea and it's desired to be auto-expandable
-			  if( !elm.nodeName == 'TEXTAREA' ) return
+			  function onExpandableTextareaInput({ target:elm }){
+			    // make sure the input event originated from a textarea and it's desired to be auto-expandable
+			    if( !elm.nodeName == 'TEXTAREA' ) return
 
-			  var minRows = elm.getAttribute('data-min-rows')|2, rows;
-			  !elm._baseScrollHeight && getScrollHeight(elm)
+			    var minRows = elm.getAttribute('data-min-rows')|2, rows;
+			    !elm._baseScrollHeight && getScrollHeight(elm)
 
-			  elm.rows = minRows
-			  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
-			  elm.rows = minRows + rows
-			}
+			    elm.rows = minRows
+			    rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+			    elm.rows = minRows + rows
+			  }
 
-			// global delegated event listener
-			document.addEventListener('input', onExpandableTextareaInput)
-			`
-			frames[0].document.body.appendChild(dynamicChatbox);
-		}
-	</script>
+			  // global delegated event listener
+			  document.addEventListener('input', onExpandableTextareaInput)
+			  `
+			  frames[0].document.body.appendChild(dynamicChatbox);
+		  }
+	  </script>
 
-	<!-- Theme change options -->
-	<script>
-		let neutral = false;	//neutral textbox state
-		let neutralStyle;
+	  <!-- Theme change options -->
+	  <script>
+		  let neutral = false;	//neutral textbox state
+		  let neutralStyle;
 
-		function dlslColors2() {
-			if (frames[0].document.getElementById('dlslColors2'))
-				dlslColors1(); //multipurposing function to remove previous dlslColors2 style to avoid buildup
+		  function dlslColors2() {
+			  if (frames[0].document.getElementById('dlslColors2'))
+				  dlslColors1(); //multipurposing function to remove previous dlslColors2 style to avoid buildup
 
-			const colors2 = frames[0].document.createElement('style');
-			colors2.setAttribute("id", "dlslColors2");
+			  const colors2 = frames[0].document.createElement('style');
+			  colors2.setAttribute("id", "dlslColors2");
 
-			//if else statement to detect whether neutral textbox is on to include/exclude from background-color
-			if (neutral == true)
-				neutralStyle = " ";
+			  //if else statement to detect whether neutral textbox is on to include/exclude from background-color
+			  if (neutral == true)
+				  neutralStyle = " ";
 
-			else 
-				neutralStyle =", .bpw-composer textarea";
+			  else 
+				  neutralStyle =", .bpw-composer textarea";
 
-			colors2.innerHTML = `
-			:root {
-				--dlsl_dark: #007136;
-				--dlsl_mid: #005A35;
-				--dlsl_light: #00A45E;
-			}
+			  colors2.innerHTML = `
+			  :root {
+				  --dlsl_dark: #007136;
+				  --dlsl_mid: #005A35;
+				  --dlsl_light: #00A45E;
+			  }
 
-			.bpw-powered, .bpw-widget-btn,
-			.bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
-			.bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content,
-			.bpw-bubble-undefined bpw-chat-bubble bpw-bubble-text,
-			.bpw-header-container`+neutralStyle+`{
-				background-color: var(--dlsl_light);
-			}
-			`;
-			frames[0].document.body.appendChild(colors2);
+			  .bpw-powered, .bpw-widget-btn,
+			  .bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
+			  .bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content,
+			  .bpw-bubble-undefined bpw-chat-bubble bpw-bubble-text,
+			  .bpw-header-container`+neutralStyle+`{
+				  background-color: var(--dlsl_light);
+			  }
+			  `;
+			  frames[0].document.body.appendChild(colors2);
 
-			//sneaky fix to keep the input color consistent to the DLSL color theme by appending a style in between the linked stylesheets and the neutral input stylesheet
-			var targetDiv = frames[0].document.getElementById('input-message');
-			targetDiv.insertAdjacentHTML('afterend', '<style id="colors2Input">.bpw-composer textarea { background-color: var(--dlsl_light); } </style>'); 
-			}
+			  //sneaky fix to keep the input color consistent to the DLSL color theme by appending a style in between the linked stylesheets and the neutral input stylesheet
+			  var targetDiv = frames[0].document.getElementById('input-message');
+			  targetDiv.insertAdjacentHTML('afterend', '<style id="colors2Input">.bpw-composer textarea { background-color: var(--dlsl_light); } </style>'); 
+			  }
 
-		//function to remove dlslColors2 Style
-		function dlslColors1() {
-			element = frames[0].document.getElementById('dlslColors2');
-			element.remove();
+		  //function to remove dlslColors2 Style
+		  function dlslColors1() {
+			  element = frames[0].document.getElementById('dlslColors2');
+			  element.remove();
 
-			element = frames[0].document.getElementById('colors2Input');	//colors2Input ID referenced by targetDiv 8 lines above this line
-			element.remove();
-		}
+			  element = frames[0].document.getElementById('colors2Input');	//colors2Input ID referenced by targetDiv 8 lines above this line
+			  element.remove();
+		  }
 
-		//function for toggling neutralTextBox
-		function neutralTextBox() {
-			let darkThemeStyle;		//variable used for the border-top-color fix (makes border color more consistent when neutral text box is toggled)
-			const neutralText = frames[0].document.createElement('style');
-			neutralText.setAttribute("id", "neutralText");
+		  //function for toggling neutralTextBox
+		  function neutralTextBox() {
+			  let darkThemeStyle;		//variable used for the border-top-color fix (makes border color more consistent when neutral text box is toggled)
+			  const neutralText = frames[0].document.createElement('style');
+			  neutralText.setAttribute("id", "neutralText");
 
-			if (darkThemeOn == true)
-				darkThemeStyle = ".bpw-composer { border-top-color: #5b6367 };";
+			  if (darkThemeOn == true)
+				  darkThemeStyle = ".bpw-composer { border-top-color: #5b6367 };";
 
-			else 
-				darkThemeStyle = " ";
+			  else 
+				  darkThemeStyle = " ";
 
-			if (neutral == false) {			//if neutral textbox isn't on, apply these css rules
-				neutralText.innerHTML = `
-				.bpw-composer {
-				  height: auto;
-				  background: none;
-				  border-top-width: 1px;
-				  border-top-style: solid;
-				  border-top-color: #dcdcdc;
-				}
+			  if (neutral == false) {			//if neutral textbox isn't on, apply these css rules
+				  neutralText.innerHTML = `
+				  .bpw-composer {
+				    height: auto;
+				    background: none;
+				    border-top-width: 1px;
+				    border-top-style: solid;
+				    border-top-color: #dcdcdc;
+				  }
 
-				.bpw-composer textarea {
-				  height: auto;
-				  max-height: 7em;
-				  padding: 1em;;
-				  line-height: 1.2em;
-				  color: black;
-				  background: none;
-				}
+				  .bpw-composer textarea {
+				    height: auto;
+				    max-height: 7em;
+				    padding: 1em;;
+				    line-height: 1.2em;
+				    color: black;
+				    background: none;
+				  }
 
-				::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-				  color: #707070;
-				}
-				::-moz-placeholder { /* Firefox 19+ */
-				  color: #707070;
-				}
-				:-ms-input-placeholder { /* IE 10+ */
-				  color: #707070;
-				}
-				:-moz-placeholder { /* Firefox 18- */
-				  color: #707070;
-				}
+				  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+				    color: #707070;
+				  }
+				  ::-moz-placeholder { /* Firefox 19+ */
+				    color: #707070;
+				  }
+				  :-ms-input-placeholder { /* IE 10+ */
+				    color: #707070;
+				  }
+				  :-moz-placeholder { /* Firefox 18- */
+				    color: #707070;
+				  }
 
-				`+ darkThemeStyle;
-				neutral = true;
+				  `+ darkThemeStyle;
+				  neutral = true;
 
-				frames[0].document.body.appendChild(neutralText);		//appends to body for the styles to take precedence
-			}
-
-			else {
-				element = frames[0].document.getElementById('neutralText');	//toggles neutral text box off
-				element.remove();
-				neutral = false;
-			}
-		}
-
-		//function to toggle centered footer
-		function bpwCentered() {
-			const centered = frames[0].document.createElement('style');
-			centered.setAttribute("id", "bpwCentered");
-
-			if (!frames[0].document.getElementById('bpwCentered')) {
-				centered.innerHTML = `
-					.bpw-powered {
-						text-align: center;
-					}
-				`;
-				frames[0].document.body.appendChild(centered);			//append to body to take precedence
-			}
-
-			else {
-				element = frames[0].document.getElementById('bpwCentered');
-				element.remove();
-			}
-		}
-
-		//toggles tall theme option
-    let tallFlag = false;
-		function bpwTall() {
-		  if (zoomMultiNum == 0) {
-			  const tall = frames[0].document.createElement('style');
-			  tall.setAttribute("id", "bpwTall");
-
-        let tallPercent = 100;
-        
-        if (zoomMultiNum == 0) 
-          tallPercent = 100;
-          
-        else if (zoomMultiNum == 1) 
-          tallPercent = 95;
-        
-        else if (zoomMultiNum == 2) 
-          tallPercent = 90;
-          
-        else if (zoomMultiNum == 3) 
-          tallPercent = 85;
-          
-			  if (!frames[0].document.getElementById('bpwTall')) {
-				  tall.innerHTML = `
-					  .bpw-layout {
-					    height: `+tallPercent+`%;
-					    bottom: 0px !important;
-					    right: 0px !important;
-					    border-radius: 0px;
-					  }
-				  
-					  .bpw-header-container {
-						  border-radius: 0;
-					  }
-					  
-					  .bpw-powered {
-						  border-radius: 0;
-					  }
-				  `;
-				  frames[0].document.body.appendChild(tall);		//append to body to take precedence
-				  tallFlag = true;
+				  frames[0].document.body.appendChild(neutralText);		//appends to body for the styles to take precedence
 			  }
 
 			  else {
-				  element = frames[0].document.getElementById('bpwTall');
+				  element = frames[0].document.getElementById('neutralText');	//toggles neutral text box off
 				  element.remove();
-				  tallFlag = false;
+				  neutral = false;
 			  }
-			}
+		  }
 
-			else
-			  alert("Sorry! Tall option is not available when Zoom is enabled!")
-		}
-	</script>
+		  //function to toggle centered footer
+		  function bpwCentered() {
+			  const centered = frames[0].document.createElement('style');
+			  centered.setAttribute("id", "bpwCentered");
+
+			  if (!frames[0].document.getElementById('bpwCentered')) {
+				  centered.innerHTML = `
+					  .bpw-powered {
+						  text-align: center;
+					  }
+				  `;
+				  frames[0].document.body.appendChild(centered);			//append to body to take precedence
+			  }
+
+			  else {
+				  element = frames[0].document.getElementById('bpwCentered');
+				  element.remove();
+			  }
+		  }
+
+		  //toggles tall theme option
+      let tallFlag = false;
+		  function bpwTall() {
+		    if (zoomMultiNum == 0) {
+			    const tall = frames[0].document.createElement('style');
+			    tall.setAttribute("id", "bpwTall");
+
+          let tallPercent = 100;
+          
+          if (zoomMultiNum == 0) 
+            tallPercent = 100;
+            
+          else if (zoomMultiNum == 1) 
+            tallPercent = 95;
+          
+          else if (zoomMultiNum == 2) 
+            tallPercent = 90;
+            
+          else if (zoomMultiNum == 3) 
+            tallPercent = 85;
+            
+			    if (!frames[0].document.getElementById('bpwTall')) {
+				    tall.innerHTML = `
+					    .bpw-layout {
+					      height: `+tallPercent+`%;
+					      bottom: 0px !important;
+					      right: 0px !important;
+					      border-radius: 0px;
+					    }
+				    
+					    .bpw-header-container {
+						    border-radius: 0;
+					    }
+					    
+					    .bpw-powered {
+						    border-radius: 0;
+					    }
+				    `;
+				    frames[0].document.body.appendChild(tall);		//append to body to take precedence
+				    tallFlag = true;
+			    }
+
+			    else {
+				    element = frames[0].document.getElementById('bpwTall');
+				    element.remove();
+				    tallFlag = false;
+			    }
+			  }
+
+			  else
+			    alert("Sorry! Tall option is not available when Zoom is enabled!")
+		  }
+	  </script>
 	</body>
 </html>
