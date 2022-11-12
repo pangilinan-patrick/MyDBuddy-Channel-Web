@@ -1021,6 +1021,7 @@
 		let scaleRight = 22;		//right offset of chatbox
 		let zoomMultiNum = 0;		//the multiplier number to append to the zoomMultiplier string
 		let zoomMultiplier;
+		let importantProperty = "!important";
 
 		function zoom() {
 			if (frames[0].document.getElementById('zoomLevels')) {			//removes previous zoomLevels to avoid style buildup
@@ -1041,6 +1042,7 @@
 				scaleBot = 15;
 				scaleRight = 15;
 				scalePoint = 1;
+				importantProperty = "";
 			}
 
 			//scale css
@@ -1050,10 +1052,9 @@
 					-webkit-transform: scale(` +scalePoint+ `) !important;
 					-ie-transform: scale(` +scalePoint+ `) !important;
 					-moz-transform: scale(` +scalePoint+ `) !important;
-					bottom: `+scaleBot+`px !important;
-					right: `+scaleRight+`px !important;
+					bottom: `+scaleBot+`px `+importantProperty+`;
+					right: `+scaleRight+`px `+importantProperty+`;
 				}
-
 			`;
 			frames[0].document.head.appendChild(zoomLevels);
 			scalePoint = scalePoint + 0.05;		//increment level of zoom
@@ -1062,6 +1063,7 @@
 
 			const elem = document.getElementById('zoomInChatbot');
 			elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
+			importantProperty = "!important";
 		}
 	</script>
 
@@ -1230,10 +1232,23 @@
 			const tall = frames[0].document.createElement('style');
 			tall.setAttribute("id", "bpwTall");
 
+      let tallPercent = 100;
+      
+      if (scalePoint > 1.04 && scalePoint <= 1.06) {
+        tallPercent = 95;
+      }
+
+      else if (scalePoint > 1.06) {
+        tallPercent = 90;
+      }
+
+      else
+        tallPercent = 100;
+      
 			if (!frames[0].document.getElementById('bpwTall')) {
 				tall.innerHTML = `
 					.bpw-layout {
-					  height: 100%;
+					  height: `+tallPercent+`%;
 					  bottom: 0px;
 					  right: 0px;
 					  border-radius: 0px;
