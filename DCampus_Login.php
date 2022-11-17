@@ -38,7 +38,7 @@ unset($_SESSION['user']);
       }
 
       .login {
-          background:#f3f6f7 url('../assets/img/loginbg.png') center top no-repeat;
+          background:#f3f6f7 url('./My DCampus Portal_files/loginbg.png') center top no-repeat;
           background-size: 45%;
           background-position: center 15%;
       }
@@ -70,11 +70,11 @@ unset($_SESSION['user']);
             
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <!-- Email Input -->
-                <span class="mt-4" style="font-size:1.4em;"><b>Email Address</b></span><br/>
-                <input class="mt-4" type="email" name="user_email"> </input><br/><br/>
+                <span class="mt-4" style="font-size:1.2em;"><b>Email Address</b></span><br/>
+                <input class="d-inline-flex p-2 mt-4 form-control" placeholder="email@address.com" type="email" name="user_email"> </input><br/><br/>
                 <!-- Password Input -->
-                <span class="mt-4" style="font-size:1.4em;"><b>Password</b></span><br/>
-                <input class="mt-4" type="password" name="user_password"> </input><br/><br/>
+                <span class="mt-4" style="font-size:1.2em;"><b>Password</b></span><br/>
+                <input class="d-inline-flex p-2 mt-4 form-control" placeholder="Password" type="password" name="user_password"> </input><br/><br/>
                 <div class="mt-2"><small>By clicking Sign In, you agree <br>to our <a href="https://mydcampus.dlsl.edu.ph/tos_privacy" target="_blank">Terms and Data Policy</a>.</small></div>
                 <div class="login__block__body">
                     <div class="g-signin2 btn waves-effect" data-onsuccess="onSignIn" style="width:200px;" data-theme="dark" data-gapiscan="true" data-onload="true">
