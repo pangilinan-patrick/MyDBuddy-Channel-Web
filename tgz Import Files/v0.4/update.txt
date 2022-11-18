@@ -1,0 +1,12 @@
+Added new nodes to flows:
+-- general-dlsl-info
+-- Others
+-- Enroll_Assess
+-- Appoint_Reserve_Alt
+-- Appoint_Reserve
+-- Academic
+
+New nodes included are:
+1. access_dlsl_info : allows access to dlsl_info_faq table in mydbuddydb database
+2. access_myd_issues :  allows access to mydcampus_issues_faq table in mydbuddydb database
+3. access_myd_info : allows access to mydcampus_info_faq table in mydbuddydb database
