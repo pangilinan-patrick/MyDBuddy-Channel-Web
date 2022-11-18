@@ -102,6 +102,56 @@ unset($_SESSION['user']);
 </html>
 
 <?php
+include "postgres_dbs_connect.php";
+
+if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
+{
+    $user_eml = $_POST['user_email'];
+    $user_pass = $_POST['user_password'];
+    $temp_eml = "[email]";
+    $temp_pass = "[password]";
+
+    $sql_query = "SELECT * FROM public.tbl_users";
+    $result = pg_query($con, $sql_query);
+    $verify = false;
+    while($row = pg_fetch_array($result))
+    {
+        $temp_eml = $row['fld_email'];
+        $temp_pass = $row['fld_password'];
+        if($user_eml == $temp_eml AND $user_pass == $temp_pass)
+        {
+            $verify = true;
+        }
+    }
+
+    function redirect($url)
+    {
+        echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
+        echo '<META content="0;URL=' . $url . '">';
+    }
+
+    if($verify)
+    {
+        $_SESSION['user'] = $user_eml;
+        pg_close($con);
+        echo "Correct";
+        //header("Location: http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot");
+        $url = "http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot";
+        redirect($url);
+        exit();
+    }
+    else 
+    {
+        $url = "dcampus_login_postgres.php";
+        redirect($url);
+    }
+    
+}
+else {
+    pg_close($con);
+}
+
+/*
 include "dbs-connect.php";
 
 if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
@@ -150,5 +200,6 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
 else {
     mysqli_close($con);
 }
+*/
 ?>
 
