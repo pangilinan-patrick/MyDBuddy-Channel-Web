@@ -60,6 +60,7 @@ const userDBUtility = async (name, value) => {
     }).then(function (data) {
 		try {
 			s = JSON.stringify(Object.values(data['rows'][0])[0]);
+			s = s.slice(1,-1);
 		} catch(error) {
 			console.log("1st error" + error);
 			s = undefined;
