@@ -646,6 +646,14 @@
     <newsandeventscache style="display:none;">Please Wait...</newsandeventscache>
 
     <!-- chatbot script -->
+    <!-- style for first time pop up message for user -->
+    <style>
+      .bp-widget-widget {
+	      width: 50em !important;
+      }
+    </style>
+
+        
     <script>
       function parseQuery(queryString) {
         const query = {}
@@ -695,7 +703,7 @@
 
       localStorage.clear(); /* resets the random key of the user stored in the localstorage */
 
-      document.getElementById('origin').innerText = window.location.origin
+      // document.getElementById('origin').innerText = window.location.origin
     </script>
 
     <!-- Script for enabling dark theme; referenced at sidebar navigation; reference around line 200 -->
@@ -856,39 +864,6 @@
 		  }
 	  </script>
 
-	  <!-- Dynamic Chatbox JS Injection into iframe -->
-	  <script>
-		  window.onload = function(){
-			  const dynamicChatbox = frames[0].document.createElement('script'); //injects a script tag to put inside the iframe
-
-			  dynamicChatbox.innerHTML = `
-			  //Dynamic Chatbox
-			  function getScrollHeight(elm){
-			    var savedValue = elm.value
-			    elm.value = ''
-			    elm._baseScrollHeight = elm.scrollHeight
-			    elm.value = savedValue
-			  }
-
-			  function onExpandableTextareaInput({ target:elm }){
-			    // make sure the input event originated from a textarea and it's desired to be auto-expandable
-			    if( !elm.nodeName == 'TEXTAREA' ) return
-
-			    var minRows = elm.getAttribute('data-min-rows')|2, rows;
-			    !elm._baseScrollHeight && getScrollHeight(elm)
-
-			    elm.rows = minRows
-			    rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
-			    elm.rows = minRows + rows
-			  }
-
-			  // global delegated event listener
-			  document.addEventListener('input', onExpandableTextareaInput)
-			  `
-			  frames[0].document.body.appendChild(dynamicChatbox);
-		  }
-	  </script>
-
 	  <!-- Theme change options -->
 	  <script>
 		  let neutral = false;	//neutral textbox state
@@ -926,9 +901,9 @@
 			  frames[0].document.body.appendChild(colors2);
 
 			  //sneaky fix to keep the input color consistent to the DLSL color theme by appending a style in between the linked stylesheets and the neutral input stylesheet
-			  var targetDiv = frames[0].document.getElementById('input-message');
+			  const targetDiv = frames[0].document.getElementById('input-message');
 			  targetDiv.insertAdjacentHTML('afterend', '<style id="colors2Input">.bpw-composer textarea { background-color: var(--dlsl_light); } </style>'); 
-			  }
+			}
 
 		  //function to remove dlslColors2 Style
 		  function dlslColors1() {
@@ -1067,6 +1042,63 @@
 
 			  else
 			    alert("Sorry! Tall option is not available when Zoom is enabled!")
+		  }
+	  </script>
+	  
+	  <script>
+	    document.getElementById('bp-widget').onload = function() {
+	      const popMessage = frames[0].document.getElementById('app');
+			  popMessage .insertAdjacentHTML('afterend', '<div id="popUpMessage">Click here! First time user >></div>'); 
+      };
+	  </script>
+
+	  <!-- Dynamic Chatbox JS Injection into iframe; Hide pop up -->
+	  <script>
+		  window.onload = function(){
+			  const dynamicChatbox = frames[0].document.createElement('script'); //injects a script tag to put inside the iframe
+
+			  dynamicChatbox.innerHTML = `
+			  //Dynamic Chatbox
+			  function getScrollHeight(elm){
+			    var savedValue = elm.value
+			    elm.value = ''
+			    elm._baseScrollHeight = elm.scrollHeight
+			    elm.value = savedValue
+			  }
+
+			  function onExpandableTextareaInput({ target:elm }){
+			    // make sure the input event originated from a textarea and it's desired to be auto-expandable
+			    if( !elm.nodeName == 'TEXTAREA' ) return
+
+			    var minRows = elm.getAttribute('data-min-rows')|2, rows;
+			    !elm._baseScrollHeight && getScrollHeight(elm)
+
+			    elm.rows = minRows
+			    rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+			    elm.rows = minRows + rows
+			  }
+
+			  // global delegated event listener
+			  document.addEventListener('input', onExpandableTextareaInput)
+			  
+			  //Hide popup message on button click
+			  document.body.onclick = function(e) {
+          var clickedEl = window.event ? event.srcElement : e.target;
+          while (clickedEl != null) {
+              if (clickedEl.className
+                  && clickedEl.className.indexOf("bpw-widget-btn") != -1) {
+                  if (document.getElementById('popUpMessage')) {
+                    let element = document.getElementById('popUpMessage');
+                    element.remove();
+                  }
+                
+                  return;
+              }
+              clickedEl = clickedEl.parentNode;
+          }
+        }
+			  `
+			  frames[0].document.body.appendChild(dynamicChatbox);
 		  }
 	  </script>
 	</body>

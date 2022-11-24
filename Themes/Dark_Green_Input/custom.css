@@ -257,3 +257,10 @@ body {
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
 }
+
+#popUpMessage {
+	color: green;
+	position: absolute;
+	top: 1em;
+	right: 4em;
+}
