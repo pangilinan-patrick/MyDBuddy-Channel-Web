@@ -6,25 +6,34 @@ You can directly clone this repo into the examples folder in the channel-web fol
 You can test the site with this link (Botpress must be running and the `.tgz` file has been imported): `http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=sample-bot`
 
 ## 📁 Important Files
-The `My DCampus Portal_Files` folder contains the assets for the `MyDCampusPortal.html` website. The main CSS file for the website inside the folder is `app.min.css`
+The `My DCampus Portal_Files` folder contains the assets for the `MyDCampusPortal.html/php` website. The main CSS file for the website inside the folder is `app.min.css`
 
-The chat bot injection script is in `MyDCampusPortal.html` found around `line 1790`, or you can just `Ctrl + F + "chatbot script"` to find it. You can also make edits to the sidebar navigation around line `190` which contains the settings front-end for the chat bot settings.
+The chat bot injection script is in `MyDCampusPortal.html/php` found around `line 520`, or you can just `Ctrl + F + "chatbot script"` to find it. You can also make edits to the sidebar navigation around `line 140` which contains the settings front-end for the chat bot settings.
 
-The `Themes` folder contains the CSS files for each theme that's used by the chat bot.
+The main chatbot script and other related scripts are located around `line 650`.
+
+The `Themes` folder contains the CSS file for each theme that's used by the chat bot.
 
 The `.tgz` file is to be imported in the Botpress admin panel to work with an up to date chat bot at all times.
 
-The `COPY INTO UI-LITE FOLDER` contains the JS function for dynamic chat box sizing. Instructions on how to implement are inside the folder.
-
+The `Database Files` folder contains the needed database files to aid in the chatbot's ability to answer user's queries.
 
 ## ✅ To-do List
-- Create a folder for the different versions of the `.tgz` chat bot files. ✔️
-- Create a dark theme ✔️
-- Add options along with suboptions in chatbot settings:
-	- Accessibility 
-		- Features for users with poor eyesight
-		- Filipino Language
-	- Themes ✔️
-		- Different themes 
-- Automate copying and pasting the UI-Lite JS function.
-	- Use lite.bundle.js instead of UI-Lite
+- Login 
+	- Polish login UI
+- Accessibility
+	- Different accessibility features
+- First time chatbot notification for users
+
+## ✅ Finished Features
+- Tgz folders ✅
+- Suboptions menu for themes and accessibility options ✅
+- Dynamic themes (polished) ✅
+	- DLSL Colors 1
+	- DLSL Colors 2
+	- Neutral Textbox
+	- Centered Botpress Branding
+	- Tall Chatbox
+- Dark theme ✅
+- Chatbot scaling accessibility  ✅
+- Login UI Draft ✅

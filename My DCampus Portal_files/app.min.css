@@ -7115,7 +7115,8 @@ progress::-webkit-progress-bar {
     border-right: 0;
     border-top: 0;
     resize: none;
-    -ms-overflow-style: none 
+    -ms-overflow-style: none;
+    width: 20em;
 }
 .form-control:focus~.form-group__bar:after, .form-control:focus~.form-group__bar:before {
     width: 50% 
@@ -11415,10 +11416,6 @@ input:checked ~ label:after{
     border-bottom:4px solid rgba(255,255,255,.5);
     transition:border-top .1s, border-bottom .1s .1s;
 }
-/*hide the inputs*/
-input{
-   display:none
-}
 /*show the second level menu of the selected voice*/
 input:checked ~ ul.submenu{
     max-height:300px;
@@ -11439,6 +11436,7 @@ ul.submenu .sub1 li label {
     color: #707070;
     transition: background-color .3s, color .3s;
     display: block;
+	font-weight: normal;
 }
 ul.submenu>.sub1>li>label {
     margin-left: 2.5em;
@@ -11452,6 +11450,7 @@ ul.submenu .sub2 li label {
     color: #707070;
     transition: background-color .3s, color .3s;
     display: block;
+	font-weight: normal;
 }
 ul.submenu>.sub2>li>label {
     margin-left: 2.5em;
@@ -11470,6 +11469,7 @@ ul.suboption{
 ul.suboption li label {
     color: #707070;
     display: block;
+	font-weight: normal;
 }
 ul.suboption>li>label {
     margin-left: 1em;
@@ -11507,6 +11507,7 @@ ul.submenu .sub2:hover ul.suboption{
 .navigation>li>label {
     padding: .85rem .5rem;
     border-radius: 2px;
+	font-weight: normal;
 }
 .navigation>li>label>i {
     vertical-align: top;
@@ -11520,8 +11521,4 @@ ul.submenu .sub2:hover ul.suboption{
 .navigation li label:hover {
     background-color: rgba(0, 0, 0, .03);
 }
-/*
-html, img, video, iframe{
-    filter:invert(0.98) hue-rotate(180deg);
-}
-*/
+
