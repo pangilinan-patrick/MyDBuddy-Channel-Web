@@ -1048,7 +1048,8 @@
 	  <script>
 	    document.getElementById('bp-widget').onload = function() {
 	      const popMessage = frames[0].document.getElementById('app');
-			  popMessage .insertAdjacentHTML('afterend', '<div id="popUpMessage">Click here! First time user >></div>'); 
+			  // popMessage .insertAdjacentHTML('afterend', '<div id="popUpMessage">Click here! First time user >></div>'); 
+			  popMessage .insertAdjacentHTML('afterend', '<div class="talk-bubble tri-right round right-in"><div class="talktext"><p>Welcome to MyDCampus DLSL. Click here!</p></div></div>'); 
       };
 	  </script>
 
@@ -1081,20 +1082,21 @@
 			  // global delegated event listener
 			  document.addEventListener('input', onExpandableTextareaInput)
 			  
+			  //-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-//
+			    
 			  //Hide popup message on button click
 			  document.body.onclick = function(e) {
           var clickedEl = window.event ? event.srcElement : e.target;
           while (clickedEl != null) {
-              if (clickedEl.className
-                  && clickedEl.className.indexOf("bpw-widget-btn") != -1) {
-                  if (document.getElementById('popUpMessage')) {
-                    let element = document.getElementById('popUpMessage');
-                    element.remove();
-                  }
-                
-                  return;
-              }
-              clickedEl = clickedEl.parentNode;
+            if (clickedEl.className
+                && clickedEl.className.indexOf("bpw-widget-btn") != -1) {
+                if (document.getElementById('popUpMessage')) {
+                  let element = document.getElementById('popUpMessage');
+                  element.remove();
+                }
+                return;
+            }
+            clickedEl = clickedEl.parentNode;
           }
         }
 			  `

@@ -264,3 +264,62 @@ body {
 	top: 1em;
 	right: 4em;
 }
+
+/* CSS talk bubble */
+.talk-bubble {
+  display: inline-block;
+  position: absolute;
+	width: 13em;
+	height: 5em;
+  right: 5.5em;
+	background-color: var(--dlsl_dark);
+}
+.border{
+  border: 8px solid #666;
+}
+.round{
+  border-radius: 15px 15px 15px 15px;
+	-webkit-border-radius: 15px 15px 15px 15px;
+	-moz-border-radius: 15px 15px 15px 15px;
+}
+
+/* Right triangle, right side slightly down*/
+.tri-right.border.right-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -40px;
+  top: 30px;
+	bottom: auto;
+	border: 20px solid;
+	border-color: #666 transparent transparent #666;
+}
+.tri-right.right-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -20px;
+  top: 28px;
+	bottom: auto;
+	border: 12px solid;
+	border-color: var(--dlsl_dark) transparent transparent var(--dlsl_dark);
+}
+
+/* talk bubble contents */
+.talktext{
+  padding: 1em;
+	text-align: left;
+  line-height: 1.5em;
+  color: white;
+}
+
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+
