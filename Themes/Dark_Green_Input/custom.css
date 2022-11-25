@@ -316,3 +316,16 @@ body {
   -webkit-margin-after: 0em;
 }
 
+.wobble {
+  animation: wobble 2s ease infinite;
+}
+@keyframes wobble {
+  0% { transform: translateX(0%); }
+  15% { transform: translateX(0%); }
+  30% { transform: translateX(2%); }
+  45% { transform: translateX(-2%); }
+  60% { transform: translateX(2%); }
+  75% { transform: translateX(0%); }
+  100% { transform: translateX(0%); }
+}
+
