@@ -66,6 +66,12 @@ body {
   background-color: #002c1a;
 }
 
+.bpw-floating-button {
+	position: absolute;
+	top: 1em;
+	right: 0em;
+}
+
 /* chat bubble CSS */
 .bpw-chat-bubble:last-of-type {
   border-bottom-right-radius: 20px;
@@ -264,6 +270,7 @@ body {
   position: absolute;
 	width: 13em;
 	height: 5em;
+	top: 0.8em;
   right: 5.5em;
 	background-color: var(--dlsl_dark);
 }
@@ -316,16 +323,12 @@ body {
   -webkit-margin-after: 0em;
 }
 
-.wobble {
-  animation: wobble 2s ease infinite;
+.bounce2 {
+  animation: bounce2 2s ease infinite;
 }
-@keyframes wobble {
-  0% { transform: translateX(0%); }
-  15% { transform: translateX(0%); }
-  30% { transform: translateX(2%); }
-  45% { transform: translateX(-2%); }
-  60% { transform: translateX(2%); }
-  75% { transform: translateX(0%); }
-  100% { transform: translateX(0%); }
+@keyframes bounce2 {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-10px);}
+	60% {transform: translateY(-11px);}
 }
 
