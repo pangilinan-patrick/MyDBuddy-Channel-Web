@@ -150,6 +150,7 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
         if(!$check) {
             die("Error".pg_last_error());
         }
+        $_SESSION['user'] = $user_eml;
         $url = "http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot";
             redirect($url);
     }
