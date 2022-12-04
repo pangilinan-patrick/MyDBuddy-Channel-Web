@@ -26,11 +26,13 @@ The `Database Files` folder contains the needed database files to aid in the cha
 	- ~~High Contrast Theme~~
 	- The high contrast theme colors are based on Contrast Ratios compliant with WCAG (Web Content Accessibility Guidance)
 	### Black Foreground on DLSL Colors background
-	<img src="git-img-assets/Blackfg-to-DLSLbg.png" height=500>
+	<img src="git_img_assets/Blackfg-to-DLSLbg.png" height=350>
+	
 	### DLSL Colors Foreground on black background
-	<img src="git-img-assets/DLSLfg-to-blackbg.png" height=500>
+	<img src="git_img_assets/DLSLfg-to-blackbg.png" height=350>
+	
 	### Gray Foreground on black background
-	<img src="git-img-assets/Grayfg-to-blackbg.png" height=500>
+	<img src="git_img_assets/Grayfg-to-blackbg.png" height=350>
 
 ## ✅ Finished Features
 - Tgz folders ✅
