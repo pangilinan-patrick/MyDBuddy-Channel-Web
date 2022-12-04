@@ -21,9 +21,16 @@ The `Database Files` folder contains the needed database files to aid in the cha
 ## ✅ To-do List
 - Login 
 	- Polish login UI
+- ~~First time chatbot notification for users~~
 - Accessibility
-	- Different accessibility features
-- First time chatbot notification for users
+	- ~~High Contrast Theme~~
+	- The high contrast theme colors are based on Contrast Ratios compliant with WCAG (Web Content Accessibility Guidance)
+	### Black Foreground on DLSL Colors background
+	<img src="git-img-assets/Blackfg-to-DLSLbg.png" height=500>
+	### DLSL Colors Foreground on black background
+	<img src="git-img-assets/DLSLfg-to-blackbg.png" height=500>
+	### Gray Foreground on black background
+	<img src="git-img-assets/Grayfg-to-blackbg.png" height=500>
 
 ## ✅ Finished Features
 - Tgz folders ✅
