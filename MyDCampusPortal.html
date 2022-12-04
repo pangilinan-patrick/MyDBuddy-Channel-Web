@@ -162,7 +162,7 @@
                     <li> 
                       <ul class="suboption">
                         <li><label class="accessibility-option" id="zoomInChatbot" onclick="zoom();">Zoom-in Chatbot</label></li>
-                        <li><label class="accessibility-option">Placeholder</label></li>
+                        <li><label class="accessibility-option" id="enableHighContrast" onclick="highContrast();">High Contrast</label></li>
                       </ul>
                     </li>
                   </div>
@@ -741,63 +741,65 @@
 		    }
             `;
 		    
-		    darkStyleBpw.innerHTML = `
-		    /* Dark Theme CSS overrides */
-		    :root {
-			    --darkest: #1B1E1F;
-			    --darker: #5B6367;
-			    --dark: #CCC7C0;
-		    }
+		    if (highContrastFlag == false) {
+		      darkStyleBpw.innerHTML = `
+		      /* Dark Theme CSS overrides */
+		      :root {
+			      --darkest: #1B1E1F;
+			      --darker: #5B6367;
+			      --dark: #CCC7C0;
+		      }
 
-		    /* Track */
-		    ::-webkit-scrollbar-track {
-			    background: var(--darkest); 
-		    }
-		     
-		    /* Handle */
-		    ::-webkit-scrollbar-thumb {
-			    background: var(--darker); 
-			    border-radius: 10px;
-		    }
+		      /* Track */
+		      ::-webkit-scrollbar-track {
+			      background: var(--darkest); 
+		      }
+		       
+		      /* Handle */
+		      ::-webkit-scrollbar-thumb {
+			      background: var(--darker); 
+			      border-radius: 10px;
+		      }
 
-		    /* Handle on hover */
-		    ::-webkit-scrollbar-thumb:hover {
-			    background: var(--dark); 
-		    }
+		      /* Handle on hover */
+		      ::-webkit-scrollbar-thumb:hover {
+			      background: var(--dark); 
+		      }
 
-		    .bpw-layout {
-			    background-color: var(--darkest);
-		    }
+		      .bpw-layout {
+			      background-color: var(--darkest);
+		      }
 
-		    .bpw-keyboard-quick_reply {
-			    background-color: var(--darkest);
-			    border-color: var(--darker);
-		    }
+		      .bpw-keyboard-quick_reply {
+			      background-color: var(--darkest);
+			      border-color: var(--darker);
+		      }
 
-		    .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
-			    background-color: #282828;
-			    color: white;
-			    -webkit-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
-			    -moz-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
-		    }
+		      .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+			      background-color: #282828;
+			      color: white;
+			      -webkit-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+			      -moz-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+		      }
 
-		    .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
-			    -webkit-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
-			    -moz-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
-		    }
+		      .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+			      -webkit-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+			      -moz-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+		      }
 
-		    .bpw-button {
-			    filter:invert(0.95) hue-rotate(180deg);
-		    }
+		      .bpw-button {
+			      filter:invert(0.95) hue-rotate(180deg);
+		      }
 
-		    .bpw-send-buttons {
-			    filter:invert(0.90) hue-rotate(180deg);
-		    }
+		      .bpw-send-buttons {
+			      filter:invert(0.90) hue-rotate(180deg);
+		      }
 
-		    .bpw-composer {
-			    border-top-color: var(--darker);
+		      .bpw-composer {
+			      border-top-color: var(--darker);
+		      }
+		      `;
 		    }
-		    `;
 
         document.head.appendChild(darkStyle);					//append style to head (site)
         frames[0].document.body.appendChild(darkStyleBpw);	//append style to body for the styles to take precedence (chatbot)
@@ -871,39 +873,44 @@
 		  let neutralStyle;
 
 		  function dlslColors2() {
-			  if (frames[0].document.getElementById('dlslColors2'))
-				  dlslColors1(); //multipurposing function to remove previous dlslColors2 style to avoid buildup
+		    if (highContrastFlag == false) {
+			    if (frames[0].document.getElementById('dlslColors2'))
+				    dlslColors1(); //multipurposing function to remove previous dlslColors2 style to avoid buildup
 
-			  const colors2 = frames[0].document.createElement('style');
-			  colors2.setAttribute("id", "dlslColors2");
+			    const colors2 = frames[0].document.createElement('style');
+			    colors2.setAttribute("id", "dlslColors2");
 
-			  //if else statement to detect whether neutral textbox is on to include/exclude from background-color
-			  if (neutral == true)
-				  neutralStyle = " ";
+			    //if else statement to detect whether neutral textbox is on to include/exclude from background-color
+			    if (neutral == true)
+				    neutralStyle = " ";
 
-			  else 
-				  neutralStyle =", .bpw-composer textarea";
+			    else 
+				    neutralStyle =", .bpw-composer textarea";
 
-			  colors2.innerHTML = `
-			  :root {
-				  --dlsl_dark: #007136;
-				  --dlsl_mid: #005A35;
-				  --dlsl_light: #00A45E;
+			    colors2.innerHTML = `
+			    :root {
+				    --dlsl_dark: #007136;
+				    --dlsl_mid: #005A35;
+				    --dlsl_light: #00A45E;
+			    }
+
+			    .bpw-powered, .bpw-widget-btn,
+			    .bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
+			    .bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content,
+			    .bpw-bubble-undefined bpw-chat-bubble bpw-bubble-text,
+			    .bpw-header-container`+neutralStyle+`{
+				    background-color: var(--dlsl_light);
+			    }
+			    `;
+			    frames[0].document.body.appendChild(colors2);
+
+			    //sneaky fix to keep the input color consistent to the DLSL color theme by appending a style in between the linked stylesheets and the neutral input stylesheet
+			    const targetDiv = frames[0].document.getElementById('input-message');
+			    targetDiv.insertAdjacentHTML('afterend', '<style id="colors2Input">.bpw-composer textarea { background-color: var(--dlsl_light); } </style>'); 
 			  }
 
-			  .bpw-powered, .bpw-widget-btn,
-			  .bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
-			  .bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content,
-			  .bpw-bubble-undefined bpw-chat-bubble bpw-bubble-text,
-			  .bpw-header-container`+neutralStyle+`{
-				  background-color: var(--dlsl_light);
-			  }
-			  `;
-			  frames[0].document.body.appendChild(colors2);
-
-			  //sneaky fix to keep the input color consistent to the DLSL color theme by appending a style in between the linked stylesheets and the neutral input stylesheet
-			  const targetDiv = frames[0].document.getElementById('input-message');
-			  targetDiv.insertAdjacentHTML('afterend', '<style id="colors2Input">.bpw-composer textarea { background-color: var(--dlsl_light); } </style>'); 
+			  else
+			    alert("DLSL Colors 2 is not available in High Contrast mode!");
 			}
 
 		  //function to remove dlslColors2 Style
@@ -917,59 +924,64 @@
 
 		  //function for toggling neutralTextBox
 		  function neutralTextBox() {
-			  let darkThemeStyle;		//variable used for the border-top-color fix (makes border color more consistent when neutral text box is toggled)
-			  const neutralText = frames[0].document.createElement('style');
-			  neutralText.setAttribute("id", "neutralText");
+		    if (highContrastFlag == false) {
+			    let darkThemeStyle;		//variable used for the border-top-color fix (makes border color more consistent when neutral text box is toggled)
+			    const neutralText = frames[0].document.createElement('style');
+			    neutralText.setAttribute("id", "neutralText");
 
-			  if (darkThemeOn == true)
-				  darkThemeStyle = ".bpw-composer { border-top-color: #5b6367 };";
+			    if (darkThemeOn == true)
+				    darkThemeStyle = ".bpw-composer { border-top-color: #5b6367 };";
 
-			  else 
-				  darkThemeStyle = " ";
+			    else 
+				    darkThemeStyle = " ";
 
-			  if (neutral == false) {			//if neutral textbox isn't on, apply these css rules
-				  neutralText.innerHTML = `
-				  .bpw-composer {
-				    height: auto;
-				    background: none;
-				    border-top-width: 1px;
-				    border-top-style: solid;
-				    border-top-color: #dcdcdc;
-				  }
+			    if (neutral == false) {			//if neutral textbox isn't on, apply these css rules
+				    neutralText.innerHTML = `
+				    .bpw-composer {
+				      height: auto;
+				      background: none;
+				      border-top-width: 1px;
+				      border-top-style: solid;
+				      border-top-color: #dcdcdc;
+				    }
 
-				  .bpw-composer textarea {
-				    height: auto;
-				    max-height: 7em;
-				    padding: 1em;;
-				    line-height: 1.2em;
-				    color: black;
-				    background: none;
-				  }
+				    .bpw-composer textarea {
+				      height: auto;
+				      max-height: 7em;
+				      padding: 1em;;
+				      line-height: 1.2em;
+				      color: black;
+				      background: none;
+				    }
 
-				  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-				    color: #707070;
-				  }
-				  ::-moz-placeholder { /* Firefox 19+ */
-				    color: #707070;
-				  }
-				  :-ms-input-placeholder { /* IE 10+ */
-				    color: #707070;
-				  }
-				  :-moz-placeholder { /* Firefox 18- */
-				    color: #707070;
-				  }
+				    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+				      color: #707070;
+				    }
+				    ::-moz-placeholder { /* Firefox 19+ */
+				      color: #707070;
+				    }
+				    :-ms-input-placeholder { /* IE 10+ */
+				      color: #707070;
+				    }
+				    :-moz-placeholder { /* Firefox 18- */
+				      color: #707070;
+				    }
 
-				  `+ darkThemeStyle;
-				  neutral = true;
+				    `+ darkThemeStyle;
+				    neutral = true;
 
-				  frames[0].document.body.appendChild(neutralText);		//appends to body for the styles to take precedence
+				    frames[0].document.body.appendChild(neutralText);		//appends to body for the styles to take precedence
+			    }
+
+			    else {
+				    element = frames[0].document.getElementById('neutralText');	//toggles neutral text box off
+				    element.remove();
+				    neutral = false;
+			    }
 			  }
 
-			  else {
-				  element = frames[0].document.getElementById('neutralText');	//toggles neutral text box off
-				  element.remove();
-				  neutral = false;
-			  }
+			  else
+			    alert("Neutral Text Box not available in High Contrast mode!")
 		  }
 
 		  //function to toggle centered footer
@@ -1102,6 +1114,139 @@
 			  `
 			  frames[0].document.body.appendChild(dynamicChatbox);
 		  }
+		  
+		  let highContrastFlag = false;
+		  function highContrast() {
+        if (frames[0].document.getElementById('high-contrast')) {
+          let element = frames[0].document.getElementById('high-contrast');
+          element.remove();
+          highContrastFlag = false;
+        }
+        
+        else {
+	 		    if (frames[0].document.getElementById('darkTheme')) {
+			      element = frames[0].document.getElementById('darkTheme');
+			      element.remove();
+			    }
+			    
+			    if (frames[0].document.getElementById('dlslColors2')) {
+			      element = frames[0].document.getElementById('dlslColors2');
+			      element.remove();
+			    }
+			    
+			    if (frames[0].document.getElementById('neutralText')) {
+			      element = frames[0].document.getElementById('neutralText');
+			      element.remove();
+			    }
+
+			    const contrast = frames[0].document.createElement('style');
+			    contrast.setAttribute("id", "high-contrast");
+
+			    //if else statement to detect whether neutral textbox is on to include/exclude from background-color
+			    if (neutral == true)
+				    neutralStyle = " ";
+
+			    else 
+				    neutralStyle =", .bpw-composer textarea";
+
+			    contrast.innerHTML = `
+			    :root {
+				    --dlsl_dark: #00B859;
+				    --dlsl_mid: #005A35;
+				    --dlsl_light: #00A45E;
+			    }
+
+			    .bpw-powered, .bpw-header-name, .bpw-header-subtitle, .bpw-widget-btn, 
+			    .bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
+			    .bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content,
+			    .bpw-bubble-undefined bpw-chat-bubble bpw-bubble-text,
+			    .bpw-header-container`+neutralStyle+`{
+				    background-color: var(--dlsl_dark);
+				    color: #000000;
+			    }
+
+			    .bpw-powered a {
+			      color: #000000;
+			    }
+			    
+		      /* High Contrast CSS overrides */
+		      :root {
+			      --darkest: #000000;
+			      --darker: #5B6367;
+			      --dark: #CCC7C0;
+		      }
+
+		      /* Track */
+		      ::-webkit-scrollbar-track {
+			      background: var(--darkest); 
+		      }
+		       
+		      /* Handle */
+		      ::-webkit-scrollbar-thumb {
+			      background: #FFFFFF; 
+			      border-radius: 10px;
+		      }
+
+		      /* Handle on hover */
+		      ::-webkit-scrollbar-thumb:hover {
+			      background: var(--dark); 
+		      }
+
+		      .bpw-layout {
+			      background-color: var(--darkest);
+		      }
+
+		      .bpw-keyboard-quick_reply {
+			      background-color: var(--darkest);
+			      border-color: var(--darker);
+		      }
+
+		      .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+			      background-color: #FFFFFF;
+			      color: #000000;
+			      -webkit-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+			      -moz-box-shadow: 0 1px 2px rgb(255 255 255 / 25%);
+		      }
+
+		      .bpw-from-bot .bpw-chat-bubble .bpw-chat-bubble-content{
+			      -webkit-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+			      -moz-box-shadow: 0 1px 2px rgb(146 146 146 / 25%);
+		      }
+
+		      .bpw-button {
+			      filter:invert(0.95) hue-rotate(180deg);
+		      }
+
+		      .bpw-send-button {
+		        color: var(--dlsl_dark);
+		        background-color: var(--darkest);
+		      }
+		      
+		      .bpw-send-button:hover {
+		        background-color: #FFFFFF;
+		      }
+
+		      .bpw-composer {
+			      border-top-color: var(--darker);
+		      }
+		      
+				  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+				    color: var(--darkest);
+				  }
+				  ::-moz-placeholder { /* Firefox 19+ */
+				    color: var(--darkest);
+				  }
+				  :-ms-input-placeholder { /* IE 10+ */
+				    color: var(--darkest);
+				  }
+				  :-moz-placeholder { /* Firefox 18- */
+				    color: var(--darkest);
+				  }
+			    `;
+			    frames[0].document.body.appendChild(contrast);
+			    highContrastFlag = true;
+			  }
+			}
 	  </script>
 	</body>
 </html>
