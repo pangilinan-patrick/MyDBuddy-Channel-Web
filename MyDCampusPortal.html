@@ -1429,7 +1429,7 @@
   <script>
     document.getElementById('bp-widget').onload = function () {
       const popMessage = frames[0].document.getElementById('app');
-      popMessage.insertAdjacentHTML('afterend', '<div id="popUpMessage" class="talk-bubble tri-right round right-in bounce2"><div class="talktext"><p>Welcome to MyDCampus DLSL. Click here!</p></div></div>');
+      popMessage.insertAdjacentHTML('afterend', '<div id="popUpMessage" class="talk-bubble tri-right round right-in bounce2"><div id="talktext"><p>Welcome to MyDCampus DLSL. Click here!</p></div></div>');
     };
   </script>
 
@@ -1468,8 +1468,7 @@
 			  document.body.onclick = function(e) {
           var clickedEl = window.event ? event.srcElement : e.target;
           while (clickedEl != null) {
-            if (clickedEl.className
-                && clickedEl.className.indexOf("bpw-widget-btn") != -1) {
+            if (clickedEl.className != -1) {
                 if (document.getElementById('popUpMessage')) {
                   let element = document.getElementById('popUpMessage');
                   element.remove();
