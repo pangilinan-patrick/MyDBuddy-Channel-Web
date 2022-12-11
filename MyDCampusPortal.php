@@ -1,3 +1,15 @@
+<?php
+session_start();
+if(isset($_SESSION['user']))
+{
+  $user_email = $_SESSION['user'];
+} else {
+  $url = "dcampus_login_postgres.php";
+  echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
+        echo '<META content="0;URL=' . $url . '">';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en"><head ontouchmove="event.preventDefault();"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
