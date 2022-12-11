@@ -1503,6 +1503,11 @@
           element.remove();
         }
 
+        if (frames[0].document.getElementById('colors2Input')) {
+          element = frames[0].document.getElementById('colors2Input');
+          element.remove();
+        }
+
         const contrast = frames[0].document.createElement('style');
         contrast.setAttribute("id", "high-contrast");
 
