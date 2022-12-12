@@ -38,7 +38,7 @@ unset($_SESSION['user']);
       }
 
       .login {
-          background:#f3f6f7 url('../assets/img/loginbg.png') center top no-repeat;
+          background:#f3f6f7 url('./My DCampus Portal_files/loginbg.png') center top no-repeat;
           background-size: 45%;
           background-position: center 15%;
       }
@@ -58,12 +58,8 @@ unset($_SESSION['user']);
     </style>
 
     <style>.abcRioButton{border-radius:1px;box-shadow:0 2px 4px 0 rgba(0,0,0,.25);-moz-box-sizing:border-box;box-sizing:border-box;-webkit-transition:background-color .218s,border-color .218s,box-shadow .218s;transition:background-color .218s,border-color .218s,box-shadow .218s;-webkit-user-select:none;-webkit-appearance:none;background-color:#fff;background-image:none;color:#262626;cursor:pointer;outline:none;overflow:hidden;position:relative;text-align:center;vertical-align:middle;white-space:nowrap;width:auto}.abcRioButton:hover{box-shadow:0 0 3px 3px rgba(66,133,244,.3)}.abcRioButtonBlue{background-color:#4285f4;border:none;color:#fff}.abcRioButtonBlue:hover{background-color:#4285f4}.abcRioButtonBlue:active{background-color:#3367d6}.abcRioButtonLightBlue{background-color:#fff;color:#757575}.abcRioButtonLightBlue:active{background-color:#eee;color:#6d6d6d}.abcRioButtonIcon{float:left}.abcRioButtonBlue .abcRioButtonIcon{background-color:#fff;border-radius:1px}.abcRioButtonSvg{display:block}.abcRioButtonContents{font-family:Roboto,arial,sans-serif;font-size:14px;font-weight:500;letter-spacing:.21px;margin-left:6px;margin-right:6px;vertical-align:top}.abcRioButtonContentWrapper{height:100%;width:100%}.abcRioButtonBlue .abcRioButtonContentWrapper{border:1px solid transparent}.abcRioButtonErrorWrapper,.abcRioButtonWorkingWrapper{display:none;height:100%;width:100%}.abcRioButtonErrorIcon,.abcRioButtonWorkingIcon{margin-left:auto;margin-right:auto}.abcRioButtonErrorState,.abcRioButtonWorkingState{border:1px solid #d5d5d5;border:1px solid rgba(0,0,0,.17);box-shadow:0 1px 0 rgba(0,0,0,.05);color:#262626}.abcRioButtonErrorState:hover,.abcRioButtonWorkingState:hover{border:1px solid #aaa;border:1px solid rgba(0,0,0,.25);box-shadow:0 1px 0 rgba(0,0,0,.1)}.abcRioButtonErrorState:active,.abcRioButtonWorkingState:active{border:1px solid #aaa;border:1px solid rgba(0,0,0,.25);box-shadow:inset 0 1px 0 #ddd;color:#262626}.abcRioButtonWorkingState,.abcRioButtonWorkingState:hover{background-color:#f5f5f5}.abcRioButtonWorkingState:active{background-color:#e5e5e5}.abcRioButtonErrorState,.abcRioButtonErrorState:hover{background-color:#fff}.abcRioButtonErrorState:active{background-color:#e5e5e5}.abcRioButtonErrorState .abcRioButtonErrorWrapper,.abcRioButtonWorkingState .abcRioButtonWorkingWrapper{display:block}.abcRioButtonErrorState .abcRioButtonContentWrapper,.abcRioButtonErrorState .abcRioButtonWorkingWrapper,.abcRioButtonWorkingState .abcRioButtonContentWrapper{display:none} .-webkit-keyframes abcRioButtonWorkingIconPathSpinKeyframes {0% {-webkit-transform: rotate(0deg)}}</style></head>
-
     <body data-ma-theme="green" id="bdlogin" style="margin:0px;padding:0px;">
-  
-      
-
-      <div class="login">
+        <div class="login">
         <!-- Login -->
         <div class="login__block active">
             <img src="./My DCampus Portal_files/8.jpg" alt="" style="width:32px;">
@@ -74,11 +70,10 @@ unset($_SESSION['user']);
             
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <!-- Email Input -->
-                <span class="mt-4" style="font-size:1.4em;"><b>Email Address</b></span><br/>
-                <input class="mt-4" type="email" name="user_email"> </input><br/><br/>
+                <span class="mt-4" style="font-size:1.2em;"><b>Email Address</b></span><br/>
+                <input class="d-inline-flex p-2 mt-4 form-control" placeholder="email@address.com" type="email" name="user_email" required> </input><br/><br/>
                 <!-- Password Input -->
-                <span class="mt-4" style="font-size:1.4em;"><b>Password</b></span><br/>
-                <input class="mt-4" type="password" name="user_password"> </input><br/><br/>
+                <!-- Forgoe inputing password -->
                 <div class="mt-2"><small>By clicking Sign In, you agree <br>to our <a href="https://mydcampus.dlsl.edu.ph/tos_privacy" target="_blank">Terms and Data Policy</a>.</small></div>
                 <div class="login__block__body">
                     <div class="g-signin2 btn waves-effect" data-onsuccess="onSignIn" style="width:200px;" data-theme="dark" data-gapiscan="true" data-onload="true">
@@ -95,7 +90,6 @@ unset($_SESSION['user']);
 
       <!-- Javascript -->
       <!-- Vendors -->
-
       <script src="./My DCampus Portal_files/tether.min.js"></script>
       <script src="./My DCampus Portal_files/bootstrap.min.js"></script>
       <script src="./My DCampus Portal_files/waves.min.js"></script>
@@ -105,8 +99,65 @@ unset($_SESSION['user']);
       <iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" style="position: absolute; width: 1px; height: 1px; inset: -9999px; display: none;" src="./My DCampus Portal_files/iframe.html"></iframe>
     </body>
 </html>
+
 <?php
-include "postgres_dbs_connect.php";
+include "postgres_dbs_connect.php"; //connects to postgres db
+
+if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
+{   //intialize variables
+    $user_eml = $_POST['user_email'];
+    //$user_pass = $_POST['user_password'];
+    $temp_eml = "[email]";
+    //$temp_pass = "[password]";
+
+    function redirect($url) //function for redirecting to different or some page
+    {
+        echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
+        echo '<META content="0;URL=' . $url . '">';
+    }
+
+    $sql_query = "SELECT * FROM public.tbl_users";
+    $result = pg_query($con, $sql_query);
+    $verify = true;
+    while($row = pg_fetch_array($result))
+    {
+        $temp_eml = $row['fld_email'];
+        //$temp_pass = $row['fld_password'];
+        if($user_eml == $temp_eml)
+        {
+            $verify = false;
+            $_SESSION['user'] = $user_eml;
+            pg_close($con);
+            echo "Correct";
+            //header("Location: http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot");
+            $url = "http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot";
+            redirect($url);
+            exit();
+        } else {
+            $verify = true;
+        }
+    }
+
+
+    if($verify)
+    {
+        $sql_query = "INSERT INTO public.tbl_users (fld_email) VALUES('$user_eml')";
+        $check = pg_query($con, $sql_query);
+        if(!$check) {
+            die("Error".pg_last_error());
+        }
+        $_SESSION['user'] = $user_eml;
+        $url = "http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot";
+            redirect($url);
+    }
+    
+}
+else {
+    pg_close($con);
+}
+
+/*
+include "dbs-connect.php";
 
 if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
 {
@@ -115,10 +166,10 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
     $temp_eml = "[email]";
     $temp_pass = "[password]";
 
-    $sql_query = "SELECT * FROM public.tbl_users";
-    $result = pg_query($con, $sql_query);
+    $sql_query = "SELECT * FROM tbl_users";
+    $result = mysqli_query($con, $sql_query);
     $verify = false;
-    while($row = pg_fetch_array($result))
+    while($row = mysqli_fetch_array($result))
     {
         $temp_eml = $row['fld_email'];
         $temp_pass = $row['fld_password'];
@@ -137,21 +188,23 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
     if($verify)
     {
         $_SESSION['user'] = $user_eml;
-        pg_close($con);
+        mysqli_close($con);
         echo "Correct";
         //header("Location: http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot");
-        $url = "http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=test1";
+        $url = "http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot";
         redirect($url);
         exit();
     }
     else 
     {
-        $url = "dcampus_login_postgres.php";
+        $url = "DCampus_Login.php";
         redirect($url);
     }
     
 }
 else {
-    pg_close($con);
+    mysqli_close($con);
 }
+*/
 ?>
+
