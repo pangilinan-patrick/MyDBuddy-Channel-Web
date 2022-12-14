@@ -1,5 +1,8 @@
 <?php
 session_start();
+$user_email = "[email]";
+$temp_eml = "[email]";
+$user_if_first = FALSE;
 if(isset($_SESSION['user']))
 {
   $user_email = $_SESSION['user'];
@@ -8,6 +11,25 @@ if(isset($_SESSION['user']))
   echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
         echo '<META content="0;URL=' . $url . '">';
 }
+
+include "postgres_dbs_connect.php"; //connects to postgres db
+
+$sql_query = "SELECT * FROM public.tbl_users";
+$result = pg_query($con, $sql_query);
+while($row = pg_fetch_array($result))
+{
+  $temp_eml = $row['fld_email'];
+  if($temp_eml == $user_email AND $row['fld_if_first_time'] == true)
+  {
+    $user_if_first = $row['fld_if_first_time'];
+    $update_sql = "UPDATE public.tbl_users SET fld_if_first_time='false' WHERE fld_email='$user_email'";
+    $check = pg_query($con, $update_sql);
+        if(!$check) {
+            die("Error".pg_last_error());
+        }
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -344,7 +366,7 @@ if(isset($_SESSION['user']))
             <div class="user__info" data-toggle="dropdown">
               <img class="user__img" src="./My DCampus Portal_files/unnamed.png" alt="">
               <div>
-                <div class="user__name">Placeholder NAME</div>
+                <div class="user__name"><?php echo $user_email; ?></div>
                 <div class="user__email"></div>
               </div>
             </div>
