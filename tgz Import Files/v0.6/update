@@ -1,0 +1,6 @@
+Updates:
+
+1. Accomplished site issue flow supporting email functionality
+2. Added "I can't find the solution" option on solution nodes, redirected to a site issue flow for alternative options
+3. Edited basic-skills.json to accomodate mydbuddy email functionality
+4. Polished / expanded conversation choice nodes in Academic and Other flows to fit addition of new option.

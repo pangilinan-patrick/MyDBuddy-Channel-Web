@@ -7115,7 +7115,8 @@ progress::-webkit-progress-bar {
     border-right: 0;
     border-top: 0;
     resize: none;
-    -ms-overflow-style: none 
+    -ms-overflow-style: none;
+    width: 20em;
 }
 .form-control:focus~.form-group__bar:after, .form-control:focus~.form-group__bar:before {
     width: 50% 
@@ -11520,3 +11521,4 @@ ul.submenu .sub2:hover ul.suboption{
 .navigation li label:hover {
     background-color: rgba(0, 0, 0, .03);
 }
+
