@@ -141,7 +141,7 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
 
     if($verify)
     {
-        $sql_query = "INSERT INTO public.tbl_users (fld_email) VALUES('$user_eml')";
+        $sql_query = "INSERT INTO public.tbl_users (fld_email, fld_if_first_time) VALUES('$user_eml', 'TRUE')";
         $check = pg_query($con, $sql_query);
         if(!$check) {
             die("Error".pg_last_error());
