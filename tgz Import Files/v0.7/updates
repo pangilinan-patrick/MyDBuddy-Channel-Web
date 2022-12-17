@@ -1,0 +1,9 @@
+Updates:
+
+1. Adjusted nlp flows, partitioned Free-Talk flow into 5 smaller nlp flows (nlp-smalltalk, nlp-site-issue, nlp-mydcampus, nlp-dlsl-info, nlp-Free-Talk-Start.
+2. Removed QnA inputs and settled with intent-based responses instead, added smalltalk intents. Some intents/entities are to be removed/adjusted by the next version.
+3. Improved navigation and error handling by incorporating flow-wide transitions. 
+   3.1 added basic misunderstanding action for inputs with the none intent for improving intent utterances.
+   3.2 Back navigation is improved and allows to navigate back to previous choices or to the start of the NLP flow depending on where the user input 
+       came from by setting an initial session source value.
+4. Mostly renamed all nodes appropriately, a few are to be adjusted.
