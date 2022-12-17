@@ -1,6 +1,8 @@
 <?php
 session_start();
-unset($_SESSION['user']);
+if(isset($_SESSION['user'])) {
+    unset($_SESSION['user']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
