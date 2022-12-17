@@ -118,6 +118,11 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
 
     $sql_query = "SELECT * FROM public.tbl_users";
     $result = pg_query($con, $sql_query);
+    if($result) {
+        echo "<script>alert('Query Success');</script>";
+    } else {
+        echo "<script>alert('Query Fail');</script>";
+    }
     $verify = true;
     while($row = pg_fetch_array($result))
     {
@@ -145,6 +150,8 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
         $check = pg_query($con, $sql_query);
         if(!$check) {
             die("Error".pg_last_error());
+        } else {
+            echo "<script>alert('Insert Success');</script>";
         }
         $_SESSION['user'] = $user_eml;
         $url = "http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=mydbuddy-bot";
