@@ -121,7 +121,7 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
     if($result) {
         echo "<script>alert('Query Success');</script>";
     } else {
-        echo "<script>alert('Query Fail');</script>";
+        echo "<script>alert('Query Fail'". pg_last_error() .");</script>";
     }
     $verify = true;
     while($row = pg_fetch_array($result))
@@ -150,6 +150,7 @@ if(isset($_POST['submit_cred']) && !isset($_SESSION['user']))
         $check = pg_query($con, $sql_query);
         if(!$check) {
             die("Error".pg_last_error());
+            echo "<script>alert('Query Fail'". pg_last_error() .");</script>";
         } else {
             echo "<script>alert('Insert Success');</script>";
         }
