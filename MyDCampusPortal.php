@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 $user_email = "[email]";
 $temp_eml = "[email]";
@@ -29,7 +30,6 @@ while($row = pg_fetch_array($result))
         }
   }
 }
-
 ?>
 
 <!DOCTYPE html>
