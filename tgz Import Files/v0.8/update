@@ -1,0 +1,6 @@
+Updates:
+
+1. Polished NLP flows and navigation between rule-based and NLP flows, adjusted back, restart, alternative choice, and no intent navigation.
+2. Adjusted intents and entity utterances and removed unused intent/entities. 
+
+To undergo testing once hosted then final polishing. 
