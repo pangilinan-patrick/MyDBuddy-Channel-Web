@@ -1,6 +1,9 @@
 <?php
-    $con = pg_connect("host=localhost dbname=mydbuddydb user=postgres password=Activepostgresqlnow23")
-    or die('Could not connect: ' . pg_last_error());
-
-    echo "Connected";
-?>
+$dbconn = pg_connect("host=localhost port=5432 dbname=mydbuddydb user=postgres password=postgres");
+if (!$dbconn) {
+    // Connection failed
+    echo "Error: Unable to connect to the database.";
+} else {
+    // Connection successful
+    echo "Successfully connected to the database.";
+}

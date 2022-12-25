@@ -1,35 +1,32 @@
 <?php
+
 session_start();
 $user_email = "[email]";
 $temp_eml = "[email]";
 $user_if_first = FALSE;
-if(isset($_SESSION['user']))
-{
+if (isset($_SESSION['user'])) {
   $user_email = $_SESSION['user'];
 } else {
-  $url = "dcampus_login_postgres.php";
+  $url = "DCampus_Login_Email.php";
   echo "<script type='text/javascript'>document.location.href='{$url}';</script>";
-        echo '<META content="0;URL=' . $url . '">';
+  echo '<META content="0;URL=' . $url . '">';
 }
 
 include "postgres_dbs_connect.php"; //connects to postgres db
 
 $sql_query = "SELECT * FROM public.tbl_users";
-$result = pg_query($con, $sql_query);
-while($row = pg_fetch_array($result))
-{
+$result = pg_query($dbconn, $sql_query);
+while ($row = pg_fetch_array($result)) {
   $temp_eml = $row['fld_email'];
-  if($temp_eml == $user_email AND $row['fld_if_first_time'] == true)
-  {
+  if ($temp_eml == $user_email and $row['fld_if_first_time'] == true) {
     $user_if_first = $row['fld_if_first_time'];
     $update_sql = "UPDATE public.tbl_users SET fld_if_first_time='false' WHERE fld_email='$user_email'";
-    $check = pg_query($con, $update_sql);
-        if(!$check) {
-            die("Error".pg_last_error());
-        }
+    $check = pg_query($dbconn, $update_sql);
+    if (!$check) {
+      die("Error" . pg_last_error());
+    }
   }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +36,7 @@ while($row = pg_fetch_array($result))
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>My DCampus Portal</title>
-  <meta name="viewport"
-    content="width=device-width, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#0f9d58">
   <link rel="shortcut icon" href="https://mydcampus.dlsl.edu.ph/favicon.ico" type="image/x-icon">
   <link rel="icon" href="https://mydcampus.dlsl.edu.ph/favicon.ico" type="image/x-icon">
@@ -51,8 +47,7 @@ while($row = pg_fetch_array($result))
   <link rel="apple-touch-icon" sizes="120x120" href="https://mydcampus.dlsl.edu.ph/assets/icons/icon-128x128.png">
   <link rel="apple-touch-icon" sizes="152x152" href="https://mydcampus.dlsl.edu.ph/assets/icons/icon-256x256.png">
   <meta name="msapplication-starturl" content="/#/dashboard/">
-  <meta name="google-signin-client_id"
-    content="887123549499-4nsnmfn5aip2nhgh3l6afpk56d04bia9.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="887123549499-4nsnmfn5aip2nhgh3l6afpk56d04bia9.apps.googleusercontent.com">
 
   <!-- Vendor styles
   <link rel="stylesheet" href="<=$GLOBALS['INF_CONFIG']['_sitehost']?>/assets/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic.css"> -->
@@ -287,28 +282,20 @@ while($row = pg_fetch_array($result))
     <div style="height:36px;width:120px;" class="abcRioButton abcRioButtonLightBlue">
       <div class="abcRioButtonContentWrapper">
         <div class="abcRioButtonIcon" style="padding:8px">
-          <div style="width:18px;height:18px;"
-            class="abcRioButtonSvgImageWithFallback abcRioButtonIconImage abcRioButtonIconImage18"><svg version="1.1"
-              xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 48 48" class="abcRioButtonSvg">
+          <div style="width:18px;height:18px;" class="abcRioButtonSvgImageWithFallback abcRioButtonIconImage abcRioButtonIconImage18"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 48 48" class="abcRioButtonSvg">
               <g>
-                <path fill="#EA4335"
-                  d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z">
                 </path>
-                <path fill="#4285F4"
-                  d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z">
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z">
                 </path>
-                <path fill="#FBBC05"
-                  d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z">
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z">
                 </path>
-                <path fill="#34A853"
-                  d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z">
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z">
                 </path>
                 <path fill="none" d="M0 0h48v48H0z"></path>
               </g>
             </svg></div>
-        </div><span style="font-size:13px;line-height:34px;" class="abcRioButtonContents"><span
-            id="not_signed_innqi7njd53u7g" style="display: none;">Sign in</span><span id="connectednqi7njd53u7g"
-            style="">Signed in</span></span>
+        </div><span style="font-size:13px;line-height:34px;" class="abcRioButtonContents"><span id="not_signed_innqi7njd53u7g" style="display: none;">Sign in</span><span id="connectednqi7njd53u7g" style="">Signed in</span></span>
       </div>
     </div>
   </div>
@@ -322,8 +309,7 @@ while($row = pg_fetch_array($result))
     </div>
 
     <header class="header">
-      <div id="navtrigger" class="navigation-trigger hidden-xl-up" data-ma-action="aside-open"
-        data-ma-target=".sidebar">
+      <div id="navtrigger" class="navigation-trigger hidden-xl-up" data-ma-action="aside-open" data-ma-target=".sidebar">
         <div class="navigation-trigger__inner">
           <i class="navigation-trigger__line"></i>
           <i class="navigation-trigger__line"></i>
@@ -333,8 +319,7 @@ while($row = pg_fetch_array($result))
 
       <div class="header__logo hidden-sm-down">
 
-        <h1><img src="./My DCampus Portal_files/logo.png" height="25" style="margin-right:38px;"><a
-            href="https://mydcampus.dlsl.edu.ph/"></a></h1>
+        <h1><img src="./My DCampus Portal_files/logo.png" height="25" style="margin-right:38px;"><a href="https://mydcampus.dlsl.edu.ph/"></a></h1>
       </div>
       <ul class="top-nav">
 
@@ -360,8 +345,7 @@ while($row = pg_fetch_array($result))
 
     <aside class="sidebar">
       <div class="scroll-wrapper scrollbar-inner" style="position: relative;">
-        <div class="scrollbar-inner scroll-content"
-          style="height: 791.5px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
+        <div class="scrollbar-inner scroll-content" style="height: 791.5px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
           <div class="user">
             <div class="user__info" data-toggle="dropdown">
               <img class="user__img" src="./My DCampus Portal_files/unnamed.png" alt="">
@@ -380,11 +364,9 @@ while($row = pg_fetch_array($result))
           <!-- 3sidebar navigation -->
           <ul class="navigation">
             <!-- <li id="nav_dashboard" class="navigation__active"><a href="< ?=$GLOBALS['INF_CONFIG']['_sitehost']?>/#/dashboard"><i class="zmdi zmdi-home"></i> Dashboard</a></li> -->
-            <li id="nav_digitalservices" class="navigation__active"><a
-                href="https://mydcampus.dlsl.edu.ph/#/digitalservices"><i class="fa-solid fa-shapes"></i> Digital
+            <li id="nav_digitalservices" class="navigation__active"><a href="https://mydcampus.dlsl.edu.ph/#/digitalservices"><i class="fa-solid fa-shapes"></i> Digital
                 Services</a></li>
-            <li id="nav_newsandevents"><a href="https://mydcampus.dlsl.edu.ph/#/newsandevents"><i
-                  class="fa-solid fa-newspaper"></i> News &amp; Information</a></li>
+            <li id="nav_newsandevents"><a href="https://mydcampus.dlsl.edu.ph/#/newsandevents"><i class="fa-solid fa-newspaper"></i> News &amp; Information</a></li>
             <li>
               <input id="check01" type="checkbox" name="menu" style="display: none;" />
               <label for="check01"><i class="fa-solid fa-wrench"></i> Chatbot Settings</label>
@@ -449,9 +431,7 @@ while($row = pg_fetch_array($result))
     <section class="content" id="stage">
       <div class="row groups">
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_110"
-              href="https://59thfoundation.dlsl.edu.ph/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(110);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_110" href="https://59thfoundation.dlsl.edu.ph/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(110);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(1).png" style="height:5em;width:5em;">
               </div>
@@ -463,9 +443,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_79"
-              href="https://wps.dlsl.edu.ph/index.php/dlsl-appointment/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(79);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_79" href="https://wps.dlsl.edu.ph/index.php/dlsl-appointment/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(79);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(2).png" style="height:5em;width:5em;">
               </div>
@@ -477,8 +455,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_53"
-              href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:assessment" onclick="logaccess(53);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_53" href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:assessment" onclick="logaccess(53);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(3).png" style="height:5em;width:5em;">
               </div>
@@ -502,9 +479,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_11"
-              href="https://dlsl.instructure.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(11);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_11" href="https://dlsl.instructure.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(11);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(5).png" style="height:5em;width:5em;">
               </div>
@@ -516,8 +491,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_116"
-              href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:class_schedule_college" onclick="logaccess(116);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_116" href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:class_schedule_college" onclick="logaccess(116);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(6).png" style="height:5em;width:5em;">
               </div>
@@ -529,8 +503,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_54"
-              href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:cor" onclick="logaccess(54);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_54" href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:cor" onclick="logaccess(54);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(7).png" style="height:5em;width:5em;">
               </div>
@@ -542,8 +515,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_111"
-              href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:curriculum" onclick="logaccess(111);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_111" href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:curriculum" onclick="logaccess(111);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(8).png" style="height:5em;width:5em;">
               </div>
@@ -555,9 +527,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_68"
-              href="https://www.dlsl.edu.ph/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(68);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_68" href="https://www.dlsl.edu.ph/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(68);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(9).png" style="height:5em;width:5em;">
               </div>
@@ -569,9 +539,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_10"
-              href="https://mail.google.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(10);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_10" href="https://mail.google.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(10);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(10).png" style="height:5em;width:5em;">
               </div>
@@ -583,9 +551,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_117"
-              href="https://mydcampus.dlsl.edu.ph/modules/health_declaration/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(117);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_117" href="https://mydcampus.dlsl.edu.ph/modules/health_declaration/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(117);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(11).png" style="height:5em;width:5em;">
               </div>
@@ -597,9 +563,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_49"
-              href="https://support.dlsl.edu.ph/kb?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(49);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_49" href="https://support.dlsl.edu.ph/kb?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(49);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(12).png" style="height:5em;width:5em;">
               </div>
@@ -623,9 +587,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_4"
-              href="https://lors.dlsl.edu.ph/modules/login/sso.php?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(4);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_4" href="https://lors.dlsl.edu.ph/modules/login/sso.php?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(4);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(14).png" style="height:5em;width:5em;">
               </div>
@@ -637,9 +599,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_34"
-              href="https://m-hub.dlsl.edu.ph/modules/login/sso.php?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(34);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_34" href="https://m-hub.dlsl.edu.ph/modules/login/sso.php?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(34);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(15).png" style="height:5em;width:5em;">
               </div>
@@ -651,9 +611,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_66"
-              href="https://portal.office.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(66);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_66" href="https://portal.office.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(66);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(16).png" style="height:5em;width:5em;">
               </div>
@@ -665,8 +623,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_9"
-              href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:soa" onclick="logaccess(9);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_9" href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:soa" onclick="logaccess(9);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(17).png" style="height:5em;width:5em;">
               </div>
@@ -678,9 +635,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_6"
-              href="https://nors.dlsl.edu.ph/labs/modules/login/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(6);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_6" href="https://nors.dlsl.edu.ph/labs/modules/login/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(6);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(18).png" style="height:5em;width:5em;">
               </div>
@@ -692,9 +647,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_109"
-              href="https://evaluation.dlsl.edu.ph/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(109);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_109" href="https://evaluation.dlsl.edu.ph/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(109);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(19).png" style="height:5em;width:5em;">
               </div>
@@ -706,9 +659,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_67"
-              href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:studentinv?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(67);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_67" href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:studentinv?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(67);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(20).png" style="height:5em;width:5em;">
               </div>
@@ -720,8 +671,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_39"
-              href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:view_grades" onclick="logaccess(39);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_39" href="https://mydcampus.dlsl.edu.ph/#/digitalservices/:view_grades" onclick="logaccess(39);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(21).png" style="height:5em;width:5em;">
               </div>
@@ -741,9 +691,7 @@ while($row = pg_fetch_array($result))
 
       <div class="row groups">
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_56"
-              href="http://dlm.dlsl.edu.ph/common/welcome.jsp?site=201?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(56);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_56" href="http://dlm.dlsl.edu.ph/common/welcome.jsp?site=201?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(56);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(22).png" style="height:5em;width:5em;">
               </div>
@@ -755,9 +703,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_59"
-              href="https://search.proquest.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(59);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_59" href="https://search.proquest.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(59);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(23).png" style="height:5em;width:5em;">
               </div>
@@ -769,9 +715,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_60"
-              href="https://worldbookonline.com/wb/Login?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(60);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_60" href="https://worldbookonline.com/wb/Login?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(60);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(24).png" style="height:5em;width:5em;">
               </div>
@@ -783,9 +727,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_62"
-              href="https://www.nytimes.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(62);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_62" href="https://www.nytimes.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(62);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(25).png" style="height:5em;width:5em;">
               </div>
@@ -797,9 +739,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_71"
-              href="http://search.ebscohost.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(71);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_71" href="http://search.ebscohost.com/?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(71);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(26).png" style="height:5em;width:5em;">
               </div>
@@ -811,9 +751,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_85"
-              href="https://drive.google.com/file/d/1iazJIGQARDi_nbE6T4lHUpJXAdEpXihX/view?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(85);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_85" href="https://drive.google.com/file/d/1iazJIGQARDi_nbE6T4lHUpJXAdEpXihX/view?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(85);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(27).png" style="height:5em;width:5em;">
               </div>
@@ -825,9 +763,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_86"
-              href="https://drive.google.com/file/d/1vp5hMrV7f7ZHpjZA_VBwYo0LMNyMiKHs/view?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(86);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_86" href="https://drive.google.com/file/d/1vp5hMrV7f7ZHpjZA_VBwYo0LMNyMiKHs/view?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(86);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(28).png" style="height:5em;width:5em;">
               </div>
@@ -839,9 +775,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_87"
-              href="https://dlsl.instructure.com/courses/15705/pages/is-digital-reference-and-information-services-digiris?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(87);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_87" href="https://dlsl.instructure.com/courses/15705/pages/is-digital-reference-and-information-services-digiris?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(87);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(29).png" style="height:5em;width:5em;">
               </div>
@@ -853,9 +787,7 @@ while($row = pg_fetch_array($result))
           </div>
         </div>
         <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
-          <div class="groups__item" style="max-height:200px;"><a id="module_88"
-              href="https://dlsl.instructure.com/courses/15705/pages/college-digital-reference-and-information-services-digiris?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0="
-              target="_blank" onclick="logaccess(88);">
+          <div class="groups__item" style="max-height:200px;"><a id="module_88" href="https://dlsl.instructure.com/courses/15705/pages/college-digital-reference-and-information-services-digiris?client_id=YXpzS2ZTTzl3ekt1ZFNCeHNhVlVxeTNSV3ZzL1FBTnpuYjhrMXlVenRPdz0=" target="_blank" onclick="logaccess(88);">
               <div class="groups__img">
                 <img class="avatar-img" src="./My DCampus Portal_files/logo(30).png" style="height:5em;width:5em;">
               </div>
@@ -1025,8 +957,7 @@ while($row = pg_fetch_array($result))
               <input id="brilliant" type="radio" name="option-card" value="brilliant">
               <label class="optioncard-cc brilliant" for="brilliant"></label>
             </div>
-            <h5 id="modal_label" class="modal-title text-success">Tell us what you think:</h5><span
-              id="selectedvalue"></span>
+            <h5 id="modal_label" class="modal-title text-success">Tell us what you think:</h5><span id="selectedvalue"></span>
             <textarea style="width:100%;"></textarea>
           </div>
 
@@ -1091,7 +1022,7 @@ while($row = pg_fetch_array($result))
 
     window.botpressWebChat.init(lastConfig)
 
-    window.addEventListener("message", function (event) {
+    window.addEventListener("message", function(event) {
       if (event.data.name === "webchatReady") {
         window.botpressWebChat.sendEvent({
           type: "proactive-trigger",
@@ -1102,7 +1033,7 @@ while($row = pg_fetch_array($result))
 
     localStorage.clear(); /* resets the random key of the user stored in the localstorage */
 
-      // document.getElementById('origin').innerText = window.location.origin
+    // document.getElementById('origin').innerText = window.location.origin
   </script>
 
   <!-- Script for enabling dark theme; referenced at sidebar navigation; reference around line 200 -->
@@ -1117,10 +1048,8 @@ while($row = pg_fetch_array($result))
 
         element = frames[0].document.getElementById('darkTheme');
         element.remove();
-      }
-
-      else {
-        const darkStyle = document.createElement('style');		//darkStyle for website; darkStyleBpw for chatbox
+      } else {
+        const darkStyle = document.createElement('style'); //darkStyle for website; darkStyleBpw for chatbox
         darkStyle.setAttribute("id", "darkTheme");
         const darkStyleBpw = frames[0].document.createElement('style');
         darkStyleBpw.setAttribute("id", "darkTheme");
@@ -1203,8 +1132,8 @@ while($row = pg_fetch_array($result))
 		      `;
         }
 
-        document.head.appendChild(darkStyle);					//append style to head (site)
-        frames[0].document.body.appendChild(darkStyleBpw);	//append style to body for the styles to take precedence (chatbot)
+        document.head.appendChild(darkStyle); //append style to head (site)
+        frames[0].document.body.appendChild(darkStyleBpw); //append style to body for the styles to take precedence (chatbot)
         darkThemeOn = true;
       }
     }
@@ -1213,27 +1142,28 @@ while($row = pg_fetch_array($result))
   <!-- Accessibility function for users with poor eyesight -->
   <script>
     //inital zoom values
-    let scalePoint = 1.05;		//level of scale css property
-    let scaleBot = 37;			//bottom coords of chatbox
-    let scaleRight = 22;		//right offset of chatbox
-    let zoomMultiNum = 0;		//the multiplier number to append to the zoomMultiplier string
+    let scalePoint = 1.05; //level of scale css property
+    let scaleBot = 37; //bottom coords of chatbox
+    let scaleRight = 22; //right offset of chatbox
+    let zoomMultiNum = 0; //the multiplier number to append to the zoomMultiplier string
     let zoomMultiplier;
     let importantProperty = "!important";
 
     function zoom() {
       if (tallFlag == false) {
-        if (frames[0].document.getElementById('zoomLevels')) {			//removes previous zoomLevels to avoid style buildup
+        if (frames[0].document.getElementById('zoomLevels')) { //removes previous zoomLevels to avoid style buildup
           element = frames[0].document.getElementById('zoomLevels');
           element.remove();
         }
 
-        const zoomLevels = frames[0].document.createElement('style');	//creates a style tag inside the botpress iframe
+        const zoomLevels = frames[0].document.createElement('style'); //creates a style tag inside the botpress iframe
         zoomLevels.setAttribute("id", "zoomLevels");
 
         zoomMultiNum++;
-        zoomMultiplier = "(" + zoomMultiNum + "x)";	//increase zoom multiplier frontend label
+        zoomMultiplier = "(" + zoomMultiNum + "x)"; //increase zoom multiplier frontend label
 
-        if (scalePoint > 1.20) {	/* maximum scalePoint should be less than 1.20 so the iframe doesnt break */
+        if (scalePoint > 1.20) {
+          /* maximum scalePoint should be less than 1.20 so the iframe doesnt break */
           //reset all values when maximum zoom is reached
           zoomMultiNum = 0;
           zoomMultiplier = "";
@@ -1250,28 +1180,26 @@ while($row = pg_fetch_array($result))
 					  -webkit-transform: scale(` + scalePoint + `) !important;
 					  -ie-transform: scale(` + scalePoint + `) !important;
 					  -moz-transform: scale(` + scalePoint + `) !important;
-					  bottom: `+ scaleBot + `px ` + importantProperty + `;
-					  right: `+ scaleRight + `px ` + importantProperty + `;
+					  bottom: ` + scaleBot + `px ` + importantProperty + `;
+					  right: ` + scaleRight + `px ` + importantProperty + `;
 				  }
 			    `;
         frames[0].document.head.appendChild(zoomLevels);
-        scalePoint = scalePoint + 0.05;		//increment level of zoom
-        scaleBot = scaleBot + 19;			//adjust bottom coordinates with scale
+        scalePoint = scalePoint + 0.05; //increment level of zoom
+        scaleBot = scaleBot + 19; //adjust bottom coordinates with scale
         scaleRight = scaleRight + 9;
 
         const elem = document.getElementById('zoomInChatbot');
         elem.innerHTML = `Zoom-In Chatbot ` + zoomMultiplier;
         importantProperty = "!important";
-      }
-
-      else
+      } else
         alert("Sorry! Zoom option is not available when Tall option is enabled!");
     }
   </script>
 
   <!-- Theme change options -->
   <script>
-    let neutral = false;	//neutral textbox state
+    let neutral = false; //neutral textbox state
     let neutralStyle;
 
     function dlslColors2() {
@@ -1300,7 +1228,7 @@ while($row = pg_fetch_array($result))
 			    .bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
 			    .bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content,
 			    .bpw-bubble-undefined bpw-chat-bubble bpw-bubble-text,
-			    .bpw-header-container`+ neutralStyle + `{
+			    .bpw-header-container` + neutralStyle + `{
 				    background-color: var(--dlsl_light);
 			    }
 			    `;
@@ -1309,9 +1237,7 @@ while($row = pg_fetch_array($result))
         //sneaky fix to keep the input color consistent to the DLSL color theme by appending a style in between the linked stylesheets and the neutral input stylesheet
         const targetDiv = frames[0].document.getElementById('input-message');
         targetDiv.insertAdjacentHTML('afterend', '<style id="colors2Input">.bpw-composer textarea { background-color: var(--dlsl_light); } </style>');
-      }
-
-      else
+      } else
         alert("DLSL Colors 2 is not available in High Contrast mode!");
     }
 
@@ -1320,14 +1246,14 @@ while($row = pg_fetch_array($result))
       element = frames[0].document.getElementById('dlslColors2');
       element.remove();
 
-      element = frames[0].document.getElementById('colors2Input');	//colors2Input ID referenced by targetDiv 8 lines above this line
+      element = frames[0].document.getElementById('colors2Input'); //colors2Input ID referenced by targetDiv 8 lines above this line
       element.remove();
     }
 
     //function for toggling neutralTextBox
     function neutralTextBox() {
       if (highContrastFlag == false) {
-        let darkThemeStyle;		//variable used for the border-top-color fix (makes border color more consistent when neutral text box is toggled)
+        let darkThemeStyle; //variable used for the border-top-color fix (makes border color more consistent when neutral text box is toggled)
         const neutralText = frames[0].document.createElement('style');
         neutralText.setAttribute("id", "neutralText");
 
@@ -1337,7 +1263,7 @@ while($row = pg_fetch_array($result))
         else
           darkThemeStyle = " ";
 
-        if (neutral == false) {			//if neutral textbox isn't on, apply these css rules
+        if (neutral == false) { //if neutral textbox isn't on, apply these css rules
           neutralText.innerHTML = `
 				    .bpw-composer {
 				      height: auto;
@@ -1369,20 +1295,16 @@ while($row = pg_fetch_array($result))
 				      color: #707070;
 				    }
 
-				    `+ darkThemeStyle;
+				    ` + darkThemeStyle;
           neutral = true;
 
-          frames[0].document.body.appendChild(neutralText);		//appends to body for the styles to take precedence
-        }
-
-        else {
-          element = frames[0].document.getElementById('neutralText');	//toggles neutral text box off
+          frames[0].document.body.appendChild(neutralText); //appends to body for the styles to take precedence
+        } else {
+          element = frames[0].document.getElementById('neutralText'); //toggles neutral text box off
           element.remove();
           neutral = false;
         }
-      }
-
-      else
+      } else
         alert("Neutral Text Box not available in High Contrast mode!")
     }
 
@@ -1397,10 +1319,8 @@ while($row = pg_fetch_array($result))
 						  text-align: center;
 					  }
 				  `;
-        frames[0].document.body.appendChild(centered);			//append to body to take precedence
-      }
-
-      else {
+        frames[0].document.body.appendChild(centered); //append to body to take precedence
+      } else {
         element = frames[0].document.getElementById('bpwCentered');
         element.remove();
       }
@@ -1408,6 +1328,7 @@ while($row = pg_fetch_array($result))
 
     //toggles tall theme option
     let tallFlag = false;
+
     function bpwTall() {
       if (zoomMultiNum == 0) {
         const tall = frames[0].document.createElement('style');
@@ -1430,7 +1351,7 @@ while($row = pg_fetch_array($result))
         if (!frames[0].document.getElementById('bpwTall')) {
           tall.innerHTML = `
 					    .bpw-layout {
-					      height: `+ tallPercent + `%;
+					      height: ` + tallPercent + `%;
 					      bottom: 0px !important;
 					      right: 0px !important;
 					      border-radius: 0px;
@@ -1444,24 +1365,20 @@ while($row = pg_fetch_array($result))
 						    border-radius: 0;
 					    }
 				    `;
-          frames[0].document.body.appendChild(tall);		//append to body to take precedence
+          frames[0].document.body.appendChild(tall); //append to body to take precedence
           tallFlag = true;
-        }
-
-        else {
+        } else {
           element = frames[0].document.getElementById('bpwTall');
           element.remove();
           tallFlag = false;
         }
-      }
-
-      else
+      } else
         alert("Sorry! Tall option is not available when Zoom is enabled!")
     }
   </script>
 
   <script>
-    document.getElementById('bp-widget').onload = function () {
+    document.getElementById('bp-widget').onload = function() {
       const popMessage = frames[0].document.getElementById('app');
       popMessage.insertAdjacentHTML('afterend', '<div id="popUpMessage" class="talk-bubble tri-right round right-in bounce2"><div id="talktext"><p>Welcome to MyDCampus DLSL. Click here!</p></div></div>');
     };
@@ -1469,7 +1386,7 @@ while($row = pg_fetch_array($result))
 
   <!-- Dynamic Chatbox JS Injection into iframe; Hide pop up -->
   <script>
-    window.onload = function () {
+    window.onload = function() {
       const dynamicChatbox = frames[0].document.createElement('script'); //injects a script tag to put inside the iframe
 
       dynamicChatbox.innerHTML = `
@@ -1517,14 +1434,13 @@ while($row = pg_fetch_array($result))
     }
 
     let highContrastFlag = false;
+
     function highContrast() {
       if (frames[0].document.getElementById('high-contrast')) {
         let element = frames[0].document.getElementById('high-contrast');
         element.remove();
         highContrastFlag = false;
-      }
-
-      else {
+      } else {
         if (frames[0].document.getElementById('darkTheme')) {
           element = frames[0].document.getElementById('darkTheme');
           element.remove();
@@ -1566,7 +1482,7 @@ while($row = pg_fetch_array($result))
 			    .bpw-from-user .bpw-chat-bubble, .bpw-from-user .bpw-chatbubble .bpw-chatbubble-content,
 			    .bpw-from-user .bpw-chat-bubble .bpw-chat-bubble-content,
 			    .bpw-bubble-undefined bpw-chat-bubble bpw-bubble-text,
-			    .bpw-header-container`+ neutralStyle + `{
+			    .bpw-header-container` + neutralStyle + `{
 				    background-color: var(--dlsl_dark);
 				    color: #000000;
 			    }
