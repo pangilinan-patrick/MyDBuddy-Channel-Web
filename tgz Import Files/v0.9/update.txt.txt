@@ -1,0 +1,5 @@
+Update:
+
+1. Conversation flow updated to v12.30.6 features, choices below the chatbot response feature added for most questions.
+2. Added context related actions depending on the ongoing NLP conversation position in the flow
+3. Slight polishing of NLP and Rule-based flows.
