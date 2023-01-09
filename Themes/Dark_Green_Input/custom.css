@@ -352,10 +352,18 @@ body {
   }
 }
 
-a {
+.bpw-from-bot .Linkify a {
+  color: blue;
+}
+
+.bpw-from-bot .Linkify a:hover {
+  color: blue;
+}
+
+.bpw-from-user .Linkify a {
   color: white;
 }
 
-a:hover {
+.bpw-from-user .Linkify a:hover {
   color: white;
 }
