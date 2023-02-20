@@ -1,5 +1,0 @@
-Updates:
-
-1. Improved / adjusted NLU models to appropriately take intent
-2. Improved navigation on continue-flow by separating choices based on session source
-3. Incorporated back and restart navigation on slot-filling nodes by making back and restart part of the entities, as slot-filling node does not allow intent based navigation to function properly.

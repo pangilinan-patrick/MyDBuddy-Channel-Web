@@ -18,31 +18,116 @@ The `.tgz` file is to be imported in the Botpress admin panel to work with an up
 
 The `Database Files` folder contains the needed database files to aid in the chatbot's ability to answer user's queries.
 
-## ✅ To-do List
-- Login 
-	- Polish login UI
-- ~~First time chatbot notification for users~~
-- Accessibility
-	- ~~High Contrast Theme~~
-	- The high contrast theme colors are based on Contrast Ratios compliant with WCAG (Web Content Accessibility Guidance)
-	### Black Foreground on DLSL Colors background
-	<img src="git_img_assets/Blackfg-to-DLSLbg.png" height=350>
-	
-	### DLSL Colors Foreground on black background
-	<img src="git_img_assets/DLSLfg-to-blackbg.png" height=350>
-	
-	### Gray Foreground on black background
-	<img src="git_img_assets/Grayfg-to-blackbg.png" height=350>
+## ✅ Features
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>Themes<ul><li>DLSL Colors 1</li><li>DLSL Colors 2</li><li>Neutral Textbox</li><li>Centered Botpress Branding</li><li>Tall Chatbox</ul></td>
+    <td align="center">✅</td>
+  </tr>
+  <tr>
+    <td>Accessibility</td>
+    <td align="center">✅</td>
+  </tr>
+  <tr>
+    <td>Dark Theme</td>
+    <td align="center">✅</td>
+  </tr>
+</table>
 
-## ✅ Finished Features
-- Tgz folders ✅
-- Suboptions menu for themes and accessibility options ✅
-- Dynamic themes (polished) ✅
-	- DLSL Colors 1
-	- DLSL Colors 2
-	- Neutral Textbox
-	- Centered Botpress Branding
-	- Tall Chatbox
-- Dark theme ✅
-- Chatbot scaling accessibility  ✅
-- Login UI Draft ✅
+## 🎨 Themes and UI
+
+This showcases the themes for the chatbot and the website.
+
+<table align="center">
+  <th><p align="center">DLSL Colors 1</p></th>
+  <th><p align="center">DLSL Colors 2</p></th>
+  <tr>
+    <td align="center">
+      <img src="git_img_assets/themes-accessibility/dlsl-colors.png" height="350">
+    </td>
+    <td align="center">
+      <img src="git_img_assets/themes-accessibility/dlsl-colors-2.png" height="350">
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <th><p align="center">Neutral Textbox</p></th>
+  <th><p align="center">Tall Chatbox</p></th>
+  <tr>
+    <td align="center">
+      <img src="git_img_assets/themes-accessibility/neutral-textbox.png" height="350">
+    </td>
+    <td align="center">
+      <img src="git_img_assets/themes-accessibility/tall-chatbox.png" height="350">
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <th><p align="center">Light Theme</p></th>
+  <th><p align="center">Dark Theme</p></th>
+  <tr>
+    <td align="center">
+      <img src="git_img_assets/themes-accessibility/dcampus-website.png" width="500">
+    </td>
+    <td align="center">
+      <img src="git_img_assets/themes-accessibility/dark-theme.png" width="500">
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <th><p align="center">Sidebar Options</p></th>
+  <tr>
+    <td align="center">
+      <img src="git_img_assets/themes-accessibility/sidebar.png" height="350">
+    </td>
+  </tr>
+</table>
+
+
+## ♿ Accessibility Features
+
+### Zooming In
+A zoom in feature can be applied on the chatbox for users with poor eyesight
+
+<img src="git_img_assets/themes-accessibility/zoom-demo.GIF">
+
+### High Contrast Theme
+The high contrast theme colors are based on Contrast Ratios compliant with WCAG (Web Content Accessibility Guidance)
+
+<table align="center">
+  <th><p align="center">High Contrast Theme</p></th>
+  <tr>
+    <td align="center">
+      <img src="git_img_assets/themes-accessibility/high-contrast.png" height=300>
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <th><p align="center">Black Foreground on DLSL Colors Background</p></th>
+  <th><p align="center">DLSL Colors Foreground on Black Foreground</p></th>
+  <tr>
+    <td align="center">
+      <img src="git_img_assets/Blackfg-to-DLSLbg.png" height="300">
+    </td>
+    <td align="center">
+      <img src="git_img_assets/DLSLfg-to-blackbg.png" height="300">
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <th><p align="center">Gray Foreground on Black Background</p></th>
+  <tr>
+    <td align="center">
+      <img src="git_img_assets/Grayfg-to-blackbg.png" height=300>
+    </td>
+  </tr>
+</table>
