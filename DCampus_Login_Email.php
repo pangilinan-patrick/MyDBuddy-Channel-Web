@@ -318,7 +318,7 @@ if (isset($_POST['user_email']) && !isset($_SESSION['user'])) {   //intialize va
 
 
             flush();
-            redirect("http://localhost/examples/MyDCampusPortal.php");
+            redirect("https://mydcampus-sample.herokuapp.com/");
             die('should have redirected by now');
             exit();
         } else {
@@ -343,7 +343,7 @@ if (isset($_POST['user_email']) && !isset($_SESSION['user'])) {   //intialize va
 
 
         flush();
-        redirect("http://localhost/examples/MyDCampusPortal.php");
+        redirect("https://mydcampus-sample.herokuapp.com/");
         die('should have redirected by now');
     }
 } else {

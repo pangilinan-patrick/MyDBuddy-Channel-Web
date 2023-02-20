@@ -359,3 +359,19 @@ body {
     height: 95% !important;
   }
 }
+
+.bpw-from-bot .Linkify a {
+  color: blue;
+}
+
+.bpw-from-bot .Linkify a:hover {
+  color: blue;
+}
+
+.bpw-from-user .Linkify a {
+  color: white;
+}
+
+.bpw-from-user .Linkify a:hover {
+  color: white;
+}
