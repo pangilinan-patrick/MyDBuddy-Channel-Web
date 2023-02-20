@@ -3,7 +3,12 @@ This is the repository for the MyDCampus Botpress Chatbot Channel-Web Examples f
 
 You can directly clone this repo into the examples folder in the channel-web folder which can be located at `../botpress/data/assets/modules/channel-web/examples/` (the folder  needs to be empty first). After that, the files should be inside the examples folder.
 
-You can test the site with this link (Botpress must be running and the `.tgz` file has been imported): `http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=sample-bot`
+```bash
+cd ../botpress/data/assets/modules/channel-web/examples/ # the ../ is where you have botpress installed
+git clone https://github.com/pangilinan-patrick/MyDCampus-Channel-Web.git .
+```
+
+The site is then tested with this link (Botpress must be running and the `.tgz` file has been imported using the Botpress admin site): `http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=draft`
 
 ## 📁 Important Files
 The `My DCampus Portal_Files` folder contains the assets for the `MyDCampusPortal.html/php` website. The main CSS file for the website inside the folder is `app.min.css`
