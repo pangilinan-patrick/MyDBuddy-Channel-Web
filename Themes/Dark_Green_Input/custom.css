@@ -278,7 +278,7 @@ body {
 .talk-bubble {
   display: inline-block;
   position: absolute;
-  width: 13em;
+  width: 15em;
   height: 5em;
   top: 0.8em;
   right: 5.5em;
@@ -331,6 +331,7 @@ body {
   /* remove webkit p margins */
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
+  font-size: 1em;
 }
 
 .bounce2 {
@@ -349,6 +350,13 @@ body {
   }
   60% {
     transform: translateY(-11px);
+  }
+}
+
+@media only screen and (hover: none) and (pointer: coarse) {
+  .bpw-layout {
+    width: 90% !important;
+    height: 95% !important;
   }
 }
 
