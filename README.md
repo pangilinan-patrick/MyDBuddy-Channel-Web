@@ -1,35 +1,48 @@
-# 🤖 Botpress Channel-Web Examples Folder for MyDCampus
-This is the repository for the MyDCampus Botpress Chatbot Channel-Web Examples folder.
+# 🤖 Botpress Channel-Web/Examples Directory for MyDCampus Portal
+This is the repository for the MyDCampus Botpress Chatbot Channel-Web Examples directory.
 
-The Channel-web module in Botpress enables the integration of the chat bot into the website or web application, allowing users to interact with the bot through a chat widget.
+The Channel-Web module in Botpress enables the integration of the chat bot into the website or web application, allowing users to interact with the bot through a chat widget.
 
-The Channel-web module also includes features such as message history, user authentication, and custom styling options (which is extensively used in this project) for the chat widget.
+The Channel-Web module also includes features such as message history, user authentication, and custom styling options (which is extensively used in this project) for the chat widget.
+
+A repository specifically for the examples directory in this module was created because the source control within the Botpress Admin Panel didn't quite suit our development needs. We needed a way to be able to easily track the changes made to the UI of the chatbot to always have the most updated view of what the chatbot would look like. This repository also stores the NLP and Rule-Based flow of the chatbot exported from the admin panel.
  
 # 🪛 Installation and usage
 
-You can directly clone this repo into the examples folder in the channel-web folder which can be located at `../botpress/data/assets/modules/channel-web/examples/` (the folder  needs to be empty first). After that, the files should be inside the examples folder.
+You can directly clone this repo into the examples directory in the channel-web directory which can be located at `../botpress/data/assets/modules/channel-web/examples/` (the directory needs to be empty first). After that, the files should be inside the examples directory.
 
 ```bash
-cd ../botpress/data/assets/modules/channel-web/examples/ # the ../ is where you have botpress installed
-git clone https://github.com/pangilinan-patrick/MyDCampus-Channel-Web.git .
+cd ../botpress/data/assets/modules/channel-web/examples/ # ../ is where you have botpress installed
+rm -r * # deletes all the content in the examples directory
+git clone https://github.com/pangilinan-patrick/MyDCampus-Channel-Web.git . # clones into the current directory
 ```
 
-The site is then tested with this link (Botpress must be running and the `.tgz` file has been imported using the Botpress admin site): `http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=draft`
+The site is then tested with this link (Botpress must be running and the `.tgz` file has been imported using the Botpress admin site): 
+```html
+http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=draft
+```
 
 Please note that this project was developed using `Botpress 12.30.6`
 
 ## 📁 Important Files
-The `My DCampus Portal_Files` folder contains the assets for the `MyDCampusPortal.html/php` website. The main CSS file for the website inside the folder is `app.min.css`
 
-The chat bot injection script is in `MyDCampusPortal.html/php` found around `line 520`, or you can just `Ctrl + F + "chatbot script"` to find it. You can also make edits to the sidebar navigation around `line 140` which contains the settings front-end for the chat bot settings.
+📂 The `My DCampus Portal_Files` directory contains the assets for the `MyDCampusPortal.html` website. The main CSS file for the website inside the directory is `app.min.css`
 
-The main chatbot script and other related scripts are located around `line 650`.
+&nbsp;&nbsp;&nbsp;&nbsp;📄 The chat bot injection script is in `MyDCampusPortal.html` found around `line 520`, or you can just `Ctrl + F + "chatbot script"` to find it. You can also make edits to the sidebar navigation around `line 140` which contains the settings front-end for the chat bot settings.
 
-The `Themes` folder contains the CSS file for each theme that's used by the chat bot.
+&nbsp;&nbsp;&nbsp;&nbsp;📄 The main chatbot script and other related scripts are located around `line 650`.
 
-The `.tgz` file is to be imported in the Botpress admin panel to work with an up to date chat bot at all times.
+📂 The `Themes` directory contains the CSS file for each theme that's used by the chat bot.
 
-The `Database Files` folder contains the needed database files to aid in the chatbot's ability to answer user's queries.
+📂 The `tgz Import Files` directory contains the chatbot NLP and Rule Based flow and is to be imported using the Botpress Admin Panel to work with an up to date chat bot at all times. The current latest version of the chatbot is `v0.11`
+
+📂 The `Database Files` directory contains the IT support knowledgebase in the MyDCampus portal website to aid in the chatbot's ability to answer user's queries. The database is to be imported into PostgreSQL which performs better than MySQL which is used by default. A `.env` file is to then be created in the Botpress directory and should be set accordingly:
+
+```bash
+# .env file
+DATABASE_URL=postgres
+DATABASE_URL=postgres://postgres:postgres@127.0.0.1:5432/mydbuddydb
+```
 
 ## ✅ Features
 <table>
