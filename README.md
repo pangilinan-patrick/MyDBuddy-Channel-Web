@@ -34,7 +34,7 @@ Please note that this project was developed using `Botpress 12.30.6`
 
 📂 The `Themes` directory contains the CSS file for each theme that's used by the chat bot.
 
-📂 The `tgz Import Files` directory contains the chatbot NLP and Rule Based flow and is to be imported using the Botpress Admin Panel to work with an up to date chat bot at all times. The current latest version of the chatbot is `v0.11`
+📂 The `Chatbot tgz Import Files` directory contains the chatbot NLP and Rule Based flow and is to be imported using the Botpress Admin Panel to work with an up to date chat bot at all times. The current latest version of the chatbot is `v1`.
 
 📂 The `Database Files` directory contains the IT support knowledgebase in the MyDCampus portal website to aid in the chatbot's ability to answer user's queries. The database is to be imported into PostgreSQL which performs better than MySQL which is used by default. A `.env` file is to then be created in the Botpress directory and should be set accordingly:
 
