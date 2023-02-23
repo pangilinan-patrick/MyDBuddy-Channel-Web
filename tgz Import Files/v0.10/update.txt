@@ -1,5 +1,0 @@
-Update:
-
-1. Removed flow-wide transitions and placed them on intent transition nodes instead as flow-wide transition causing infinite loop errors.
-2. Added more text and image information, improved some text with markdown.
-3. Polished some NLP flows not working as intended.

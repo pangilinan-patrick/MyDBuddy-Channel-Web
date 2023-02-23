@@ -1,0 +1,18 @@
+{
+  $schema bptypesmodulesbasic-skillsconfig.schema.json,
+  defaultContentElement builtin_single-choice,
+  defaultContentRenderer #builtin_single-choice,
+  defaultMaxAttempts 3,
+  disableIntegrityCheck true,
+  matchNumbers true,
+  matchNLU true,
+  transportConnectionString {
+    host smtp.gmail.com,
+    port 465,
+    auth {
+      user mydbuddy@gmail.com,
+      pass dsuppwyzcmxuyzhp
+    },
+    secure true
+  }
+}

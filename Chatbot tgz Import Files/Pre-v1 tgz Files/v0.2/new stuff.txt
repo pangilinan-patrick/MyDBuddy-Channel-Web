@@ -1,0 +1,5 @@
+1. Added "mydcampus-feature" flow for streamlining purposes (making the flow more abstract and reusable e.g. use for mydcampus feature info and issue)
+2. Incorporated set variable actions on "mydcampus-feature" flow to take payload values to be used for interacting with database with custom action.
+3. Accessed session variables for set variable and as transition condition through match property/raw expression conditions.
+
+Just need more time to expand the flow and set variables but basics are incorporated and functional. 

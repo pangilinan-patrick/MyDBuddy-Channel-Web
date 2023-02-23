@@ -1,5 +1,0 @@
-Updates:
-
-1. Connected response flows to continue flow to have a continuous loop of conversation.
-2. Finished curriculum_list flow.
-3. Added site_issue nodes for email testing (work in progress)

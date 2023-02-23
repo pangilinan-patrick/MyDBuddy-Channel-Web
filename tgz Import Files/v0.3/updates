@@ -1,8 +1,0 @@
-Updates on chatbot flow:
-
-1. Main flows for DLSL Info, MyDCampus Info, and MyDCampus Issues are accomplished for the most part, only needs custom action for database interaction + minor polishing.
-
-2. Backwards navigation on the main flows are added through a back option. 
-
-3. Added flows named Academic, Appoint_Reserve, Enroll_Assess, and Others for MyDCampus flow related responses. Curriculum-List flow is also added for specific college curriculums questions and to be updated.
-*Appoint_Reserve_Alt is an alternative design of the flow and not in use, Appoint_Reserve nodes in mydcampus-feature-set1 and set 2 are also both not in use.
