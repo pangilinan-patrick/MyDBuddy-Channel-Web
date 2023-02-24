@@ -1,4 +1,7 @@
 # 🤖 Botpress Channel-Web/Examples Directory for MyDCampus Portal
+
+<img src="git_img_assets/dbuddy.png" />
+
 This is the repository for the MyDCampus Botpress Chatbot Channel-Web Examples directory.
 
 The Channel-Web module in Botpress enables the integration of the chat bot into the website or web application, allowing users to interact with the bot through a chat widget.
@@ -161,6 +164,6 @@ The high contrast theme colors are based on Contrast Ratios compliant with `WCAG
 
 ## 🎉 Credits
 
-The DLSL MyDCampus portal is developed by the <strong>ICT team at DLSL </strong>the original site can be found here: https://mydcampus.dlsl.edu.ph/#/digitalservices
+The DLSL MyDCampus portal is developed by the <strong>ICT team at DLSL </strong>the original site can be found here (Only members of DLSL can access): https://mydcampus.dlsl.edu.ph
 
 <strong>Botpress</strong> is an easy to use chatbot editor powered by generative AI. Their website can be found here: https://botpress.com/
