@@ -1,4 +1,4 @@
-# 🤖 <strong>Botpress Channel-Web/Examples Directory for MyDCampus Portal</strong>
+# 🤖 <strong>MyDBuddy Channel-Web/Examples Directory</strong>
 
 <img src="git_img_assets/dbuddy.png" />
 
