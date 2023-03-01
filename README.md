@@ -15,7 +15,7 @@ A repository specifically for the examples directory in this module was created 
 You can directly clone this repo into the examples directory in the channel-web directory which can be located at `../botpress/data/assets/modules/channel-web/examples/` (the directory needs to be empty first). After that, the files should be inside the examples directory.
 
 ```bash
-cd ../botpress/data/assets/modules/channel-web/examples/ # ../ is where you have botpress installed
+cd ../botpress/data/assets/modules/channel-web/examples/ # ../ is where you have the botpress binary downloaded
 rm -r * # deletes all the content in the examples directory
 git clone https://github.com/pangilinan-patrick/MyDCampus-Channel-Web.git . # clones into the current directory
 ```
@@ -25,7 +25,7 @@ The site is then tested with this link (Botpress must be running and the `.tgz` 
 http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?botId=draft
 ```
 
-Please note that this project was developed using `Botpress 12.30.6`
+Please note that this project was developed using `Botpress 12.30.6`. You can download the latest binaries here: https://v12.botpress.com/
 
 ## 📁 <strong>Important Files</strong>
 
