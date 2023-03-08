@@ -10,7 +10,22 @@ The Channel-Web module also includes features such as message history, user auth
 
 A repository specifically for the examples directory in this module was created because the source control within the Botpress Admin Panel didn't quite suit our development needs. We needed a way to be able to easily track the changes made to the UI of the chatbot to always have the most updated view of what the chatbot would look like. This repository also stores the NLP and Rule-Based flow of the chatbot exported from the admin panel.
  
-## 🪛 <strong>Installation and usage</strong>
+## Table of Contents
+
+<nav>
+ <ul>
+  <li><a href="#installation">Installation and Usage</a></li>
+  <li><a href="#important-files">Important Files</a></li>
+  <li><a href="#features">Features</a></li>
+  <li><a href="#capabilities">Chatbot Capabilities</a></li>
+  <li><a href="#themes-ui">Themes and UI</a></li>
+  <li><a href="#accessibility">Accessibility Features</a></li>
+  <li><a href="#previews">Chatbot Previews</a></li>
+  <li><a href="#credits">Credits</a></li>
+ </ul>
+</nav>
+
+## 🪛 <strong id="installation">Installation and Usage</strong>
 
 You can directly clone this repo into the examples directory in the channel-web directory which can be located at `../botpress/data/assets/modules/channel-web/examples/` (the directory needs to be empty first). After that, the files should be inside the examples directory.
 
@@ -27,7 +42,7 @@ http://localhost:3000/assets/modules/channel-web/examples/MyDCampusPortal.html?b
 
 Please note that this project was developed using `Botpress 12.30.6`. You can download the latest binaries here: https://v12.botpress.com/
 
-## 📁 <strong>Important Files</strong>
+## 📁 <strong id="important-files">Important Files</strong>
 
 📂 The `My DCampus Portal_Files` directory contains the assets for the `MyDCampusPortal.html` website. The main CSS file for the website inside the directory is `app.min.css`
 
@@ -54,7 +69,7 @@ DATABASE_URL=postgres
 DATABASE_URL=postgres://postgres:postgres@127.0.0.1:5432/mydbuddydb
 ```
 
-## ✅ <strong>Features</strong>
+## ✅ <strong id="features">Features</strong>
 <table>
   <tr>
     <th>UI Features 🖌️</th>
@@ -89,7 +104,7 @@ DATABASE_URL=postgres://postgres:postgres@127.0.0.1:5432/mydbuddydb
   </tr>
 </table>
 
-## 🤖 <strong>Chatbot Capabilities</strong>
+## 🤖 <strong id="capabilities">Chatbot Capabilities</strong>
 
 ### <strong>NLP/NLU</strong>
 - <strong>Intent Classification </strong>- recognizing what the user wants by categorizing phrases by meaning.
@@ -106,7 +121,7 @@ DATABASE_URL=postgres://postgres:postgres@127.0.0.1:5432/mydbuddydb
 
 More details in our [thesis manuscript](https://drive.google.com/file/d/1x8l3txLr_DRiydIllHEzzJ-JSGgrCKgK/view).
 
-## 🎨 <strong>Themes and UI</strong>
+## 🎨 <strong id="themes-ui">Themes and UI</strong>
 
 This showcases the themes for the chatbot and the website.
 
@@ -159,7 +174,7 @@ This showcases the themes for the chatbot and the website.
 </table>
 
 
-## ♿ <strong>Accessibility Features</strong>
+## ♿ <strong id="accessibility">Accessibility Features</strong>
 
 ### <strong>Zooming In</strong>
 
@@ -201,7 +216,34 @@ The high contrast theme colors are based on Contrast Ratios compliant with `WCAG
   </tr>
 </table>
 
-## 🎉 <strong>Credits</strong>
+## 🤖 <strong id="previews">Chatbot Previews</strong>
+
+### <strong>Opening the Chatbot</strong>
+
+<img src="git_img_assets/chatbot-previews-gif/open-chatbot.gif">
+
+### <strong>Rule-based and Free-text Conversations</strong>
+
+<img src="git_img_assets/chatbot-previews-gif/rule-based-and-AI-features-preview.gif">
+
+### <strong>Chatbot Redirect Response</strong>
+
+<img src="git_img_assets/chatbot-previews-gif/redirect-preview.gif">
+<img src="git_img_assets/chatbot-previews-gif/redirect-preview2.gif">
+
+### <strong>Chatbot Analytics Dashboard</strong>
+
+<img src="git_img_assets/chatbot-previews-gif/dashboard-analytics-preview.gif">
+
+### <strong>Chatbot Misunderstood Module</strong>
+
+<img src="git_img_assets/chatbot-previews-gif/misunderstood-module-preview.gif">
+
+### <strong>Botpress Preview featuring Intent Classification / Conversational Flow</strong>
+
+<img src="git_img_assets/chatbot-previews-gif/botpress-flow-intent-classification-preview.gif">
+
+## 🎉 <strong id="credits">Credits</strong>
 
 - The DLSL MyDCampus portal is developed by the <strong>ICT team at DLSL </strong>the original site can be found here (Only members of DLSL can access): https://mydcampus.dlsl.edu.ph
 
